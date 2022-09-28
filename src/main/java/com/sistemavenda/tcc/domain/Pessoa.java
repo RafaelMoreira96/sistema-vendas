@@ -17,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Pessoa implements Serializable {
-
+public abstract class Pessoa implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     protected Integer id;
@@ -39,11 +39,12 @@ public class Pessoa implements Serializable {
     public Pessoa() {
     }
 
-    public Pessoa(Integer id, String nomeCompleto, boolean status, Endereco endereco) {
+    public Pessoa(Integer id, String nomeCompleto, boolean status, Endereco endereco, List<Contato> contatos) {
         this.id = id;
         this.nomeCompleto = nomeCompleto;
-        this.status = true;
+        this.status = status;
         this.endereco = endereco;
+        this.contatos = contatos;
     }
 
     public Integer getId() {
@@ -82,6 +83,14 @@ public class Pessoa implements Serializable {
         this.endereco = endereco;
     }
 
+    public List<Contato> getContatos() {
+        return this.contatos;
+    }
+
+    public void setContatos(List<Contato> contatos) {
+        this.contatos = contatos;
+    }
+
     public LocalDate getDataCriacao() {
         return this.dataCriacao;
     }
@@ -99,12 +108,13 @@ public class Pessoa implements Serializable {
         }
         Pessoa pessoa = (Pessoa) o;
         return Objects.equals(id, pessoa.id) && Objects.equals(nomeCompleto, pessoa.nomeCompleto)
-                && status == pessoa.status
-                && Objects.equals(endereco, pessoa.endereco);
+                && status == pessoa.status && Objects.equals(endereco, pessoa.endereco)
+                && Objects.equals(contatos, pessoa.contatos) && Objects.equals(dataCriacao, pessoa.dataCriacao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nomeCompleto, status, endereco);
+        return Objects.hash(id, nomeCompleto, status, endereco, contatos, dataCriacao);
     }
+
 }

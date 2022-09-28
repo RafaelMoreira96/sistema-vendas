@@ -1,7 +1,9 @@
 package com.sistemavenda.tcc.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,13 +11,15 @@ import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sistemavenda.tcc.domain.enums.NivelAuth;
 
 @Entity
-public class Funcionario {
+public class Funcionario extends Pessoa {
 
     @NotNull
     private String nomeUsuario;
@@ -33,16 +37,29 @@ public class Funcionario {
     @CollectionTable(name = "NIVELAUTH")
     private Set<Integer> nivelAuth = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "funcionario")
+    private List<Venda> vendas = new ArrayList<>();
+
     public Funcionario() {
     }
 
     public Funcionario(String nomeUsuario, String senha, LocalDate dataDemissao, LocalDate dataAdmissao,
-            Set<Integer> nivelAuth) {
+            Set<Integer> nivelAuth, List<Venda> vendas) {
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
         this.dataDemissao = dataDemissao;
         this.dataAdmissao = dataAdmissao;
         this.nivelAuth = nivelAuth;
+        this.vendas = vendas;
+    }
+
+    public List<Venda> getVendas() {
+        return this.vendas;
+    }
+
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
     }
 
     public String getNomeUsuario() {
