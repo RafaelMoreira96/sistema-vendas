@@ -11,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sistemavenda.tcc.domain.enums.StatusVenda;
 
 @Entity
@@ -35,6 +37,8 @@ public class Venda {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "venda")
     private List<ItemVenda> listaProdutos = new ArrayList<>();
 
     private FormaPagamento formaPagamento;

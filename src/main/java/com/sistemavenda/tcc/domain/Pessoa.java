@@ -13,20 +13,27 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public abstract class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     protected Integer id;
 
-    @NotNull(message = "O campo NOME não pode ficar vazio")
-    protected String nomeCompleto;
+    @CNPJ
+    private String cnpj;
+    @CPF
+    private String cpf;
 
-    protected boolean status;
+    @NotNull(message = "O campo NOME não pode ficar vazio")
+    protected String nome; // ou razao social
     protected Endereco endereco;
 
     @JsonIgnore
@@ -34,15 +41,16 @@ public abstract class Pessoa implements Serializable {
     protected List<Contato> contatos = new ArrayList<>();
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-    protected LocalDate dataCriacao = LocalDate.now();
+    protected LocalDate dataCadastro = LocalDate.now();
 
     public Pessoa() {
     }
 
-    public Pessoa(Integer id, String nomeCompleto, boolean status, Endereco endereco, List<Contato> contatos) {
+    public Pessoa(Integer id, String cnpj, String cpf, String nome, Endereco endereco, List<Contato> contatos) {
         this.id = id;
-        this.nomeCompleto = nomeCompleto;
-        this.status = status;
+        this.cnpj = cnpj;
+        this.cpf = cpf;
+        this.nome = nome;
         this.endereco = endereco;
         this.contatos = contatos;
     }
@@ -55,24 +63,28 @@ public abstract class Pessoa implements Serializable {
         this.id = id;
     }
 
-    public String getNomeCompleto() {
-        return this.nomeCompleto;
+    public String getCnpj() {
+        return this.cnpj;
     }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
-    public boolean isStatus() {
-        return this.status;
+    public String getCpf() {
+        return this.cpf;
     }
 
-    public boolean getStatus() {
-        return this.status;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Endereco getEndereco() {
@@ -91,12 +103,8 @@ public abstract class Pessoa implements Serializable {
         this.contatos = contatos;
     }
 
-    public LocalDate getDataCriacao() {
-        return this.dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDate dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public LocalDate getDataCadastro() {
+        return this.dataCadastro;
     }
 
     @Override
@@ -107,14 +115,27 @@ public abstract class Pessoa implements Serializable {
             return false;
         }
         Pessoa pessoa = (Pessoa) o;
-        return Objects.equals(id, pessoa.id) && Objects.equals(nomeCompleto, pessoa.nomeCompleto)
-                && status == pessoa.status && Objects.equals(endereco, pessoa.endereco)
-                && Objects.equals(contatos, pessoa.contatos) && Objects.equals(dataCriacao, pessoa.dataCriacao);
+        return Objects.equals(id, pessoa.id) && Objects.equals(cnpj, pessoa.cnpj) && Objects.equals(cpf, pessoa.cpf)
+                && Objects.equals(nome, pessoa.nome) && Objects.equals(endereco, pessoa.endereco)
+                && Objects.equals(contatos, pessoa.contatos) && Objects.equals(dataCadastro, pessoa.dataCadastro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nomeCompleto, status, endereco, contatos, dataCriacao);
+        return Objects.hash(id, cnpj, cpf, nome, endereco, contatos, dataCadastro);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", cnpj='" + getCnpj() + "'" +
+                ", cpf='" + getCpf() + "'" +
+                ", nome='" + getNome() + "'" +
+                ", endereco='" + getEndereco() + "'" +
+                ", contatos='" + getContatos() + "'" +
+                ", dataCadastro='" + getDataCadastro() + "'" +
+                "}";
     }
 
 }

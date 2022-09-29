@@ -9,8 +9,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class ItemVenda {
-
+public class ItemCompra {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
@@ -19,18 +18,18 @@ public class ItemVenda {
     @NotNull
     private String codBarras;
     @NotNull
-    private double precoVendido;
+    private double precoCompra;
     @NotNull
     private double quant;
 
-    public ItemVenda() {
+    public ItemCompra() {
     }
 
-    public ItemVenda(Integer id, String descricao, String codBarras, double precoVendido, double quant) {
+    public ItemCompra(Integer id, String descricao, String codBarras, double precoCompra, double quant) {
         this.id = id;
         this.descricao = descricao;
         this.codBarras = codBarras;
-        this.precoVendido = precoVendido;
+        this.precoCompra = precoCompra;
         this.quant = quant;
     }
 
@@ -58,12 +57,12 @@ public class ItemVenda {
         this.codBarras = codBarras;
     }
 
-    public double getPrecoVendido() {
-        return this.precoVendido;
+    public double getPrecoCompra() {
+        return this.precoCompra;
     }
 
-    public void setPrecoVendido(double precoVendido) {
-        this.precoVendido = precoVendido;
+    public void setPrecoCompra(double precoCompra) {
+        this.precoCompra = precoCompra;
     }
 
     public double getQuant() {
@@ -74,47 +73,22 @@ public class ItemVenda {
         this.quant = quant;
     }
 
-    public ItemVenda id(Integer id) {
-        setId(id);
-        return this;
-    }
-
-    public ItemVenda descricao(String descricao) {
-        setDescricao(descricao);
-        return this;
-    }
-
-    public ItemVenda codBarras(String codBarras) {
-        setCodBarras(codBarras);
-        return this;
-    }
-
-    public ItemVenda precoVendido(double precoVendido) {
-        setPrecoVendido(precoVendido);
-        return this;
-    }
-
-    public ItemVenda quant(double quant) {
-        setQuant(quant);
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof ItemVenda)) {
+        if (!(o instanceof ItemCompra)) {
             return false;
         }
-        ItemVenda itemVenda = (ItemVenda) o;
-        return Objects.equals(id, itemVenda.id) && Objects.equals(descricao, itemVenda.descricao)
-                && Objects.equals(codBarras, itemVenda.codBarras) && precoVendido == itemVenda.precoVendido
-                && quant == itemVenda.quant;
+        ItemCompra itemCompra = (ItemCompra) o;
+        return Objects.equals(id, itemCompra.id) && Objects.equals(descricao, itemCompra.descricao)
+                && Objects.equals(codBarras, itemCompra.codBarras) && precoCompra == itemCompra.precoCompra
+                && quant == itemCompra.quant;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descricao, codBarras, precoVendido, quant);
+        return Objects.hash(id, descricao, codBarras, precoCompra, quant);
     }
 
     @Override
@@ -123,7 +97,7 @@ public class ItemVenda {
                 " id='" + getId() + "'" +
                 ", descricao='" + getDescricao() + "'" +
                 ", codBarras='" + getCodBarras() + "'" +
-                ", precoVendido='" + getPrecoVendido() + "'" +
+                ", precoCompra='" + getPrecoCompra() + "'" +
                 ", quant='" + getQuant() + "'" +
                 "}";
     }

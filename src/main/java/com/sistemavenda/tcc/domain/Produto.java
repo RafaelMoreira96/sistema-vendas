@@ -18,13 +18,13 @@ public class Produto {
     @NotNull
     private String codBarras;
     @NotNull
-    private Double precoAtacado;
+    private double precoAtacado;
     @NotNull
-    private Double precoVarejo;
+    private double precoVarejo;
 
-    private Double qteEstoque;
-    private Double qteMin;
-    private Double qteMax;
+    private double qteEstoque;
+    private double qteMin;
+    private double qteMax;
 
     public Produto() {
     }

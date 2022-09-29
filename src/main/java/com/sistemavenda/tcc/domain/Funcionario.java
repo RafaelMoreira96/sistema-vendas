@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -42,16 +43,21 @@ public class Funcionario extends Pessoa {
     private List<Venda> vendas = new ArrayList<>();
 
     public Funcionario() {
+        super();
     }
 
-    public Funcionario(String nomeUsuario, String senha, LocalDate dataDemissao, LocalDate dataAdmissao,
-            Set<Integer> nivelAuth, List<Venda> vendas) {
+    public Funcionario(Integer id, String cnpj, String cpf, String nomeCompleto, Endereco endereco,
+            List<Contato> contatos, String nome, String nomeUsuario,
+            String senha, Set<Integer> nivelAuth, List<Venda> vendas) {
+        super(id, cnpj, cpf, nome, endereco, contatos);
+        this.id = id;
+        this.nome = nomeCompleto;
+        this.endereco = endereco;
+        this.contatos = contatos;
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
-        this.dataDemissao = dataDemissao;
-        this.dataAdmissao = dataAdmissao;
-        this.nivelAuth = nivelAuth;
         this.vendas = vendas;
+        setAuth(NivelAuth.PADRAO);
     }
 
     public List<Venda> getVendas() {
@@ -98,8 +104,39 @@ public class Funcionario extends Pessoa {
         return nivelAuth.stream().map(x -> NivelAuth.toEnum(x)).collect(Collectors.toSet());
     }
 
-    public void setNivelAuth(NivelAuth nivelAuth) {
+    public void setAuth(NivelAuth nivelAuth) {
         this.nivelAuth.add(nivelAuth.getCodigo());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Funcionario)) {
+            return false;
+        }
+        Funcionario funcionario = (Funcionario) o;
+        return Objects.equals(nomeUsuario, funcionario.nomeUsuario) && Objects.equals(senha, funcionario.senha)
+                && Objects.equals(dataDemissao, funcionario.dataDemissao)
+                && Objects.equals(dataAdmissao, funcionario.dataAdmissao)
+                && Objects.equals(nivelAuth, funcionario.nivelAuth) && Objects.equals(vendas, funcionario.vendas);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nomeUsuario, senha, dataDemissao, dataAdmissao, nivelAuth, vendas);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " nomeUsuario='" + getNomeUsuario() + "'" +
+                ", senha='" + getSenha() + "'" +
+                ", dataDemissao='" + getDataDemissao() + "'" +
+                ", dataAdmissao='" + getDataAdmissao() + "'" +
+                ", nivelAuth='" + getNivelAuth() + "'" +
+                ", vendas='" + getVendas() + "'" +
+                "}";
     }
 
 }
