@@ -37,10 +37,12 @@ public class Venda {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "venda")
+    @OneToMany
     private List<ItemVenda> listaProdutos = new ArrayList<>();
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "forma_pagamento_id")
     private FormaPagamento formaPagamento;
 
     public Venda() {
@@ -140,20 +142,6 @@ public class Venda {
     @Override
     public int hashCode() {
         return Objects.hash(id, numeroVenda, dataVenda, status, cliente, funcionario, listaProdutos, formaPagamento);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                " id='" + getId() + "'" +
-                ", numeroVenda='" + getNumeroVenda() + "'" +
-                ", dataVenda='" + getDataVenda() + "'" +
-                ", status='" + getStatus() + "'" +
-                ", cliente='" + getCliente() + "'" +
-                ", funcionario='" + getFuncionario() + "'" +
-                ", listaProdutos='" + getListaProdutos() + "'" +
-                ", formaPagamento='" + getFormaPagamento() + "'" +
-                "}";
     }
 
 }

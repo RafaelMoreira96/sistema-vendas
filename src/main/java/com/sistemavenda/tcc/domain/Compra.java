@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Compra {
@@ -35,8 +34,7 @@ public class Compra {
 
     private double valorTotal;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "compra")
+    @OneToMany
     private List<ItemCompra> produtos = new ArrayList<>();
 
     public Compra() {

@@ -23,11 +23,8 @@ public class Cliente extends Pessoa {
         super();
     }
 
-    public Cliente(Integer id, String cnpj, String cpf, String nomeCompleto, Endereco endereco, List<Contato> contatos,
-            boolean status, List<Venda> compras) {
+    public Cliente(Integer id, String cnpj, String cpf, String nomeCompleto, Endereco endereco, List<Contato> contatos) {
         super(id, cnpj, cpf, nomeCompleto, endereco, contatos);
-        this.status = status;
-        this.compras = compras;
     }
 
     public boolean isStatus() {

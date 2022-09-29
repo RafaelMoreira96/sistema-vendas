@@ -17,14 +17,13 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public abstract class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
     @CNPJ
@@ -36,8 +35,7 @@ public abstract class Pessoa implements Serializable {
     protected String nome; // ou razao social
     protected Endereco endereco;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "pessoa")
+    @OneToMany
     protected List<Contato> contatos = new ArrayList<>();
 
     @JsonFormat(pattern = "dd/MM/yyyy")
