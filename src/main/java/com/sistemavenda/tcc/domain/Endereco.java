@@ -1,19 +1,22 @@
 package com.sistemavenda.tcc.domain;
 
-import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Endereco implements Serializable {
+@Table(name = "endereco")
+public class Endereco {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
     private String cep;
     @NotNull(message = "O campo LOGRADOURO deve ser inserido")

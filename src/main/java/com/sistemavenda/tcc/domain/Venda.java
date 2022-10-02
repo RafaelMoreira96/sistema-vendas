@@ -12,12 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sistemavenda.tcc.domain.enums.StatusVenda;
 
 @Entity
+@Table(name = "venda")
 public class Venda {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -38,9 +39,8 @@ public class Venda {
     private Funcionario funcionario;
 
     @OneToMany
-    private List<ItemVenda> listaProdutos = new ArrayList<>();
+    private List<ItemVenda> itens = new ArrayList<>();
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "forma_pagamento_id")
     private FormaPagamento formaPagamento;
@@ -48,15 +48,14 @@ public class Venda {
     public Venda() {
     }
 
-    public Venda(Integer id, Integer numeroVenda, LocalDate dataVenda, StatusVenda status, Cliente cliente,
-            Funcionario funcionario, List<ItemVenda> listaProdutos, FormaPagamento formaPagamento) {
+    public Venda(Integer id, Integer numeroVenda, StatusVenda status, Cliente cliente,
+            Funcionario funcionario, List<ItemVenda> itens, FormaPagamento formaPagamento) {
         this.id = id;
         this.numeroVenda = numeroVenda;
-        this.dataVenda = dataVenda;
         this.status = status;
         this.cliente = cliente;
         this.funcionario = funcionario;
-        this.listaProdutos = listaProdutos;
+        this.itens = itens;
         this.formaPagamento = formaPagamento;
     }
 
@@ -109,11 +108,11 @@ public class Venda {
     }
 
     public List<ItemVenda> getListaProdutos() {
-        return this.listaProdutos;
+        return this.itens;
     }
 
-    public void setListaProdutos(List<ItemVenda> listaProdutos) {
-        this.listaProdutos = listaProdutos;
+    public void setListaProdutos(List<ItemVenda> produtos) {
+        this.itens = produtos;
     }
 
     public FormaPagamento getFormaPagamento() {
@@ -135,13 +134,13 @@ public class Venda {
         return Objects.equals(id, venda.id) && Objects.equals(numeroVenda, venda.numeroVenda)
                 && Objects.equals(dataVenda, venda.dataVenda) && Objects.equals(status, venda.status)
                 && Objects.equals(cliente, venda.cliente) && Objects.equals(funcionario, venda.funcionario)
-                && Objects.equals(listaProdutos, venda.listaProdutos)
+                && Objects.equals(itens, venda.itens)
                 && Objects.equals(formaPagamento, venda.formaPagamento);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, numeroVenda, dataVenda, status, cliente, funcionario, listaProdutos, formaPagamento);
+        return Objects.hash(id, numeroVenda, dataVenda, status, cliente, funcionario, itens, formaPagamento);
     }
 
 }

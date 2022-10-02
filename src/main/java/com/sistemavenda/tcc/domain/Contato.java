@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Contato {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull(message = "O campo 'número' não pode ficar em branco")

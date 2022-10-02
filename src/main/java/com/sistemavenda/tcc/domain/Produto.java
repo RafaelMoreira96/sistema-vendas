@@ -6,12 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "produto")
 public class Produto {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
     private String descricao;
@@ -29,8 +31,8 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(Integer id, String descricao, String codBarras, Double precoAtacado, Double precoVarejo,
-            Double qteEstoque, Double qteMin, Double qteMax) {
+    public Produto(Integer id, String descricao, String codBarras, double precoAtacado, double precoVarejo,
+            double qteEstoque, double qteMin, double qteMax) {
         this.id = id;
         this.descricao = descricao;
         this.codBarras = codBarras;
@@ -65,11 +67,11 @@ public class Produto {
         this.codBarras = codBarras;
     }
 
-    public Double getPrecoAtacado() {
+    public double getPrecoAtacado() {
         return this.precoAtacado;
     }
 
-    public void setPrecoAtacado(Double precoAtacado) {
+    public void setPrecoAtacado(double precoAtacado) {
         this.precoAtacado = precoAtacado;
     }
 
@@ -77,27 +79,27 @@ public class Produto {
         return this.precoVarejo;
     }
 
-    public void setPrecoVarejo(Double precoVarejo) {
+    public void setPrecoVarejo(double precoVarejo) {
         this.precoVarejo = precoVarejo;
     }
 
-    public Double getQteEstoque() {
+    public double getQteEstoque() {
         return this.qteEstoque;
     }
 
-    public void setQteEstoque(Double qteEstoque) {
+    public void setQteEstoque(double qteEstoque) {
         this.qteEstoque = qteEstoque;
     }
 
-    public Double getQteMin() {
+    public double getQteMin() {
         return this.qteMin;
     }
 
-    public void setQteMin(Double qteMin) {
+    public void setQteMin(double qteMin) {
         this.qteMin = qteMin;
     }
 
-    public Double getQteMax() {
+    public double getQteMax() {
         return this.qteMax;
     }
 

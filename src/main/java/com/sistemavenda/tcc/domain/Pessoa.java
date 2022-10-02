@@ -1,16 +1,18 @@
 package com.sistemavenda.tcc.domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -19,32 +21,38 @@ import org.hibernate.validator.constraints.br.CPF;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public abstract class Pessoa implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Pessoa {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     protected Integer id;
+
+    @NotNull(message = "O campo NOME não pode ficar vazio")
+    protected String nome; // ou razao social
 
     @CNPJ
     private String cnpj;
     @CPF
     private String cpf;
 
-    @NotNull(message = "O campo NOME não pode ficar vazio")
-    protected String nome; // ou razao social
+    @OneToOne
+    @JoinColumn(name = "endereco_id")
     protected Endereco endereco;
 
     @OneToMany
+    @JoinColumn(name = "pessoa_id")
     protected List<Contato> contatos = new ArrayList<>();
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCadastro = LocalDate.now();
 
     public Pessoa() {
+        super();
     }
 
     public Pessoa(Integer id, String cnpj, String cpf, String nome, Endereco endereco, List<Contato> contatos) {
+        super();
         this.id = id;
         this.cnpj = cnpj;
         this.cpf = cpf;

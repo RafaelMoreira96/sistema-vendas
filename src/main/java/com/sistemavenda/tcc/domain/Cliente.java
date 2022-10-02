@@ -11,8 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente extends Pessoa {
-    private static final long serialVersionUID = 1L;
-
     protected boolean status = true;
 
     @JsonIgnore
@@ -23,7 +21,8 @@ public class Cliente extends Pessoa {
         super();
     }
 
-    public Cliente(Integer id, String cnpj, String cpf, String nomeCompleto, Endereco endereco, List<Contato> contatos) {
+    public Cliente(Integer id, String cnpj, String cpf, String nomeCompleto, Endereco endereco,
+            List<Contato> contatos) {
         super(id, cnpj, cpf, nomeCompleto, endereco, contatos);
     }
 
@@ -62,13 +61,4 @@ public class Cliente extends Pessoa {
     public int hashCode() {
         return Objects.hash(status, compras);
     }
-
-    @Override
-    public String toString() {
-        return "{" +
-                " status='" + isStatus() + "'" +
-                ", compras='" + getCompras() + "'" +
-                "}";
-    }
-
 }

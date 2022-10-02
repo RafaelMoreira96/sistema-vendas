@@ -46,17 +46,14 @@ public class Funcionario extends Pessoa {
         super();
     }
 
-    public Funcionario(Integer id, String cnpj, String cpf, String nomeCompleto, Endereco endereco,
-            List<Contato> contatos, String nome, String nomeUsuario,
-            String senha, Set<Integer> nivelAuth, List<Venda> vendas) {
+    public Funcionario(Integer id, String cnpj, String cpf, String nome, Endereco endereco,
+            List<Contato> contatos, String nomeUsuario, String senha) {
         super(id, cnpj, cpf, nome, endereco, contatos);
         this.id = id;
-        this.nome = nomeCompleto;
         this.endereco = endereco;
         this.contatos = contatos;
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
-        this.vendas = vendas;
         setAuth(NivelAuth.PADRAO);
     }
 
