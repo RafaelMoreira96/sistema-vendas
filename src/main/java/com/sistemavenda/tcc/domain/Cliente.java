@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente extends Pessoa {
-    protected boolean status = true;
+    private boolean status = true;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")

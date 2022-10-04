@@ -28,7 +28,7 @@ public class Venda {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataVenda = LocalDate.now();
 
-    private StatusVenda status;
+    private StatusVenda status = StatusVenda.ANDAMENTO;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -41,6 +41,8 @@ public class Venda {
     @OneToMany
     private List<ItemVenda> itens = new ArrayList<>();
 
+    private double valorVenda;
+
     @ManyToOne
     @JoinColumn(name = "forma_pagamento_id")
     private FormaPagamento formaPagamento;
@@ -48,15 +50,32 @@ public class Venda {
     public Venda() {
     }
 
-    public Venda(Integer id, Integer numeroVenda, StatusVenda status, Cliente cliente,
+    public Venda(Integer id, Integer numeroVenda, Cliente cliente,
             Funcionario funcionario, List<ItemVenda> itens, FormaPagamento formaPagamento) {
         this.id = id;
         this.numeroVenda = numeroVenda;
-        this.status = status;
         this.cliente = cliente;
         this.funcionario = funcionario;
         this.itens = itens;
         this.formaPagamento = formaPagamento;
+    }
+
+    public List<ItemVenda> getItens() {
+        return this.itens;
+    }
+
+    public void setItens(List<ItemVenda> itens) {
+        this.itens = itens;
+    }
+
+    public double getValorVenda() {
+        return this.valorVenda;
+    }
+
+    public void setValorVenda(List<ItemVenda> itens) {
+        for (ItemVenda itemVenda : itens) {
+            this.valorVenda += (itemVenda.getPrecoVendido()*itemVenda.getQuant());
+        }
     }
 
     public Integer getId() {

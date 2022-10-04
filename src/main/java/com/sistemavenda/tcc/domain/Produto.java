@@ -23,7 +23,7 @@ public class Produto {
     private double precoAtacado;
     @NotNull
     private double precoVarejo;
-
+    private boolean status = true;
     private double qteEstoque;
     private double qteMin;
     private double qteMax;
@@ -41,6 +41,18 @@ public class Produto {
         this.qteEstoque = qteEstoque;
         this.qteMin = qteMin;
         this.qteMax = qteMax;
+    }
+
+    public boolean isStatus() {
+        return this.status;
+    }
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public Integer getId() {

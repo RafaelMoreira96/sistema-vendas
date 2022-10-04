@@ -24,7 +24,7 @@ public class Compra {
     private Integer id;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataCompra;
+    private LocalDate dataCompra = LocalDate.now();
 
     @ManyToOne
     @JoinColumn(name = "fornecedor_id")
@@ -37,19 +37,18 @@ public class Compra {
     private double valorTotal;
 
     @OneToMany
-    private List<ItemCompra> produtos = new ArrayList<>();
+    private List<ItemCompra> itens = new ArrayList<>();
 
     public Compra() {
     }
 
-    public Compra(Integer id, LocalDate dataCompra, Fornecedor fornecedor, Funcionario funcionario, double valorTotal,
-            List<ItemCompra> produtos) {
+    public Compra(Integer id, Fornecedor fornecedor, Funcionario funcionario, double valorTotal,
+            List<ItemCompra> itens) {
         this.id = id;
-        this.dataCompra = dataCompra;
         this.fornecedor = fornecedor;
         this.funcionario = funcionario;
         this.valorTotal = valorTotal;
-        this.produtos = produtos;
+        this.itens = itens;
     }
 
     public Integer getId() {
@@ -88,16 +87,18 @@ public class Compra {
         return this.valorTotal;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+    public void setValorTotal(List<ItemCompra> itens) {
+        for (ItemCompra itemCompra : itens) {
+            this.valorTotal += (itemCompra.getPrecoCompra()*itemCompra.getQuant());
+        }
     }
 
     public List<ItemCompra> getProdutos() {
-        return this.produtos;
+        return this.itens;
     }
 
-    public void setProdutos(List<ItemCompra> produtos) {
-        this.produtos = produtos;
+    public void setProdutos(List<ItemCompra> itens) {
+        this.itens = itens;
     }
 
     @Override
@@ -110,12 +111,12 @@ public class Compra {
         Compra compra = (Compra) o;
         return Objects.equals(id, compra.id) && Objects.equals(dataCompra, compra.dataCompra)
                 && Objects.equals(fornecedor, compra.fornecedor) && Objects.equals(funcionario, compra.funcionario)
-                && valorTotal == compra.valorTotal && Objects.equals(produtos, compra.produtos);
+                && valorTotal == compra.valorTotal && Objects.equals(itens, compra.itens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dataCompra, fornecedor, funcionario, valorTotal, produtos);
+        return Objects.hash(id, dataCompra, fornecedor, funcionario, valorTotal, itens);
     }
 
     @Override
@@ -126,7 +127,7 @@ public class Compra {
                 ", fornecedor='" + getFornecedor() + "'" +
                 ", funcionario='" + getFuncionario() + "'" +
                 ", valorTotal='" + getValorTotal() + "'" +
-                ", produtos='" + getProdutos() + "'" +
+                ", itens='" + getProdutos() + "'" +
                 "}";
     }
 
