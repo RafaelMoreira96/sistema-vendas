@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sistemavenda.tcc.domain.dtos.VendaDTO;
 import com.sistemavenda.tcc.domain.enums.StatusVenda;
 
 @Entity
@@ -60,6 +61,13 @@ public class Venda {
         this.formaPagamento = formaPagamento;
     }
 
+    public Venda(VendaDTO vDTO) {
+        this.id = vDTO.getId();
+        this.numeroVenda = vDTO.getNumeroVenda();
+        this.itens = vDTO.getItens();
+        this.formaPagamento = vDTO.getFormaPagamento();
+    }
+
     public List<ItemVenda> getItens() {
         return this.itens;
     }
@@ -74,7 +82,7 @@ public class Venda {
 
     public void setValorVenda(List<ItemVenda> itens) {
         for (ItemVenda itemVenda : itens) {
-            this.valorVenda += (itemVenda.getPrecoVendido()*itemVenda.getQuant());
+            this.valorVenda += (itemVenda.getPrecoVendido() * itemVenda.getQuant());
         }
     }
 
