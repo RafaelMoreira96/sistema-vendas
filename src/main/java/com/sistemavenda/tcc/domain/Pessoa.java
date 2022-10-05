@@ -32,9 +32,9 @@ public class Pessoa {
     protected String nome; // ou razao social
 
     @CNPJ
-    private String cnpj;
+    protected String cnpj;
     @CPF
-    private String cpf;
+    protected String cpf;
 
     @OneToOne
     @JoinColumn(name = "endereco_id")

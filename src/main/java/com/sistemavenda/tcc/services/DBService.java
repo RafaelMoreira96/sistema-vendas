@@ -130,7 +130,22 @@ public class DBService {
 
                 contato.removeAll(contato);
 
-                // Funcionario
+                // Funcionario 2
+                e = new Endereco(null, "79640-451", "Rua Gunk", "1234", "Num sei", "Aquele lá", "Três Lagoas",
+                                "Mato Grosso do Sul");
+                c = new Contato(null, "18985963274", "Celular");
+                contato.add(c);
+                c = new Contato(null, "189859635123", "Residential");
+                contato.add(c);
+                f = new Funcionario(null, null, "638.217.430-00", "Ximba, The Maui", e, contato, "xablau", "1234");
+                f.setAuth(NivelAuth.PADRAO);
+                enderecoRepository.save(e);
+                contatoRepository.saveAll(contato);
+                funcionarioRepository.save(f);
+
+                contato.removeAll(contato);
+
+                // Fornecedor
                 e = new Endereco(null, "79554-451", "Rua dos mickye", "1234", null, "Aquele lá", "Três Lagoas",
                                 "Mato Grosso do Norte");
                 c = new Contato(null, "11955554444", "Celular");
@@ -139,6 +154,38 @@ public class DBService {
                 contato.add(c);
                 Fornecedor fornecedor = new Fornecedor(null, "31.975.549/0001-25", null, "Marguerita LTDA", e, contato,
                                 "Cervejaria Marguerita", null);
+                enderecoRepository.save(e);
+                contatoRepository.saveAll(contato);
+                fornecedorRepository.save(fornecedor);
+
+                contato.removeAll(contato);
+
+                // Fornecedor 2
+                e = new Endereco(null, "12352-123", "Rua Mickeylandia", "14", "Estrada Shin", "Aquelandia",
+                                "Três Lagoas",
+                                "Mato Grosso do Norte");
+                c = new Contato(null, "12312345645", "Celular");
+                contato.add(c);
+                c = new Contato(null, "12312345645", "Residential");
+                contato.add(c);
+                fornecedor = new Fornecedor(null, "13.339.029/0001-44", null, "Suckerpunch Soluções LTDA", e, contato,
+                                "Suckerpunch Soluções", "1234578998");
+                enderecoRepository.save(e);
+                contatoRepository.saveAll(contato);
+                fornecedorRepository.save(fornecedor);
+
+                contato.removeAll(contato);
+
+                // Fornecedor 3
+                e = new Endereco(null, "74523-000", "Rua Xbox", "1", "Avenida Gamepass Ultimate", "Microsoft",
+                                "Gates States",
+                                "Mato Grosso do Norte");
+                c = new Contato(null, "54325324634", "Celular");
+                contato.add(c);
+                c = new Contato(null, "73657624274", "Residential");
+                contato.add(c);
+                fornecedor = new Fornecedor(null, "88.627.071/0001-60", null, "Linhas E Roupas Eduardo ME", e, contato,
+                                "Rouparia Eduardo", "789456123123");
                 enderecoRepository.save(e);
                 contatoRepository.saveAll(contato);
                 fornecedorRepository.save(fornecedor);

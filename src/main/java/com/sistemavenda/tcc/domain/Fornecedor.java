@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 public class Fornecedor extends Pessoa {
     private String nomeFantasia;
     private String inscricaoEstadual;
+    private boolean status = true;
 
     public Fornecedor() {
         super();
@@ -19,6 +20,18 @@ public class Fornecedor extends Pessoa {
         super(id, cnpj, cpf, nome, endereco, contatos);
         this.nomeFantasia = nomeFantasia;
         this.inscricaoEstadual = inscricaoEstadual;
+    }
+
+    public boolean isStatus() {
+        return this.status;
+    }
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getNomeFantasia() {

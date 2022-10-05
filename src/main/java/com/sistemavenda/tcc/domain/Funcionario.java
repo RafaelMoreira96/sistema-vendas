@@ -17,15 +17,16 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sistemavenda.tcc.domain.dtos.FuncionarioDTO;
 import com.sistemavenda.tcc.domain.enums.NivelAuth;
 
 @Entity
 public class Funcionario extends Pessoa {
 
-    @NotNull
+    @NotNull(message = "O campo 'nomeUsuario' deve ser preenchido")
     private String nomeUsuario;
 
-    @NotNull
+    @NotNull(message = "O campo 'senha' deve ser preenchido")
     private String senha;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -55,6 +56,18 @@ public class Funcionario extends Pessoa {
         this.nomeUsuario = nomeUsuario;
         this.senha = senha;
         setAuth(NivelAuth.PADRAO);
+    }
+
+    public Funcionario(FuncionarioDTO f) {
+        this.id = f.getId();
+        this.nome = f.getNome();
+        this.cpf = f.getCpf();
+        this.endereco = f.getEndereco();
+        this.contatos = f.getContatos();
+        this.dataDemissao = f.getDataDemissao();
+        this.nomeUsuario = f.getNomeUsuario();
+        this.senha = f.getSenha();
+        this.nivelAuth = f.getNivelAuth();
     }
 
     public List<Venda> getVendas() {
@@ -103,6 +116,11 @@ public class Funcionario extends Pessoa {
 
     public void setAuth(NivelAuth nivelAuth) {
         this.nivelAuth.add(nivelAuth.getCodigo());
+    }
+
+    // Pra pegar o valor Set Integer do nivel auth
+    public void setAuth(Set<Integer> nivelAuth) {
+        this.nivelAuth = nivelAuth;
     }
 
     @Override

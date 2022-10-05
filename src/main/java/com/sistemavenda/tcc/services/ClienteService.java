@@ -59,9 +59,6 @@ public class ClienteService {
     public Cliente update(Integer id, @Valid ClienteDTO cDTO) {
         cDTO.setId(id);
         Cliente c = findById(id);
-        if(c.getStatus() == false){
-            return null;
-        }
         c = valida(cDTO);
         return repository.save(c);
     }

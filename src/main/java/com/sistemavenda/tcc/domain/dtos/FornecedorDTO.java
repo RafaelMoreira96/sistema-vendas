@@ -7,38 +7,41 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sistemavenda.tcc.domain.Cliente;
 import com.sistemavenda.tcc.domain.Contato;
 import com.sistemavenda.tcc.domain.Endereco;
+import com.sistemavenda.tcc.domain.Fornecedor;
 
-public class ClienteDTO {
+public class FornecedorDTO {
     private Integer id;
 
-    @NotNull(message = "O campo 'NOME' precisa ser preenchido")
+    @NotNull(message = "O campo NOME deve ser preenchido")
     private String nome; // ou razao social
-    @NotNull(message = "O campo 'CPF' precisa ser preenchido")
-    private String cpf;
-    @NotNull(message = "O campo 'ENDERECO' precisa ser preenchido")
+    private String nomeFantasia;
+    private String inscricaoEstadual;
+    @NotNull(message = "O campo CNPJ deve ser preenchido")
+    private String cnpj;
+
+    @NotNull(message = "O campo ENDERECO deve ser preenchido")
     private Endereco endereco;
-    @NotNull(message = "O campo 'CONTATOS' precisa ser preenchido")
+
     private List<Contato> contatos = new ArrayList<>();
+
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro = LocalDate.now();
+    private boolean status;
 
-    private boolean status = true;
-
-    public ClienteDTO() {
-        super();
+    public FornecedorDTO() {
     }
 
-    public ClienteDTO(Cliente c) {
-        this.id = c.getId();
-        this.nome = c.getNome();
-        this.cpf = c.getCpf();
-        this.endereco = c.getEndereco();
-        this.contatos = c.getContatos();
-        this.dataCadastro = c.getDataCadastro();
-        this.status = c.getStatus();
+    public FornecedorDTO(Fornecedor f) {
+        this.id = f.getId();
+        this.nome = f.getNome();
+        this.cnpj = f.getCnpj();
+        this.endereco = f.getEndereco();
+        this.contatos = f.getContatos();
+        this.nomeFantasia = f.getNomeFantasia();
+        this.inscricaoEstadual = f.getInscricaoEstadual();
+        this.status = f.getStatus();
     }
 
     public Integer getId() {
@@ -57,12 +60,12 @@ public class ClienteDTO {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return this.cpf;
+    public String getCnpj() {
+        return this.cnpj;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public Endereco getEndereco() {
@@ -87,6 +90,22 @@ public class ClienteDTO {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public String getNomeFantasia() {
+        return this.nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    public String getInscricaoEstadual() {
+        return this.inscricaoEstadual;
+    }
+
+    public void setInscricaoEstadual(String inscricaoEstadual) {
+        this.inscricaoEstadual = inscricaoEstadual;
     }
 
     public boolean isStatus() {
