@@ -3,6 +3,7 @@ package com.sistemavenda.tcc.domain.dtos;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.constraints.NotNull;
 
@@ -39,6 +40,16 @@ public class ClienteDTO {
         this.contatos = c.getContatos();
         this.dataCadastro = c.getDataCadastro();
         this.status = c.getStatus();
+    }
+
+    public ClienteDTO(Optional<Cliente> c) {
+        this.id = c.get().getId();
+        this.nome = c.get().getNome();
+        this.cpf = c.get().getCpf();
+        this.endereco = c.get().getEndereco();
+        this.contatos = c.get().getContatos();
+        this.dataCadastro = c.get().getDataCadastro();
+        this.status = c.get().getStatus();
     }
 
     public Integer getId() {

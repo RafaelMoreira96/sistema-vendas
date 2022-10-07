@@ -47,6 +47,10 @@ public class Funcionario extends Pessoa {
         super();
     }
 
+    public Funcionario(Integer id, String nome) {
+        super(id, nome);
+    }
+
     public Funcionario(Integer id, String cnpj, String cpf, String nome, Endereco endereco,
             List<Contato> contatos, String nomeUsuario, String senha) {
         super(id, cnpj, cpf, nome, endereco, contatos);

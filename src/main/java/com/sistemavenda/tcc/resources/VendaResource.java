@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sistemavenda.tcc.domain.Cliente;
 import com.sistemavenda.tcc.domain.Venda;
-import com.sistemavenda.tcc.domain.dtos.ClienteDTO;
 import com.sistemavenda.tcc.domain.dtos.VendaDTO;
 import com.sistemavenda.tcc.services.VendaService;
 
@@ -44,32 +41,20 @@ public class VendaResource {
         List<VendaDTO> listDTO = list.stream().map(obj -> new VendaDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDTO);
     }
-    /*
-     * // Cadastrar cliente
-     * 
-     * @PostMapping
-     * public ResponseEntity<VendaDTO> create(@Valid @RequestBody VendaDTO vDTO) {
-     * Venda v = service.create(vDTO);
-     * URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").
-     * buildAndExpand(v.getId()).toUri();
-     * return ResponseEntity.created(uri).build();
-     * }
-     * 
-     * // Atualizar cliente
-     * 
-     * @PutMapping(value = "/{id}")
-     * public ResponseEntity<ClienteDTO> update(@PathVariable Integer
-     * id, @RequestBody ClienteDTO cDTO){
-     * Cliente c = service.update(id, cDTO);
-     * return ResponseEntity.ok().body(new ClienteDTO(c));
-     * }
-     * 
-     * // Deletar cliente
-     * 
-     * @DeleteMapping(value = "/{id}")
-     * public ResponseEntity<ClienteDTO> delete(@PathVariable Integer id){
-     * service.delete(id);
-     * return ResponseEntity.noContent().build();
-     * }
-     */
+
+    // Cadastrar cliente
+    @PostMapping
+    public ResponseEntity<VendaDTO> create(@Valid @RequestBody VendaDTO vDTO) {
+        Venda v = service.create(vDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(v.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
+
+    // Cancelar venda
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<VendaDTO> cancel(@PathVariable Integer id) {
+        service.cancelVenda(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

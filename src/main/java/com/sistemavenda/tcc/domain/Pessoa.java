@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Pessoa {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -49,6 +49,11 @@ public class Pessoa {
 
     public Pessoa() {
         super();
+    }
+
+    public Pessoa(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
     }
 
     public Pessoa(Integer id, String cnpj, String cpf, String nome, Endereco endereco, List<Contato> contatos) {

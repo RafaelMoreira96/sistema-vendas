@@ -20,7 +20,10 @@ public class Cliente extends Pessoa {
     public Cliente() {
         super();
     }
-
+    public Cliente(Integer id, String nome) {
+        super(id, nome);
+    }
+   
     public Cliente(Integer id, String cnpj, String cpf, String nomeCompleto, Endereco endereco,
             List<Contato> contatos) {
         super(id, cnpj, cpf, nomeCompleto, endereco, contatos);

@@ -42,7 +42,7 @@ public class Venda {
     @OneToMany
     private List<ItemVenda> itens = new ArrayList<>();
 
-    private double valorVenda;
+        private double valorVenda;
 
     @ManyToOne
     @JoinColumn(name = "forma_pagamento_id")

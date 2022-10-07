@@ -10,14 +10,27 @@ import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sistemavenda.tcc.domain.Cliente;
+import com.sistemavenda.tcc.domain.Funcionario;
+import com.sistemavenda.tcc.domain.ItemVenda;
 import com.sistemavenda.tcc.domain.Venda;
 import com.sistemavenda.tcc.domain.dtos.VendaDTO;
+import com.sistemavenda.tcc.domain.enums.StatusVenda;
+import com.sistemavenda.tcc.repositories.ClienteRepository;
+import com.sistemavenda.tcc.repositories.FuncionarioRepository;
+import com.sistemavenda.tcc.repositories.ItemVendaRepository;
 import com.sistemavenda.tcc.repositories.VendaRepository;
 
 @Service
 public class VendaService {
     @Autowired
     private VendaRepository repository;
+    @Autowired
+    private ItemVendaRepository itemVendaRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    private FuncionarioRepository funcionarioRepository;
 
     // Busca por ID
     public Venda findById(Integer id) {
@@ -37,28 +50,33 @@ public class VendaService {
 
     // Cadastrar venda
     public Venda create(@Valid VendaDTO vDTO) {
-        vDTO.setId(null);
+        // Tratando Cliente
+        Optional<Cliente> cli = clienteRepository.findById(vDTO.getCliente());
+        Cliente c = new Cliente(cli.get().getId(), cli.get().getNome());
+
+        // Tratando Funcionario
+        Optional<Funcionario> fun = funcionarioRepository.findById(vDTO.getFuncionario());
+        Funcionario f = new Funcionario(fun.get().getId(), fun.get().getNome());
+
+        // Tratando lista de produtos
+        List<ItemVenda> itens = vDTO.getItens();
+        itemVendaRepository.saveAll(itens);
+
+        // Finalizando venda
         Venda v = new Venda(vDTO);
+        v.setCliente(c);
+        v.setFuncionario(f);
+        v.setListaProdutos(itens);
+        v.setValorVenda(itens);
+        v.setNumeroVenda(vDTO.getNumeroVenda());
+        v.setStatus(StatusVenda.FINALIZADO);
         return repository.save(v);
     }
 
-    /*
-     * // Atualizar cliente
-     * public Cliente update(Integer id, @Valid ClienteDTO cDTO) {
-     * cDTO.setId(id);
-     * Cliente c = findById(id);
-     * c = valida(cDTO);
-     * return repository.save(c);
-     * }
-     * 
-     * /*
-     * "Remover" cliente: aqui não pode ser deletado um cliente, ele deve ser
-     * "desativado", através do atributo
-     *
-     * public void delete(Integer id) {
-     * Cliente c = findById(id);
-     * c.setStatus(false);
-     * repository.save(c);
-     * }
-     */
+    public void cancelVenda(Integer id) {
+        Venda v = findById(id);
+        v.setStatus(StatusVenda.CANCELADO);
+        repository.save(v);
+    }
+
 }

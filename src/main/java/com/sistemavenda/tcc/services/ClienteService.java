@@ -76,7 +76,7 @@ public class ClienteService {
     // Validações
     public Cliente valida(ClienteDTO cDTO) {
         Endereco e = new Endereco();
-        List<Contato> contatos = new ArrayList<>();
+        List<Contato> contatos = cDTO.getContatos();
         Cliente c = new Cliente();
 
         e.setId(cDTO.getEndereco().getId());
@@ -88,9 +88,6 @@ public class ClienteService {
         e.setEstado(cDTO.getEndereco().getEstado());
         e.setLogradouro(cDTO.getEndereco().getLogradouro());
 
-        for (Contato contato : cDTO.getContatos()) {
-            contatos.add(contato);
-        }
         enderecoRepository.save(e);
         contatoRepository.saveAll(contatos);
 
