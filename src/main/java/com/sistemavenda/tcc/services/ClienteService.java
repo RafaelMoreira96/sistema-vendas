@@ -59,7 +59,15 @@ public class ClienteService {
     public Cliente update(Integer id, @Valid ClienteDTO cDTO) {
         cDTO.setId(id);
         Cliente c = findById(id);
-        c = valida(cDTO);
+        if (cDTO.getCpf().equals(c.getCpf())) {
+            cDTO.getEndereco().setId(c.getEndereco().getId());
+            c = valida(cDTO);
+        } else {
+            validaCpf(cDTO);
+            cDTO.getEndereco().setId(c.getEndereco().getId());
+            c = valida(cDTO);
+        }
+
         return repository.save(c);
     }
 
@@ -75,9 +83,8 @@ public class ClienteService {
 
     // Validações
     public Cliente valida(ClienteDTO cDTO) {
+        // Preparando objeto Endereço e persistindo
         Endereco e = new Endereco();
-        List<Contato> contatos = cDTO.getContatos();
-        Cliente c = new Cliente();
 
         e.setId(cDTO.getEndereco().getId());
         e.setCep(cDTO.getEndereco().getCep());
@@ -89,21 +96,36 @@ public class ClienteService {
         e.setLogradouro(cDTO.getEndereco().getLogradouro());
 
         enderecoRepository.save(e);
+
+        // Preparando objeto Contato e persistindo
+        Cliente temp = findById(cDTO.getId());
+        List<Contato> contatos = new ArrayList<>();
+        for (Contato contato : cDTO.getContatos()) {
+            contato.setId(null);
+            contatos.add(contato);
+        }
+        cDTO.setContatos(contatos);
+        for (int i = 0; i < temp.getContatos().size(); i++) {
+            Contato contato = temp.getContatos().get(i);
+            contatos.get(i).setId(contato.getId());
+        }
         contatoRepository.saveAll(contatos);
+
+        Cliente c = new Cliente();
 
         if (cDTO.getId() != null) {
             c.setId(cDTO.getId());
         }
-
-        c.setContatos(contatos);
         c.setCpf(cDTO.getCpf());
         c.setEndereco(e);
+        c.setContatos(contatos);
         c.setNome(cDTO.getNome());
-
         return c;
     }
 
     public void validaCpf(ClienteDTO c) {
+        // Verificação de todos os objetos que contém o mesmo CPF (que é pra encontrar
+        // apenas um)
         Optional<Cliente> obj = repository.findByCpf(c.getCpf());
         if (obj.isPresent() && obj.get().getCpf() != c.getCpf()) {
             throw new DataIntegrityViolationException("CPF já cadastrado!");
