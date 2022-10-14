@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,8 @@ import com.sistemavenda.tcc.repositories.ClienteRepository;
 import com.sistemavenda.tcc.repositories.FuncionarioRepository;
 import com.sistemavenda.tcc.repositories.ItemVendaRepository;
 import com.sistemavenda.tcc.repositories.VendaRepository;
+import com.sistemavenda.tcc.services.exceptions.DataIntegrityViolationException;
+import com.sistemavenda.tcc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class VendaService {
@@ -35,7 +36,7 @@ public class VendaService {
     // Busca por ID
     public Venda findById(Integer id) {
         Optional<Venda> o = repository.findById(id);
-        return o.orElseThrow(() -> new ObjectNotFoundException(id, "Cliente não encontrado!"));
+        return o.orElseThrow(() -> new ObjectNotFoundException("Venda não encontrada! ID: " + id));
     }
 
     // Lista todos

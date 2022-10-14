@@ -54,14 +54,14 @@ public class ClienteResource {
 
     // Atualizar cliente
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ClienteDTO> update(@PathVariable Integer id, @RequestBody ClienteDTO cDTO){
+    public ResponseEntity<ClienteDTO> update(@PathVariable Integer id, @RequestBody ClienteDTO cDTO) {
         Cliente c = service.update(id, cDTO);
         return ResponseEntity.ok().body(new ClienteDTO(c));
     }
 
     // Deletar cliente
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<ClienteDTO> delete(@PathVariable Integer id){
+    public ResponseEntity<ClienteDTO> delete(@PathVariable Integer id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -6,14 +6,14 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.sistemavenda.tcc.domain.Produto;
 import com.sistemavenda.tcc.domain.dtos.ProdutoDTO;
 import com.sistemavenda.tcc.repositories.ProdutoRepository;
+import com.sistemavenda.tcc.services.exceptions.DataIntegrityViolationException;
+import com.sistemavenda.tcc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ProdutoService {
@@ -24,7 +24,7 @@ public class ProdutoService {
     public Produto findById(Integer id) {
         Optional<Produto> o = repository.findById(id);
         return o.orElseThrow(
-                () -> new ObjectNotFoundException(id, "Objeto não encontrado. ID: "));
+                () -> new ObjectNotFoundException("Objeto não encontrado. ID: " + id));
     }
 
     // Lista todos
@@ -50,7 +50,12 @@ public class ProdutoService {
     public Produto update(Integer id, @Valid ProdutoDTO pDTO) {
         pDTO.setId(id);
         Produto p = findById(id);
-        p = valida(pDTO);
+        if (pDTO.getCodBarras().equals(p.getCodBarras())) {
+            p = valida(pDTO);
+        } else {
+            validaPorCodBarras(pDTO);
+            p = valida(pDTO);
+        }
         return repository.save(p);
     }
 

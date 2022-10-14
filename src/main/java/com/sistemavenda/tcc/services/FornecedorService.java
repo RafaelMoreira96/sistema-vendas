@@ -6,9 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.sistemavenda.tcc.domain.Contato;
@@ -18,6 +16,8 @@ import com.sistemavenda.tcc.domain.dtos.FornecedorDTO;
 import com.sistemavenda.tcc.repositories.ContatoRepository;
 import com.sistemavenda.tcc.repositories.EnderecoRepository;
 import com.sistemavenda.tcc.repositories.FornecedorRepository;
+import com.sistemavenda.tcc.services.exceptions.DataIntegrityViolationException;
+import com.sistemavenda.tcc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class FornecedorService {
@@ -31,7 +31,7 @@ public class FornecedorService {
     // Busca por ID
     public Fornecedor findById(Integer id) {
         Optional<Fornecedor> o = repository.findById(id);
-        return o.orElseThrow(() -> new ObjectNotFoundException(id, "Fornecedor não encontrado!"));
+        return o.orElseThrow(() -> new ObjectNotFoundException("Fornecedor não encontrado! ID: " + id));
     }
 
     // Lista todos
@@ -48,17 +48,83 @@ public class FornecedorService {
 
     // Cadastrar fornecedor
     public Fornecedor create(@Valid FornecedorDTO fDTO) {
-        fDTO.setId(null);
         validaCnpj(fDTO);
-        Fornecedor f = valida(fDTO);
+
+        // Persistencia do objeto Endereco
+        Endereco e = new Endereco();
+        e.setCep(fDTO.getEndereco().getCep());
+        e.setNumero(fDTO.getEndereco().getNumero());
+        e.setComplemento(fDTO.getEndereco().getComplemento());
+        e.setBairro(fDTO.getEndereco().getBairro());
+        e.setCidade(fDTO.getEndereco().getCidade());
+        e.setEstado(fDTO.getEndereco().getEstado());
+        e.setLogradouro(fDTO.getEndereco().getLogradouro());
+        enderecoRepository.save(e);
+
+        // Persistencia do objeto Contato
+        List<Contato> contatos = new ArrayList<>();
+        for (Contato contato : fDTO.getContatos()) {
+            contato.setId(null);
+            contatos.add(contato);
+        }
+        fDTO.setContatos(contatos);
+        contatoRepository.saveAll(contatos);
+
+        // Persistencia do Objeto Funcionario
+        Fornecedor f = new Fornecedor();
+        f.setNome(fDTO.getNome());
+        f.setCnpj(fDTO.getCnpj());
+        f.setEndereco(e);
+        f.setContatos(contatos);
+
         return repository.save(f);
     }
 
     // Atualizar fornecedor
-    public Fornecedor update(Integer id, @Valid FornecedorDTO fDTO){
+    public Fornecedor update(Integer id, @Valid FornecedorDTO fDTO) {
         fDTO.setId(id);
-        Fornecedor f = findById(id);
-        f = valida(fDTO);
+        Fornecedor fornDatabase = findById(id);
+        if (fDTO.getCnpj().equals(fornDatabase.getCnpj())) {
+            fDTO.getEndereco().setId(fornDatabase.getEndereco().getId());
+        } else {
+            validaCnpj(fDTO);
+            fDTO.getEndereco().setId(fornDatabase.getEndereco().getId());
+        }
+
+        // Persistencia do objeto Endereco
+        Endereco e = new Endereco();
+        e.setId(fDTO.getEndereco().getId());
+        e.setCep(fDTO.getEndereco().getCep());
+        e.setNumero(fDTO.getEndereco().getNumero());
+        e.setComplemento(fDTO.getEndereco().getComplemento());
+        e.setBairro(fDTO.getEndereco().getBairro());
+        e.setCidade(fDTO.getEndereco().getCidade());
+        e.setEstado(fDTO.getEndereco().getEstado());
+        e.setLogradouro(fDTO.getEndereco().getLogradouro());
+        enderecoRepository.save(e);
+
+        // Preparando objeto Contato e persistindo
+        Fornecedor temp = findById(fDTO.getId());
+        List<Contato> contatos = new ArrayList<>();
+        for (Contato contato : fDTO.getContatos()) {
+            contato.setId(null);
+            contatos.add(contato);
+        }
+        fDTO.setContatos(contatos);
+        for (int i = 0; i < temp.getContatos().size(); i++) {
+            Contato contato = temp.getContatos().get(i);
+            contatos.get(i).setId(contato.getId());
+        }
+        contatoRepository.saveAll(contatos);
+
+        // Persistencia do Objeto Funcionario
+        Fornecedor f = new Fornecedor();
+        f.setId(id);
+        f.setNome(fDTO.getNome());
+        f.setCnpj(fDTO.getCnpj());
+        f.setEndereco(e);
+        f.setContatos(contatos);
+
         return repository.save(f);
     }
 
