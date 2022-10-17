@@ -16,6 +16,7 @@ public class ItemVenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer idProduto;
     @NotNull
     private String descricao;
     @NotNull
@@ -28,8 +29,10 @@ public class ItemVenda {
     public ItemVenda() {
     }
 
-    public ItemVenda(Integer id, String descricao, String codBarras, double precoVendido, double quant) {
+    public ItemVenda(Integer id, Integer idProduto, String descricao, String codBarras, double precoVendido,
+            double quant) {
         this.id = id;
+        this.idProduto = idProduto;
         this.descricao = descricao;
         this.codBarras = codBarras;
         this.precoVendido = precoVendido;
@@ -101,6 +104,14 @@ public class ItemVenda {
         return this;
     }
 
+    public Integer getIdProduto() {
+        return this.idProduto;
+    }
+
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -109,20 +120,21 @@ public class ItemVenda {
             return false;
         }
         ItemVenda itemVenda = (ItemVenda) o;
-        return Objects.equals(id, itemVenda.id) && Objects.equals(descricao, itemVenda.descricao)
-                && Objects.equals(codBarras, itemVenda.codBarras) && precoVendido == itemVenda.precoVendido
-                && quant == itemVenda.quant;
+        return Objects.equals(id, itemVenda.id) && Objects.equals(idProduto, itemVenda.idProduto)
+                && Objects.equals(descricao, itemVenda.descricao) && Objects.equals(codBarras, itemVenda.codBarras)
+                && precoVendido == itemVenda.precoVendido && quant == itemVenda.quant;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, descricao, codBarras, precoVendido, quant);
+        return Objects.hash(id, idProduto, descricao, codBarras, precoVendido, quant);
     }
 
     @Override
     public String toString() {
         return "{" +
                 " id='" + getId() + "'" +
+                ", idProduto='" + getIdProduto() + "'" +
                 ", descricao='" + getDescricao() + "'" +
                 ", codBarras='" + getCodBarras() + "'" +
                 ", precoVendido='" + getPrecoVendido() + "'" +

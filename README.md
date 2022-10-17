@@ -1,16 +1,21 @@
-<p align="center">
-<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
-</p>
+# R&A Selling Manager - Trabalho de Conclusão de Curso
 
-<h1 align="center">Projeto do TCC: Sistema de Vendas e Controle de Estoque </h1>
+![Github status project](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/RafaelMoreira96/sistema-vendas?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/RafaelMoreira96/sistema-vendas?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/RafaelMoreira96/sistema-vendas?style=for-the-badge)
 
-<h3> Resumo do projeto </h3>
-<p> Este sistema de vendas com controle de estoque é um projeto dividido em duas partes, sendo esta, a parte backend, desenvolvido usando a Linguagem de Programação Java e o seu framework mais conhecido, o Spring Boot. </p>
-<p> A finalidade da existência deste projeto é a aplicação dos conhecimentos adquiridos em um curso que eu estou fazendo para aprimorar minhas habilidades com programação e também a proposta de desenvolver um sistema com seu back-end e front-end funcionando corretamente, para o trabalho de conclusão de curso da minha graduação. </p>
+> Sistema de Vendas e Controle de Estoque, desenvolvido utilizando Spring Boot e Angular.
 
-<h3> Descrição </h3>
-<p> A API, na qual estou desenvolvendo, tem as seguintes funcionalidades*:</p> 
-<h4> Funcionalidades: </h4>
+O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas semanas, haverá algumas modificações na estrutura das pastas e o término do backend, desenvolvido em Java, usando o framework Spring Boot. 
+
+## Do que se trata este projeto?
+
+<p> A finalidade deste projeto é a aplicação dos conhecimentos adquiridos em um curso na qual eu estou concluindo para aprimorar minhas habilidades com programação e também é a minha proposta do meu trabalho de conclusão de curso, no curso de Análise e Desenvolvimento de Sistemas, na qual estudo no Instituto Federal de Mato Grosso do Sul - Campus Três Lagoas. </p>
+
+## Funcionalidades (ou func. futuras) 
+
+<p> O projeto consiste em uma API, desenvolvida em Java com Spring Boot, onde ela que fará todas as requisições no meu banco de dados e um front-end, desenvolvido em Angular, onde será o lado cliente. O projeto, até o término dele, terá as seguintes funcionalidades: </p> 
 <ul>
   <li> Cadastro de Clientes, Fornecedores, Funcionários e Produtos;</li>
   <li> Movimentação de Vendas (saída de produtos) e Movimentação de Compras (entrada de produtos) e;</li>
@@ -22,4 +27,10 @@
       <li> Por período.</li>
     </ul>
   </li>
-<ul>
+</ul>
+
+## 🚀 Para executar o sistema
+
+[...] Em andamento [...]
+
+[⬆ Voltar ao topo](#nome-do-projeto)<br>

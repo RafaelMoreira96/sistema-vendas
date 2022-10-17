@@ -12,14 +12,16 @@ import org.springframework.stereotype.Service;
 import com.sistemavenda.tcc.domain.Cliente;
 import com.sistemavenda.tcc.domain.Funcionario;
 import com.sistemavenda.tcc.domain.ItemVenda;
+import com.sistemavenda.tcc.domain.Produto;
 import com.sistemavenda.tcc.domain.Venda;
+import com.sistemavenda.tcc.domain.dtos.ProdutoDTO;
 import com.sistemavenda.tcc.domain.dtos.VendaDTO;
 import com.sistemavenda.tcc.domain.enums.StatusVenda;
 import com.sistemavenda.tcc.repositories.ClienteRepository;
 import com.sistemavenda.tcc.repositories.FuncionarioRepository;
 import com.sistemavenda.tcc.repositories.ItemVendaRepository;
+import com.sistemavenda.tcc.repositories.ProdutoRepository;
 import com.sistemavenda.tcc.repositories.VendaRepository;
-import com.sistemavenda.tcc.services.exceptions.DataIntegrityViolationException;
 import com.sistemavenda.tcc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -32,6 +34,8 @@ public class VendaService {
     private ClienteRepository clienteRepository;
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     // Busca por ID
     public Venda findById(Integer id) {
@@ -60,15 +64,40 @@ public class VendaService {
         Funcionario f = new Funcionario(fun.get().getId(), fun.get().getNome());
 
         // Tratando lista de produtos
-        List<ItemVenda> itens = vDTO.getItens();
-        itemVendaRepository.saveAll(itens);
+        List<ItemVenda> listTemp = vDTO.getItens();
+        List<ItemVenda> list = new ArrayList<>();
+        Produto p = new Produto();
+        for (ItemVenda itemVenda : listTemp) {
+            Optional<Produto> objTemp = produtoRepository.findById(itemVenda.getIdProduto());
+            double est = objTemp.get().getQteEstoque() - itemVenda.getQuant();
+            objTemp.get().setQteEstoque(est);
+            if (itemVenda.getCodBarras().equals(objTemp.get().getCodBarras())) {
+                list.add(itemVenda);
+            } else {
+                itemVenda.setCodBarras(objTemp.get().getCodBarras());
+                list.add(itemVenda);
+            }
+
+            p.setId(objTemp.get().getId());
+            p.setCodBarras(objTemp.get().getCodBarras());
+            p.setDescricao(objTemp.get().getDescricao());
+            p.setPrecoAtacado(objTemp.get().getPrecoAtacado());
+            p.setPrecoVarejo(objTemp.get().getPrecoVarejo());
+            p.setQteEstoque(est);
+            p.setQteMax(objTemp.get().getQteMax());
+            p.setQteMin(objTemp.get().getQteMin());
+
+            produtoRepository.save(p);
+        }
+
+        itemVendaRepository.saveAll(list);
 
         // Finalizando venda
         Venda v = new Venda(vDTO);
         v.setCliente(c);
         v.setFuncionario(f);
-        v.setListaProdutos(itens);
-        v.setValorVenda(itens);
+        v.setListaProdutos(listTemp);
+        v.setValorVenda(listTemp);
         v.setNumeroVenda(vDTO.getNumeroVenda());
         v.setStatus(StatusVenda.FINALIZADO);
         return repository.save(v);
@@ -76,6 +105,23 @@ public class VendaService {
 
     public void cancelVenda(Integer id) {
         Venda v = findById(id);
+        Produto p = new Produto();
+        for (ItemVenda itemVenda : v.getItens()) {
+            Optional<Produto> objTemp = produtoRepository.findById(itemVenda.getIdProduto());
+            double est = objTemp.get().getQteEstoque() + itemVenda.getQuant();
+
+            p.setId(objTemp.get().getId());
+            p.setCodBarras(objTemp.get().getCodBarras());
+            p.setDescricao(objTemp.get().getDescricao());
+            p.setPrecoAtacado(objTemp.get().getPrecoAtacado());
+            p.setPrecoVarejo(objTemp.get().getPrecoVarejo());
+            p.setQteEstoque(est);
+            p.setQteMax(objTemp.get().getQteMax());
+            p.setQteMin(objTemp.get().getQteMin());
+
+            produtoRepository.save(p);
+            itemVenda.getQuant();
+        }
         v.setStatus(StatusVenda.CANCELADO);
         repository.save(v);
     }

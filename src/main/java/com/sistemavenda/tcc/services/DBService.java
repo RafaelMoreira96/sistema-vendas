@@ -2,6 +2,7 @@ package com.sistemavenda.tcc.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -212,17 +213,19 @@ public class DBService {
                 formaPagamento = formaPagamentoRepository.getOne(2);
 
                 // Item da Venda 1
-                ItemVenda itemVenda = new ItemVenda(null, produto1.getDescricao(), produto1.getCodBarras(),
+                Optional<Produto> p = produtoRepository.findById(1);
+                ItemVenda itemVenda = new ItemVenda(null, produto1.getId(), produto1.getDescricao(),
+                                produto1.getCodBarras(),
                                 produto1.getPrecoVarejo(), 2);
                 List<ItemVenda> itens = new ArrayList<>();
                 itens.add(itemVenda);
-                itemVenda = new ItemVenda(null, produto2.getDescricao(), produto2.getCodBarras(),
+                itemVenda = new ItemVenda(null, produto2.getId(), produto2.getDescricao(), produto2.getCodBarras(),
                                 produto2.getPrecoVarejo(), 1);
                 itens.add(itemVenda);
-                itemVenda = new ItemVenda(null, produto3.getDescricao(), produto3.getCodBarras(),
+                itemVenda = new ItemVenda(null, produto3.getId(), produto3.getDescricao(), produto3.getCodBarras(),
                                 produto3.getPrecoVarejo(), 1);
                 itens.add(itemVenda);
-                itemVenda = new ItemVenda(null, produto4.getDescricao(), produto4.getCodBarras(),
+                itemVenda = new ItemVenda(null, produto4.getId(), produto4.getDescricao(), produto4.getCodBarras(),
                                 produto4.getPrecoVarejo(), 1);
                 itens.add(itemVenda);
                 itemVendaRepository.saveAll(itens);
@@ -233,11 +236,12 @@ public class DBService {
                 vendaRepository.save(venda);
 
                 // Itens da venda 2
-                ItemVenda itemVenda2 = new ItemVenda(null, produto1.getDescricao(), produto1.getCodBarras(),
+                ItemVenda itemVenda2 = new ItemVenda(null, produto1.getId(), produto1.getDescricao(),
+                                produto1.getCodBarras(),
                                 produto1.getPrecoVarejo(), 3);
                 List<ItemVenda> itens2 = new ArrayList<>();
                 itens2.add(itemVenda2);
-                itemVenda2 = new ItemVenda(null, produto2.getDescricao(), produto2.getCodBarras(),
+                itemVenda2 = new ItemVenda(null, produto2.getId(), produto2.getDescricao(), produto2.getCodBarras(),
                                 produto2.getPrecoVarejo(), 2);
                 itens2.add(itemVenda2);
                 itemVendaRepository.saveAll(itens2);
