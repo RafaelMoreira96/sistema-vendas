@@ -15,6 +15,10 @@ public class Fornecedor extends Pessoa {
         super();
     }
 
+    public Fornecedor(Integer id, String nome) {
+        super(id, nome);
+    }
+
     public Fornecedor(Integer id, String cnpj, String cpf, String nome, Endereco endereco,
             List<Contato> contatos, String nomeFantasia, String inscricaoEstadual) {
         super(id, cnpj, cpf, nome, endereco, contatos);

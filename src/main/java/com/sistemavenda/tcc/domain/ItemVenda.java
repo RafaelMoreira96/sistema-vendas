@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "item_venda")
 public class ItemVenda {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -14,7 +14,6 @@ import com.sistemavenda.tcc.domain.Funcionario;
 import com.sistemavenda.tcc.domain.ItemVenda;
 import com.sistemavenda.tcc.domain.Produto;
 import com.sistemavenda.tcc.domain.Venda;
-import com.sistemavenda.tcc.domain.dtos.ProdutoDTO;
 import com.sistemavenda.tcc.domain.dtos.VendaDTO;
 import com.sistemavenda.tcc.domain.enums.StatusVenda;
 import com.sistemavenda.tcc.repositories.ClienteRepository;
@@ -48,7 +47,9 @@ public class VendaService {
         List<Venda> listDB = repository.findAll();
         List<Venda> list = new ArrayList<>();
         for (Venda v : listDB) {
-            list.add(v);
+            if (v.getStatus().equals(StatusVenda.FINALIZADO) || v.getStatus().equals(StatusVenda.ANDAMENTO)) {
+                list.add(v);
+            }
         }
         return list;
     }
@@ -96,8 +97,8 @@ public class VendaService {
         Venda v = new Venda(vDTO);
         v.setCliente(c);
         v.setFuncionario(f);
-        v.setListaProdutos(listTemp);
-        v.setValorVenda(listTemp);
+        v.setListaProdutos(list);
+        v.setValorVenda(list);
         v.setNumeroVenda(vDTO.getNumeroVenda());
         v.setStatus(StatusVenda.FINALIZADO);
         return repository.save(v);
@@ -127,3 +128,4 @@ public class VendaService {
     }
 
 }
+

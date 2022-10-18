@@ -2,7 +2,6 @@ package com.sistemavenda.tcc.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -213,7 +212,6 @@ public class DBService {
                 formaPagamento = formaPagamentoRepository.getOne(2);
 
                 // Item da Venda 1
-                Optional<Produto> p = produtoRepository.findById(1);
                 ItemVenda itemVenda = new ItemVenda(null, produto1.getId(), produto1.getDescricao(),
                                 produto1.getCodBarras(),
                                 produto1.getPrecoVarejo(), 2);
@@ -254,18 +252,20 @@ public class DBService {
                 // Itens da compra
                 List<ItemCompra> itemList = new ArrayList<>();
                 double valor = produto4.getPrecoAtacado();
-                ItemCompra itemCompra = new ItemCompra(null, produto4.getDescricao(), produto4.getCodBarras(), valor,
+                ItemCompra itemCompra = new ItemCompra(null, produto4.getId(), produto4.getDescricao(),
+                                produto4.getCodBarras(), valor,
                                 3);
                 itemList.add(itemCompra);
 
                 valor = produto3.getPrecoAtacado();
-                itemCompra = new ItemCompra(null, produto3.getDescricao(), produto3.getCodBarras(), valor, 3);
+                itemCompra = new ItemCompra(null, produto4.getId(), produto3.getDescricao(), produto3.getCodBarras(),
+                                valor, 3);
                 itemList.add(itemCompra);
                 itemCompraRepository.saveAll(itemList);
 
                 // Compra 1 - Resultado
                 Compra compra = new Compra(null, fornecedor, f, valor, itemList);
-                compra.setValorTotal(itemList);
+                compra.setValorTotal(compra.getItens());
                 compraRepository.save(compra);
         }
 }

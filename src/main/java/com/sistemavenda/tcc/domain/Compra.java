@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sistemavenda.tcc.domain.dtos.CompraDTO;
+import com.sistemavenda.tcc.domain.enums.StatusCompra;
 
 @Entity
 @Table(name = "compra")
@@ -22,6 +24,7 @@ public class Compra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer numeroCompra;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataCompra = LocalDate.now();
@@ -34,10 +37,11 @@ public class Compra {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
-    private double valorTotal;
-
     @OneToMany
     private List<ItemCompra> itens = new ArrayList<>();
+    private StatusCompra status = StatusCompra.ANDAMENTO;
+
+    private double valorTotal;
 
     public Compra() {
     }
@@ -48,6 +52,36 @@ public class Compra {
         this.fornecedor = fornecedor;
         this.funcionario = funcionario;
         this.valorTotal = valorTotal;
+        this.itens = itens;
+    }
+
+    public Compra(CompraDTO cDTO) {
+        this.id = cDTO.getId();
+        this.numeroCompra = cDTO.getNumeroCompra();
+        this.itens = cDTO.getItens();
+    }
+
+    public StatusCompra getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(StatusCompra status) {
+        this.status = status;
+    }
+
+    public Integer getNumeroCompra() {
+        return this.numeroCompra;
+    }
+
+    public void setNumeroCompra(Integer numeroCompra) {
+        this.numeroCompra = numeroCompra;
+    }
+
+    public List<ItemCompra> getItens() {
+        return this.itens;
+    }
+
+    public void setItens(List<ItemCompra> itens) {
         this.itens = itens;
     }
 
@@ -89,7 +123,7 @@ public class Compra {
 
     public void setValorTotal(List<ItemCompra> itens) {
         for (ItemCompra itemCompra : itens) {
-            this.valorTotal += (itemCompra.getPrecoCompra()*itemCompra.getQuant());
+            this.valorTotal += (itemCompra.getPrecoCompra() * itemCompra.getQuant());
         }
     }
 
@@ -109,25 +143,27 @@ public class Compra {
             return false;
         }
         Compra compra = (Compra) o;
-        return Objects.equals(id, compra.id) && Objects.equals(dataCompra, compra.dataCompra)
-                && Objects.equals(fornecedor, compra.fornecedor) && Objects.equals(funcionario, compra.funcionario)
-                && valorTotal == compra.valorTotal && Objects.equals(itens, compra.itens);
+        return Objects.equals(id, compra.id) && Objects.equals(numeroCompra, compra.numeroCompra)
+                && Objects.equals(dataCompra, compra.dataCompra) && Objects.equals(fornecedor, compra.fornecedor)
+                && Objects.equals(funcionario, compra.funcionario) && valorTotal == compra.valorTotal
+                && Objects.equals(itens, compra.itens);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dataCompra, fornecedor, funcionario, valorTotal, itens);
+        return Objects.hash(id, numeroCompra, dataCompra, fornecedor, funcionario, valorTotal, itens);
     }
 
     @Override
     public String toString() {
         return "{" +
                 " id='" + getId() + "'" +
+                ", numeroCompra='" + getNumeroCompra() + "'" +
                 ", dataCompra='" + getDataCompra() + "'" +
                 ", fornecedor='" + getFornecedor() + "'" +
                 ", funcionario='" + getFuncionario() + "'" +
                 ", valorTotal='" + getValorTotal() + "'" +
-                ", itens='" + getProdutos() + "'" +
+                ", itens='" + getItens() + "'" +
                 "}";
     }
 

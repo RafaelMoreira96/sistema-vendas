@@ -15,6 +15,7 @@ public class ItemCompra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer idProduto;
     @NotNull
     private String descricao;
     @NotNull
@@ -27,12 +28,22 @@ public class ItemCompra {
     public ItemCompra() {
     }
 
-    public ItemCompra(Integer id, String descricao, String codBarras, double precoCompra, double quant) {
+    public ItemCompra(Integer id, Integer idProduto, String descricao, String codBarras, double precoCompra,
+            double quant) {
         this.id = id;
         this.descricao = descricao;
         this.codBarras = codBarras;
         this.precoCompra = precoCompra;
         this.quant = quant;
+        this.idProduto = idProduto;
+    }
+
+    public Integer getIdProduto() {
+        return this.idProduto;
+    }
+
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
     }
 
     public Integer getId() {
