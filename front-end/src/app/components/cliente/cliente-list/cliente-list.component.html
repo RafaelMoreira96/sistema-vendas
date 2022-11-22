@@ -37,10 +37,8 @@
         </ng-container>
 
         <ng-container matColumnDef="contato">
-          <th mat-header-cell *matHeaderCellDef>Contato</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.contato.numero }}
-          </td>
+          <th mat-header-cell *matHeaderCellDef> Cliente desde </th>
+          <td mat-cell *matCellDef="let element">{{ element.dataCadastro }}</td>
         </ng-container>
 
         <ng-container matColumnDef="acoes">

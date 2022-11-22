@@ -21,6 +21,7 @@ export class ClienteListComponent implements OnInit {
 
   ngOnInit(): void {
     this.findAll();
+    console.log(this.ELEMENT_DATA);
   }
 
   applyFilter(event: Event) {
@@ -33,6 +34,7 @@ export class ClienteListComponent implements OnInit {
       this.ELEMENT_DATA = resp;
       this.dataSource = new MatTableDataSource<Cliente>(resp);
       this.dataSource.paginator = this.paginator;
+      console.log(this.ELEMENT_DATA);
     });
   }
 }

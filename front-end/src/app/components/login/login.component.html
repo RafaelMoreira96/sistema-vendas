@@ -1,1 +1,79 @@
-<p>login works!</p>
+<main class="main-content mt-0">
+  <div
+    class="page-header align-items-start min-vh-100"
+    style="background-image: url('assets/img/background-login.png')"
+  >
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container my-auto">
+      <div class="row">
+        <div class="col-lg-4 col-md-8 col-12 mx-auto">
+          <div class="card z-index-0 fadeIn3 fadeInBottom">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div
+                class="bg-gradient-info shadow-primary border-radius-lg py-3 pe-1"
+              >
+                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                  R&A Estoque e Vendas
+                </h4>
+                <h5 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                  Login
+                </h5>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <form role="form" class="text-start">
+                <div class="input-group input-group-outline my-3">
+                  <label class="form-label"> Nome do usuário </label>
+                  <input
+                    [formControl]="nomeUsuario"
+                    required
+                    [(ngModel)]="creds.nomeUsuario"
+                    type="name"
+                    class="form-control"
+                  />
+                </div>
+                <div class="input-group input-group-outline mb-3">
+                  <label class="form-label"> Senha </label>
+                  <input
+                    [formControl]="senha"
+                    required
+                    [(ngModel)]="creds.senha"
+                    type="password"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="text-center">
+                  <button
+                    (click)="logar()"
+                    class="btn bg-gradient-info w-100 my-4 mb-2"
+                  >
+                    Entrar
+                  </button>
+                </div>
+                <p class="mt-4 text-sm text-center">
+                  Você não tem uma conta?
+                  <a
+                    href="../pages/sign-up.html"
+                    class="text-info text-gradient font-weight-bold"
+                  >
+                    Cadastre-se
+                  </a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer position-absolute bottom-2 py-2 w-100">
+      <div class="container text-center">
+        <div class="copyright text-center text-sm text-white text-lg-start">
+          © {{data}}, sistema desenvolvido por Rafael Moreira Simão, para a
+          apresentação do trabalho de conclusão de curso.
+        </div>
+      </div>
+    </footer>
+  </div>
+</main>

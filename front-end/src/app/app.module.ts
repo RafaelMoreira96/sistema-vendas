@@ -11,8 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+// Outros imports importantes
+import { ToastrModule } from 'ngx-toastr';
+
 // Para trabalhar com formulários no Angular 12
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Para realizar requisições HTTP
 import { HttpClientModule } from '@angular/common/http';
@@ -22,6 +25,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,9 +47,14 @@ import { LoginComponent } from './components/login/login.component';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      closeButton: true,
+      progressBar: true,
+    }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthInterceptorProvider],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
