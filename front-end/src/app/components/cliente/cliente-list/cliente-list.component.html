@@ -1,71 +1,61 @@
 <div class="card my-4">
   <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-      <h6 class="text-white text-capitalize ps-3"> Clientes </h6>
+    <div class="bg-gradient-success shadow-primary border-radius-lg pt-4 pb-3">
+      <h6 class="text-white text-center ps-3">Clientes</h6>
     </div>
   </div>
+
+  <div class="container espacamento centralizado">
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Filtro"
+      #input
+    />
+  </div>
+
   <div class="card-body px-0 pb-2">
     <div class="table-responsive p-0">
-      <table class="table align-items-center mb-0">
-        <thead>
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="table align-items-center mb-0"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
 
-          <tr>
-            <th
-              class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-            >
-              ID
-            </th>
-            <th
-              class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-            >
-              Nome
-            </th>
-            <th
-              class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-            >
-              CPF
-            </th>
-            <th
-              class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-            >
-              Ações
-            </th>
-            <th class="text-secondary opacity-7"></th>
-          </tr>
-        </thead>
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
+        </ng-container>
 
-        <tbody>
-          <tr>
-            <td>
-              <div class="d-flex px-2 py-1">
-                <div class="d-flex flex-column justify-content-center">
-                  <h6 class="mb-0 text-sm"> 1 </h6>
-                </div>
-              </div>
-            </td>
+        <ng-container matColumnDef="cpf">
+          <th mat-header-cell *matHeaderCellDef>CPF</th>
+          <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
+        </ng-container>
 
-            <td>
-              <p class="text-xs font-weight-bold mb-0">Rafael Moreira</p>
-              <p class="text-xs text-secondary mb-0">Vendedor</p>
-            </td>
+        <ng-container matColumnDef="contato">
+          <th mat-header-cell *matHeaderCellDef>Contato</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.contato.numero }}
+          </td>
+        </ng-container>
 
-            <td>
-              <p class="text-xs font-weight-bold mb-0">12345798000</p>
-            </td>
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let element">Ações</td>
+        </ng-container>
 
-            <td class="align-middle">
-              <a
-                href="javascript:;"
-                class="text-secondary font-weight-bold text-xs"
-                data-toggle="tooltip"
-                data-original-title="Edit user"
-              >
-                Edit
-              </a>
-            </td>
-          </tr>
-        </tbody>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
     </div>
   </div>
 </div>

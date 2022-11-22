@@ -1,0 +1,11 @@
+.espacamento {
+  margin-top: 1rem;
+}
+
+mat-label {
+  padding-right: 0.5rem;
+}
+
+.centralizado {
+  text-align: center;
+}

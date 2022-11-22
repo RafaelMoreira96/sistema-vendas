@@ -7,5 +7,5 @@ export interface Cliente {
   cpf: string;
   endereco: Endereco;
   contato: Contato[];
-  dataCadastro: Date;
+  dataCadastro: string;
 }
