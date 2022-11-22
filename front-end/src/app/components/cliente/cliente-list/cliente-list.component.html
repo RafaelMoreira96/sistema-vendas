@@ -5,13 +5,21 @@
     </div>
   </div>
 
-  <div class="container espacamento centralizado">
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Filtro"
-      #input
-    />
+  <div class="row align-items-center container espacamento">
+    <div class="col-lg-auto">
+      <button class="btn bg-gradient-info w-100 my-4 mb-2">
+        Cadastrar cliente
+      </button>
+    </div>
+    <div class="col-lg-auto" style="padding-top: 1rem">
+      <input
+        class="form-control"
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filtro"
+        #input
+      />
+    </div>
   </div>
 
   <div class="card-body px-0 pb-2">
@@ -37,13 +45,20 @@
         </ng-container>
 
         <ng-container matColumnDef="contato">
-          <th mat-header-cell *matHeaderCellDef> Cliente desde </th>
+          <th mat-header-cell *matHeaderCellDef>Cliente desde</th>
           <td mat-cell *matCellDef="let element">{{ element.dataCadastro }}</td>
         </ng-container>
 
         <ng-container matColumnDef="acoes">
           <th mat-header-cell *matHeaderCellDef>Ações</th>
-          <td mat-cell *matCellDef="let element">Ações</td>
+          <td mat-cell *matCellDef="let element">
+            <a routerLink="update/{{ element.id }}">
+              <i class="material-icons edit">edit</i>
+            </a>
+            <a routerLink="delete/{{ element.id }}">
+              <i class="material-icons delete">delete</i>
+            </a>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
