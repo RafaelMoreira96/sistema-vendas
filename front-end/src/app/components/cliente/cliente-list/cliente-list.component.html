@@ -33,31 +33,43 @@
         <td>{{ element.cpf }}</td>
         <td>{{ element.dataCadastro }}</td>
         <td>
-          <a routerLink="update/{{ element.id }}"><span class="material-symbols-outlined"> edit </span></a>
-          <a href=""
-            ><span class="material-symbols-outlined"> local_library </span></a
+          <a routerLink="update/{{ element.id }}"
+            ><span class="material-symbols-outlined"> edit </span></a
           >
+          <button
+            (click)="openPopup()"
+            class="btn btn-primary"
+            type="button"
+          ></button>
+
           <a href=""><span class="material-symbols-outlined"> delete </span></a>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
 
-  <script>
-    $(document).ready(function () {
-      $("#tabela-clientes").DataTable({
-        paging: false,
-        ordering: false,
-        info: false,
-      });
-    });
-  </script>
+<!-- Modal do update -->
 
-  <link
-    rel="stylesheet"
-    href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css.css"
-  />
-
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<div
+  class="modal modal-fade"
+  tabindex="0"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">GeeksForGeeks</h4>
+      </div>
+      <div class="modal-body">
+        <p>One Stop Solution for all CS problems</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

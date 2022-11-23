@@ -12,6 +12,7 @@ import { Cliente } from 'src/app/models/cliente';
 
 export class ClienteListComponent implements OnInit {
   ELEMENT_DATA: Cliente[] = [];
+  formModal: any;
 
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'contato', 'acoes'];
   dataSource = new MatTableDataSource<Cliente>(this.ELEMENT_DATA);
@@ -21,8 +22,18 @@ export class ClienteListComponent implements OnInit {
   constructor(private service: ClienteService) {}
 
   ngOnInit(): void {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal')
+    );
     this.findAll();
-    console.log(this.ELEMENT_DATA);
+  }
+
+  openFormModal() {
+    this.formModal.show();
+  }
+  saveSomeThing() {
+    // confirm or save something
+    this.formModal.hide();
   }
 
   applyFilter(event: Event) {
@@ -35,6 +46,7 @@ export class ClienteListComponent implements OnInit {
       this.ELEMENT_DATA = resp;
       this.dataSource = new MatTableDataSource<Cliente>(resp);
       this.dataSource.paginator = this.paginator;
+      console.log(this.ELEMENT_DATA);
     });
   }
 }
