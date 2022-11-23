@@ -1,3 +1,4 @@
+import { ClienteCreateComponent } from './components/cliente/cliente-create/cliente-create.component';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
@@ -20,7 +21,9 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
 
       // Componentes do Cliente
-      { path: 'clientes', component: ClienteListComponent }
+      { path: 'clientes', component: ClienteListComponent },
+      { path: 'clientes/create', component: ClienteCreateComponent }
+
     ]
   }
 ];

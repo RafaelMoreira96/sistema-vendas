@@ -26,6 +26,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ClienteListComponent } from './components/cliente/cliente-list/cliente-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
+import { ClienteCreateComponent } from './components/cliente/cliente-create/cliente-create.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
     HeaderComponent,
     ClienteListComponent,
     LoginComponent,
+    ClienteCreateComponent,
   ],
   imports: [
     BrowserModule,

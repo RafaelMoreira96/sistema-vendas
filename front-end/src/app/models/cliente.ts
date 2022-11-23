@@ -6,6 +6,6 @@ export interface Cliente {
   nome: string;
   cpf: string;
   endereco: Endereco;
-  contato: Contato[];
-  dataCadastro: string;
+  contatos: Contato[];
+  dataCadastro: any;
 }
