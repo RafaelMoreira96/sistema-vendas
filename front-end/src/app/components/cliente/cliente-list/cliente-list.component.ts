@@ -4,23 +4,12 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from 'src/app/models/cliente';
 
-const ELEMENT_DATA: Cliente[] = [];
-
-function search(text: string, pipe: PipeTransform): Cliente[] {
-  return ELEMENT_DATA.filter((cliente) => {
-    const term = text.toLowerCase();
-    return (
-      cliente.nome.toLowerCase().includes(term) ||
-      pipe.transform(cliente.cpf).includes(term)
-    );
-  });
-}
-
 @Component({
   selector: 'app-cliente-list',
   templateUrl: './cliente-list.component.html',
   styleUrls: ['./cliente-list.component.css'],
 })
+
 export class ClienteListComponent implements OnInit {
   ELEMENT_DATA: Cliente[] = [];
 

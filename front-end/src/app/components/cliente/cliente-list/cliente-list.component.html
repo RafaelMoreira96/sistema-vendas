@@ -5,24 +5,22 @@
     </div>
   </div>
 </div>
-
-<form>
-  <div class="mb-3 row">
-    <label
-      for="table-filtering-search"
-      class="col-xs-3 col-sm-auto col-form-label"
-      >Full text search:</label
-    >
-    <div class="col-xs-3 col-sm-auto">
-      <input
-        id="table-filtering-search"
-        class="form-control"
-        type="text"
-        [formControl]="filter"
-      />
-    </div>
+<div class="row align-items-center container espacamento">
+  <div class="col-lg-auto">
+    <button class="btn bg-gradient-info w-100 my-4 mb-2">
+      Cadastrar cliente
+    </button>
   </div>
-</form>
+  <div class="col-lg-auto" style="padding-top: 1rem">
+    <input
+      class="form-control"
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Filtro"
+      #input
+    />
+  </div>
+</div>
 
 <div class="container">
   <table class="table">
@@ -39,9 +37,14 @@
     <tbody>
       <tr *ngFor="let element of ELEMENT_DATA">
         <td>{{ element.id }}</td>
-        <td><ngb-highlight [result]="element.nome | string" [term]="filter.value"></ngb-highlight></td>
+        <td>{{ element.nome }}</td>
         <td>{{ element.cpf }}</td>
         <td>{{ element.dataCadastro }}</td>
+        <td>
+          <a href=""><span class="material-symbols-outlined"> edit </span></a>
+          <a href=""><span class="material-symbols-outlined"> local_library </span></a>
+          <a href=""><span class="material-symbols-outlined"> delete </span></a>
+        </td>
       </tr>
     </tbody>
   </table>

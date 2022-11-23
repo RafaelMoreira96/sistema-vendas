@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sistemavenda.tcc.domain.Cliente;
@@ -33,6 +34,8 @@ import com.sistemavenda.tcc.repositories.VendaRepository;
 @Service
 public class DBService {
 
+        @Autowired
+        private BCryptPasswordEncoder encoder;
         @Autowired
         private ClienteRepository clienteRepository;
         @Autowired
@@ -122,7 +125,7 @@ public class DBService {
                 contato.add(c);
                 c = new Contato(null, "189859635123", "Residential");
                 contato.add(c);
-                Funcionario f = new Funcionario(null, null, "778.008.780-82", "Xablau", e, contato, "xablau", "1234");
+                Funcionario f = new Funcionario(null, null, "778.008.780-82", "Xablau", e, contato, "ximba", encoder.encode("1234"));
                 f.setAuth(NivelAuth.ADMIN);
                 enderecoRepository.save(e);
                 contatoRepository.saveAll(contato);
@@ -137,7 +140,7 @@ public class DBService {
                 contato.add(c);
                 c = new Contato(null, "189859635123", "Residential");
                 contato.add(c);
-                f = new Funcionario(null, null, "638.217.430-00", "Ximba, The Maui", e, contato, "xablau", "1234");
+                f = new Funcionario(null, null, "638.217.430-00", "Ximba, The Maui", e, contato, "xablau", encoder.encode("1234"));
                 f.setAuth(NivelAuth.PADRAO);
                 enderecoRepository.save(e);
                 contatoRepository.saveAll(contato);
