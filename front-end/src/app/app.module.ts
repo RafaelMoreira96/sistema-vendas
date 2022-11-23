@@ -27,6 +27,7 @@ import { ClienteListComponent } from './components/cliente/cliente-list/cliente-
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { ClienteCreateComponent } from './components/cliente/cliente-create/cliente-create.component';
+import { ClienteUpdateComponent } from './components/cliente/cliente-update/cliente-update.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ClienteCreateComponent } from './components/cliente/cliente-create/clie
     ClienteListComponent,
     LoginComponent,
     ClienteCreateComponent,
+    ClienteUpdateComponent,
   ],
   imports: [
     BrowserModule,
