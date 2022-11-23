@@ -1,26 +1,38 @@
-<nav
-  class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
-  id="navbarBlur"
-  data-scroll="true"
->
-  <div class="container-fluid py-1 px-3">
-    <div
-      class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
-      id="navbar"
+<header class="header header-sticky mb-4">
+
+  <div class="container-fluid">
+    <button
+      class="header-toggler px-md-0 me-md-3"
+      type="button"
+      onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
     >
-      <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-        <ul class="navbar-nav justify-content-end">
-          <li class="nav-item d-flex align-items-center">
-            <a
-              (click)="logout()"
-              class="nav-link text-body font-weight-bold px-0"
-            >
-              <i class="fa fa-user me-sm-1"></i>
-sair
+      <svg class="icon icon-lg">
+        <use
+          xlink:href="assets/vendors/@coreui/icons/svg/free.svg#cil-menu"
+        ></use>
+      </svg></button
+    ><a class="header-brand d-md-none" href="#">
+      <svg width="118" height="46" alt="CoreUI Logo">
+        <use xlink:href="assets/brand/coreui.svg#full"></use></svg
+    ></a>
+
+    <ul class="header-nav ms-3">
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link py-0"
+          data-coreui-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <div class="avatar avatar-md">
+            <a (click)="logout()">
+              <img class="avatar-img" src="assets/others/img/avatars/8.jpg" />
             </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+          </div>
+        </a>
+      </li>
+    </ul>
   </div>
-</nav>
+</header>

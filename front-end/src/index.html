@@ -1,47 +1,143 @@
 <!DOCTYPE html>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v4.2.1
+* @link https://coreui.io
+* Copyright (c) 2022 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
 <html lang="en">
   <head>
+    <base href="./" />
     <meta charset="utf-8" />
-    <title>R&A - Estoque e Vendas</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="CoreUI - Open Source Bootstrap Admin Template"
+    />
+    <meta name="author" content="Łukasz Holeczek" />
+    <meta
+      name="keyword"
+      content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard"
+    />
+    <title>CoreUI Free Bootstrap Admin Template</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="assets/others/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="assets/others/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="assets/others/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="assets/others/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="assets/others/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="assets/others/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="assets/others/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="assets/others/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/others/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/others/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/others/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="assets/others/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/others/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="assets/others/favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="assets/vendors/simplebar/css/simplebar.css" />
+    <link rel="stylesheet" href="assets/css/vendors/simplebar.css" />
 
-    <!--     Fonts and icons     -->
+    <!-- Main styles for this application-->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link
       rel="stylesheet"
-      type="text/css"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css"
     />
-
-    <!-- Nucleo Icons -->
-    <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
-
-    <!-- Font Awesome Icons -->
+    <link href="assets/css/examples.css" rel="stylesheet" />
+    <!-- Global site tag (gtag.js) - Google Analytics-->
     <script
-      src="https://kit.fontawesome.com/42d5adcbca.js"
-      crossorigin="anonymous"
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"
     ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-    <!-- Material Icons -->
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      // Shared ID
+      gtag("config", "UA-118965717-3");
+      // Bootstrap ID
+      gtag("config", "UA-118965717-5");
+    </script>
     <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-      rel="stylesheet"
-    />
-
-    <!-- CSS Files -->
-    <link
-      id="pagestyle"
-      href="./assets/css/material-dashboard.css?v=3.0.4"
+      href="vendors/@coreui/chartjs/css/coreui-chartjs.css"
       rel="stylesheet"
     />
   </head>
 
   <body class="g-sidenav-show bg-gray-100">
-
     <app-root></app-root>
-
   </body>
 
   <!--   Core JS Files   -->
@@ -50,20 +146,13 @@
   <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
 
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
+  <!-- CoreUI and necessary plugins-->
+  <script src="assets/vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+  <script src="assets/vendors/simplebar/js/simplebar.min.js"></script>
 
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc --><script src="./assets/js/material-dashboard.min.js?v=3.0.4"></script>
-    </body>
+  <!-- Plugins and scripts required by this view-->
+  <script src="assets/vendors/chart.js/js/chart.min.js"></script>
+  <script src="assets/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+  <script src="assets/vendors/@coreui/utils/js/coreui-utils.js"></script>
+  <script src="assets/js/main.js"></script>
 </html>

@@ -1,8 +1,20 @@
 import { ClienteService } from './../../../services/cliente.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, PipeTransform, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from 'src/app/models/cliente';
+
+const ELEMENT_DATA: Cliente[] = [];
+
+function search(text: string, pipe: PipeTransform): Cliente[] {
+  return ELEMENT_DATA.filter((cliente) => {
+    const term = text.toLowerCase();
+    return (
+      cliente.nome.toLowerCase().includes(term) ||
+      pipe.transform(cliente.cpf).includes(term)
+    );
+  });
+}
 
 @Component({
   selector: 'app-cliente-list',
@@ -34,7 +46,6 @@ export class ClienteListComponent implements OnInit {
       this.ELEMENT_DATA = resp;
       this.dataSource = new MatTableDataSource<Cliente>(resp);
       this.dataSource.paginator = this.paginator;
-      console.log(this.ELEMENT_DATA);
     });
   }
 }

@@ -1,74 +1,53 @@
-<div class="card my-4">
-  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-    <div class="bg-gradient-success shadow-primary border-radius-lg pt-4 pb-3">
-      <h6 class="text-white text-center ps-3">Clientes</h6>
+<div class="container full-width text-center">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Listagem de clientes</h2>
     </div>
   </div>
+</div>
 
-  <div class="row align-items-center container espacamento">
-    <div class="col-lg-auto">
-      <button class="btn bg-gradient-info w-100 my-4 mb-2">
-        Cadastrar cliente
-      </button>
-    </div>
-    <div class="col-lg-auto" style="padding-top: 1rem">
+<form>
+  <div class="mb-3 row">
+    <label
+      for="table-filtering-search"
+      class="col-xs-3 col-sm-auto col-form-label"
+      >Full text search:</label
+    >
+    <div class="col-xs-3 col-sm-auto">
       <input
+        id="table-filtering-search"
         class="form-control"
-        matInput
-        (keyup)="applyFilter($event)"
-        placeholder="Filtro"
-        #input
+        type="text"
+        [formControl]="filter"
       />
     </div>
   </div>
+</form>
 
-  <div class="card-body px-0 pb-2">
-    <div class="table-responsive p-0">
-      <table
-        mat-table
-        [dataSource]="dataSource"
-        class="table align-items-center mb-0"
-      >
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
-          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-        </ng-container>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+        <th scope="col">Cliente desde</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
 
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef>Nome</th>
-          <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
-        </ng-container>
+    <tbody>
+      <tr *ngFor="let element of ELEMENT_DATA">
+        <td>{{ element.id }}</td>
+        <td><ngb-highlight [result]="element.nome | string" [term]="filter.value"></ngb-highlight></td>
+        <td>{{ element.cpf }}</td>
+        <td>{{ element.dataCadastro }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-        <ng-container matColumnDef="cpf">
-          <th mat-header-cell *matHeaderCellDef>CPF</th>
-          <td mat-cell *matCellDef="let element">{{ element.cpf }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="contato">
-          <th mat-header-cell *matHeaderCellDef>Cliente desde</th>
-          <td mat-cell *matCellDef="let element">{{ element.dataCadastro }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="acoes">
-          <th mat-header-cell *matHeaderCellDef>Ações</th>
-          <td mat-cell *matCellDef="let element">
-            <a routerLink="update/{{ element.id }}">
-              <i class="material-icons edit">edit</i>
-            </a>
-            <a routerLink="delete/{{ element.id }}">
-              <i class="material-icons delete">delete</i>
-            </a>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 20, 50, 100]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </div>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20, 50, 100]"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>

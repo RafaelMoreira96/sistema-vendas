@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         this.service.successfullLogin(
           resposta.headers.get('Authorization')?.substring(7) as any
         );
-        this.router.navigate(['']);
+        this.router.navigate(['clientes']);
         this.toast.info('Bem-vindo, Usuário!', 'Login', { timeOut: 3000 });
       },
       () => {

@@ -1,79 +1,86 @@
-<main class="main-content mt-0">
-  <div
-    class="page-header align-items-start min-vh-100"
-    style="background-image: url('assets/img/background-login.png')"
-  >
-    <span class="mask bg-gradient-dark opacity-6"></span>
-    <div class="container my-auto">
-      <div class="row">
-        <div class="col-lg-4 col-md-8 col-12 mx-auto">
-          <div class="card z-index-0 fadeIn3 fadeInBottom">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div
-                class="bg-gradient-info shadow-primary border-radius-lg py-3 pe-1"
-              >
-                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                  R&A Estoque e Vendas
-                </h4>
-                <h5 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                  Login
-                </h5>
-              </div>
-            </div>
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card-group d-block d-md-flex row">
+          <!-- Card 1 -->
+          <div class="card col-md-7 p-4 mb-0">
 
             <div class="card-body">
-              <form role="form" class="text-start">
-                <div class="input-group input-group-outline my-3">
-                  <label class="form-label"> Nome do usuário </label>
-                  <input
-                    [formControl]="nomeUsuario"
-                    required
-                    [(ngModel)]="creds.nomeUsuario"
-                    type="name"
-                    class="form-control"
-                  />
-                </div>
-                <div class="input-group input-group-outline mb-3">
-                  <label class="form-label"> Senha </label>
-                  <input
-                    [formControl]="senha"
-                    required
-                    [(ngModel)]="creds.senha"
-                    type="password"
-                    class="form-control"
-                  />
-                </div>
+              <h1> R&A Sistema de Vendas </h1>
+              <p class="text-medium-emphasis"> Entre com sua conta</p>
 
-                <div class="text-center">
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/vendors/@coreui/icons/svg/free.svg#cil-user"
+                    ></use></svg
+                ></span>
+                <input
+                  [formControl]="nomeUsuario"
+                  required
+                  [(ngModel)]="creds.nomeUsuario"
+                  class="form-control"
+                  type="text"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="input-group mb-4">
+                <span class="input-group-text">
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"
+                    ></use></svg
+                ></span>
+                <input
+                  [formControl]="senha"
+                  required
+                  [(ngModel)]="creds.senha"
+                  class="form-control"
+                  type="password"
+                  placeholder="Password"
+                />
+              </div>
+
+              <div class="row">
+                <div class="col-6">
                   <button
                     (click)="logar()"
-                    class="btn bg-gradient-info w-100 my-4 mb-2"
+                    class="btn btn-primary px-4"
+                    type="button"
                   >
-                    Entrar
+                    Login
                   </button>
                 </div>
-                <p class="mt-4 text-sm text-center">
-                  Você não tem uma conta?
-                  <a
-                    href="../pages/sign-up.html"
-                    class="text-info text-gradient font-weight-bold"
-                  >
-                    Cadastre-se
-                  </a>
-                </p>
-              </form>
+                <div class="col-6 text-end">
+                  <button class="btn btn-link px-0" type="button">
+                    Forgot password?
+                  </button>
+                </div>
+              </div>
+
             </div>
           </div>
+
+          <!-- Card 2 -->
+          <div class="card col-md-5 text-white bg-primary py-5">
+            <div class="card-body text-center">
+              <div>
+                <h2>Registre-se</h2>
+                <p>
+                  Você precisa de um sistema para controlar
+                  vendas e estoque? Acabou de achá-lo!
+                </p>
+                <button class="btn btn-lg btn-outline-light mt-3" type="button">
+                  Cadastrar agora!
+                </button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-    <footer class="footer position-absolute bottom-2 py-2 w-100">
-      <div class="container text-center">
-        <div class="copyright text-center text-sm text-white text-lg-start">
-          © {{data}}, sistema desenvolvido por Rafael Moreira Simão, para a
-          apresentação do trabalho de conclusão de curso.
-        </div>
-      </div>
-    </footer>
   </div>
-</main>
+</div>
