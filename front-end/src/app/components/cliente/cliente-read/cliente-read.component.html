@@ -1,15 +1,15 @@
 <div class="container full-width text-center">
   <div class="card">
     <div class="card-body">
-      <h2 class="card-title">Clientes | Criar cadastro </h2>
+      <h2 class="card-title">Clientes | Visualizar cadastro</h2>
     </div>
   </div>
 </div>
 
 <div class="container full-width text-center">
   <div class="col-lg-auto">
-    <button routerLink="../" class="btn btn-outline-danger w-100 my-4 mb-2">
-      Cancelar cadastro
+    <button routerLink="../../" class="btn btn-outline-danger w-100 my-4 mb-2">
+      Voltar para listagem
     </button>
   </div>
 </div>
@@ -20,21 +20,19 @@
       <div class="col-md-6">
         <label class="form-label"> Nome </label>
         <input
-          [(ngModel)]="cliente.nome"
+          [disabled]="true"
+          value="{{ cliente.nome }}"
           name="nome"
-          [formControl]="nome"
-          required=""
-          type="email"
+          type="text"
           class="form-control"
         />
       </div>
       <div class="col-md-6">
         <label class="form-label"> CPF </label>
         <input
-          [(ngModel)]="cliente.cpf"
+          [disabled]="true"
+          value="{{ cliente.cpf }}"
           name="cpf"
-          [formControl]="cpf"
-          required=""
           type="text"
           class="form-control"
         />
@@ -43,10 +41,9 @@
       <div class="col-md-3">
         <label class="form-label"> CEP </label>
         <input
-          [(ngModel)]="cliente.endereco.cep"
+          [disabled]="true"
+          value="{{ cliente.endereco.cep }}"
           name="cep"
-          [formControl]="cep"
-          required=""
           type="text"
           class="form-control"
         />
@@ -54,10 +51,9 @@
       <div class="col-md-6">
         <label class="form-label"> Logradouro </label>
         <input
-          [(ngModel)]="cliente.endereco.logradouro"
+          [disabled]="true"
+          value="{{ cliente.endereco.logradouro }}"
           name="logradouro"
-          [formControl]="logradouro"
-          required=""
           type="text"
           class="form-control"
         />
@@ -65,10 +61,9 @@
       <div class="col-md-3">
         <label class="form-label"> Nº </label>
         <input
-          [(ngModel)]="cliente.endereco.numero"
+          [disabled]="true"
+          value="{{ cliente.endereco.numero}}"
           name="numero"
-          [formControl]="numero"
-          required=""
           type="text"
           class="form-control"
         />
@@ -76,10 +71,9 @@
       <div class="col-md-4">
         <label class="form-label"> Bairro </label>
         <input
-          [(ngModel)]="cliente.endereco.bairro"
-          name="cep"
-          [formControl]="cep"
-          required=""
+          [disabled]="true"
+          value="{{ cliente.endereco.bairro }}"
+          name="bairro"
           type="text"
           class="form-control"
         />
@@ -87,10 +81,9 @@
       <div class="col-md-4">
         <label class="form-label"> Cidade </label>
         <input
-          [(ngModel)]="cliente.endereco.cidade"
+          [disabled]="true"
+          value="{{ cliente.endereco.cidade }}"
           name="cidade"
-          [formControl]="cidade"
-          required=""
           type="text"
           class="form-control"
         />
@@ -98,10 +91,9 @@
       <div class="col-md-4">
         <label class="form-label"> Estado </label>
         <input
-          [(ngModel)]="cliente.endereco.estado"
+          [disabled]="true"
+          value="{{ cliente.endereco.estado }}"
           name="estado"
-          [formControl]="estado"
-          required=""
           type="text"
           class="form-control"
         />
@@ -110,34 +102,22 @@
       <div class="col-md-6">
         <label class="form-label"> Nº do Contato </label>
         <input
-          [(ngModel)]="contato.numero"
+          [disabled]="true"
+          value="{{ contato.numero }}"
           name="numeroTelefone"
-          [formControl]="numeroTelefone"
-          required=""
           type="text"
           class="form-control"
         />
       </div>
       <div class="col-md-6">
         <label class="form-label"> Tipo de contato </label>
-        <select
-          [(ngModel)]="contato.tipo"
-          name="tipo"
-          [formControl]="tipo"
-          required=""
-          class="form-select"
+        <input
+          [disabled]="true"
+          value="{{ contato.tipo }}"
+          name="numeroTelefone"
+          type="text"
+          class="form-control"
         >
-          <option selected></option>
-          <option value="Fixo">Fixo</option>
-          <option value="Celular">Celular</option>
-          <option value="Outros">Outros</option>
-        </select>
-      </div>
-
-      <div class="col-12 align-items-center">
-        <button (click)="create()" type="submit" class="btn btn-primary">
-          Cadastrar
-        </button>
       </div>
     </form>
   </div>

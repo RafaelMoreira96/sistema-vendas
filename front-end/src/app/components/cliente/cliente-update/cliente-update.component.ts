@@ -82,7 +82,7 @@ export class ClienteUpdateComponent implements OnInit {
           'Cliente atualizado com sucesso!',
           'Atualização feita com sucesso!'
         );
-        this.router.navigate(['/clientes']);
+        this.router.navigate(['clientes']);
       },
       (ex) => {
         if (ex.error.errors) {

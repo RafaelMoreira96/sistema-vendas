@@ -28,6 +28,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { ClienteCreateComponent } from './components/cliente/cliente-create/cliente-create.component';
 import { ClienteUpdateComponent } from './components/cliente/cliente-update/cliente-update.component';
+import { ClienteReadComponent } from './components/cliente/cliente-read/cliente-read.component';
+import { ClienteDeleteComponent } from './components/cliente/cliente-delete/cliente-delete.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ClienteUpdateComponent } from './components/cliente/cliente-update/clie
     LoginComponent,
     ClienteCreateComponent,
     ClienteUpdateComponent,
+    ClienteReadComponent,
+    ClienteDeleteComponent,
   ],
   imports: [
     BrowserModule,
