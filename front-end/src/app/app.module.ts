@@ -31,7 +31,12 @@ import { HttpClientModule } from '@angular/common/http';
 
     HttpClientModule,
 
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      closeButton: true,
+      progressBar: true,
+    }
+    )
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
