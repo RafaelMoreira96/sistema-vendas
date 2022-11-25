@@ -12,7 +12,7 @@
         />
       </div>
       <div class="info">
-        <a routerLink="" class="d-block"> Home </a>
+        <a routerLink="home" class="d-block"> Home </a>
       </div>
     </div>
 
@@ -61,6 +61,7 @@
             </li>
           </ul>
         </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
@@ -69,4 +70,6 @@
 </aside>
 <app-header></app-header>
 
-<router-outlet></router-outlet>
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
