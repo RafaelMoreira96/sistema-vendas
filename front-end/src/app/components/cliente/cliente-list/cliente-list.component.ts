@@ -12,8 +12,6 @@ import { Contato } from 'src/app/models/contato';
 export class ClienteListComponent implements OnInit {
   ELEMENT_DATA: Cliente[] = [];
 
-  displayedColumns: string[] = ['id', 'nome', 'cpf', 'contato', 'acoes'];
-
   constructor(private service: ClienteService) {}
 
   ngOnInit(): void {

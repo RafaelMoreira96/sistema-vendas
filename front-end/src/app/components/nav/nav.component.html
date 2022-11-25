@@ -3,15 +3,8 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-        <img
-          src="assets/dist/img/user2-160x160.jpg"
-          class="img-circle elevation-2"
-          alt="User Image"
-        />
-      </div>
-      <div class="info">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex info align-items-center">
+      <div class="">
         <a routerLink="home" class="d-block"> Home </a>
       </div>
     </div>
@@ -24,6 +17,14 @@
         role="menu"
         data-accordion="false"
       >
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Dashboard
+          </p>
+        </a>
+      </li>
         <li class="nav-item">
           <!-- Cadastros -->
           <a class="nav-link">
@@ -61,7 +62,6 @@
             </li>
           </ul>
         </li>
-
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
@@ -70,6 +70,6 @@
 </aside>
 <app-header></app-header>
 
-<div class="content-wrapper dark-mode espacamento">
+<div class="content-wrapper espacamento">
   <router-outlet></router-outlet>
 </div>

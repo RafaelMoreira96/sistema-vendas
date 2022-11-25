@@ -1,0 +1,157 @@
+<div class="container-fluid pt-2">
+  <div class="card card-info">
+    <div class="card-header">
+      <h2 class="text-center">Clientes | Atualizar</h2>
+    </div>
+
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="form-group">
+              <label> Nome </label>
+              <input
+                [(ngModel)]="cliente.nome"
+                name="nome"
+                [formControl]="nome"
+                required=""
+                type="email"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label> CPF </label>
+              <input
+                [(ngModel)]="cliente.cpf"
+                name="cpf"
+                [formControl]="cpf"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> CEP </label>
+              <input
+                [(ngModel)]="cliente.endereco.cep"
+                name="cep"
+                [formControl]="cep"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Logradouro </label>
+              <input
+                [(ngModel)]="cliente.endereco.logradouro"
+                name="logradouro"
+                [formControl]="logradouro"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label class="form-label"> Nº </label>
+              <input
+                [(ngModel)]="cliente.endereco.numero"
+                name="numero"
+                [formControl]="numero"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Cidade </label>
+              <input
+                [(ngModel)]="cliente.endereco.cidade"
+                name="cidade"
+                [formControl]="cidade"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Estado </label>
+              <input
+                [(ngModel)]="cliente.endereco.estado"
+                name="estado"
+                [formControl]="estado"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Celular </label>
+              <input
+                [(ngModel)]="contato.numero"
+                name="numeroTelefone"
+                [formControl]="numeroTelefone"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Tipo de contato </label>
+              <select
+                [(ngModel)]="contato.tipo"
+                name="tipo"
+                [formControl]="tipo"
+                required=""
+                class="form-control"
+              >
+                <option selected></option>
+                <option value="Fixo">Fixo</option>
+                <option value="Celular">Celular</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button
+          (click)="update()"
+          type="submit"
+          class="btn btn-primary w-100 my-2"
+        >
+          Atualizar
+        </button>
+        <button
+          routerLink="../../"
+          class="btn btn-danger w-100"
+        >
+          Cancelar atualização
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

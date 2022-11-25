@@ -137,8 +137,9 @@ public class ClienteService {
      */
     public void delete(Integer id) {
         Cliente c = findById(id);
-        c.setStatus(false);
-        repository.save(c);
+        //c.setStatus(false);
+        //repository.save(c);
+        repository.delete(c);
     }
 
     public void validaCpf(ClienteDTO c) {

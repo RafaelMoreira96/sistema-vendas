@@ -38,7 +38,7 @@ export class ClienteCreateComponent implements OnInit {
     dataCadastro: '',
   };
 
-  nome: FormControl = new FormControl(null, Validators.required);
+  nome: FormControl = new FormControl(null, Validators.minLength(3));
   cpf: FormControl = new FormControl(null, Validators.required);
 
   cep: FormControl = new FormControl(null, Validators.required);
@@ -54,7 +54,7 @@ export class ClienteCreateComponent implements OnInit {
 
   constructor(
     private service: ClienteService,
-    //private toast: ToastrService,
+    private toast: ToastrService,
     private router: Router
   ) {}
 
@@ -63,21 +63,20 @@ export class ClienteCreateComponent implements OnInit {
   create(): void {
     this.service.create(this.cliente).subscribe(
       () => {
-    //    this.toast.success('Cadastro efetuado', 'Cadastrado');
+        this.toast.success('Cadastro efetuado', 'Cadastrado');
         this.router.navigate(['clientes']);
       },
       (ex) => {
         if (ex.error.errors) {
           ex.error.errors.forEach(
             (element: { message: string | undefined }) => {
-           //   this.toast.error(element.message);
+              this.toast.error(element.message);
             }
           );
         } else {
-         // this.toast.error(ex.error.message);
+          this.toast.error(ex.error.message);
         }
       }
     );
-    console.log(this.cliente);
   }
 }

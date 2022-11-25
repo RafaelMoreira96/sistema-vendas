@@ -1,1 +1,136 @@
-<p>cliente-delete works!</p>
+<div class="container-fluid pt-2">
+  <div class="card card-info">
+    <div class="card-header">
+      <h2 class="text-center">Clientes | Atualizar</h2>
+    </div>
+
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="form-group">
+              <label> Nome </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="cliente.nome"
+                name="nome"
+                required=""
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label> CPF </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="cliente.cpf"
+                name="cpf"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> CEP </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="cliente.endereco.cep"
+                name="cep"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Logradouro </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="cliente.endereco.logradouro"
+                name="logradouro"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label class="form-label"> Nº </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="cliente.endereco.numero"
+                name="numero"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Cidade </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="cliente.endereco.cidade"
+                name="cidade"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Estado </label>
+              <input
+                [disabled]="true"
+                name="estado"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Celular </label>
+              <input
+                [disabled]="true"
+                name="numeroTelefone"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Tipo de contato </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="contato.tipo"
+                name="numeroTelefone"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <button (click)="delete()" class="btn btn-danger w-100">
+          Remover cliente
+        </button>
+
+        <button routerLink="../../" class="btn btn-warning w-100 my-2">
+          Retornar à listagem
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
