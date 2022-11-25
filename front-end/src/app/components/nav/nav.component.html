@@ -1,62 +1,72 @@
-<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img
+          src="assets/dist/img/user2-160x160.jpg"
+          class="img-circle elevation-2"
+          alt="User Image"
+        />
+      </div>
+      <div class="info">
+        <a routerLink="" class="d-block"> Home </a>
+      </div>
+    </div>
 
-  <div class="sidebar-brand d-none d-md-flex text-center">
-
-  </div>
-
-  <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-    <li class="nav-item first">
-      <a class="nav-link" routerLink="home">
-        <svg class="nav-icon">
-          <use
-            xlink:href="assets/vendors/@coreui/icons/svg/free.svg#cil-speedometer"
-          ></use>
-        </svg>
-        Home</a
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
       >
-    </li>
-
-    <li class="nav-title">Funções</li>
-    <li class="nav-group">
-      <a class="nav-link nav-group-toggle">
-        <svg class="nav-icon">
-          <use
-            xlink:href="assets/vendors/@coreui/icons/svg/free.svg#cil-group"
-          ></use>
-        </svg>
-        Cadastro</a
-      >
-      <ul class="nav-group-items">
         <li class="nav-item">
-          <a class="nav-link" routerLink="clientes">
-            <span class="nav-icon"></span> Clientes
+          <!-- Cadastros -->
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Cadastros
+              <i class="fas fa-angle-left right"></i>
+            </p>
           </a>
-        </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="base/accordion.html"
-            ><span class="nav-icon"></span> Funcionários
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="base/accordion.html"
-            ><span class="nav-icon"></span> Fornecedores
-          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a routerLink="clientes" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                Clientes
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/layout/top-nav.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                Fornecedores
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/layout/top-nav.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                Funcionários
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="pages/layout/top-nav.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                Produtos
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
-    </li>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
+<app-header></app-header>
 
-  </ul>
-
-  <button
-    class="sidebar-toggler"
-    type="button"
-    data-coreui-toggle="unfoldable"
-  ></button>
-</div>
-
-<div class="wrapper d-flex flex-column min-vh-100 bg-light">
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
