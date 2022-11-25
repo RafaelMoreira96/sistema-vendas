@@ -1,7 +1,7 @@
 <div class="container-fluid pt-2">
   <div class="card card-danger">
     <div class="card-header">
-      <h2 class="text-center">Clientes | Remover</h2>
+      <h2 class="text-center">Funcionarios | Remover</h2>
     </div>
 
     <div class="card-body">
@@ -12,7 +12,7 @@
               <label> Nome </label>
               <input
                 [disabled]="true"
-                [(ngModel)]="cliente.nome"
+                [(ngModel)]="funcionario.nome"
                 name="nome"
                 required=""
                 class="form-control"
@@ -24,7 +24,7 @@
               <label> CPF </label>
               <input
                 [disabled]="true"
-                [(ngModel)]="cliente.cpf"
+                [(ngModel)]="funcionario.cpf"
                 name="cpf"
                 type="text"
                 class="form-control"
@@ -39,7 +39,7 @@
               <label class="form-label"> CEP </label>
               <input
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.cep"
+                [(ngModel)]="funcionario.endereco.cep"
                 name="cep"
                 type="text"
                 class="form-control"
@@ -51,7 +51,7 @@
               <label class="form-label"> Logradouro </label>
               <input
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.logradouro"
+                [(ngModel)]="funcionario.endereco.logradouro"
                 name="logradouro"
                 type="text"
                 class="form-control"
@@ -63,7 +63,7 @@
               <label class="form-label"> Nº </label>
               <input
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.numero"
+                [(ngModel)]="funcionario.endereco.numero"
                 name="numero"
                 type="text"
                 class="form-control"
@@ -78,7 +78,7 @@
               <label class="form-label"> Cidade </label>
               <input
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.cidade"
+                [(ngModel)]="funcionario.endereco.cidade"
                 name="cidade"
                 type="text"
                 class="form-control"
@@ -89,8 +89,8 @@
             <div class="form-group">
               <label class="form-label"> Estado </label>
               <input
+                [(ngModel)]="funcionario.endereco.estado"
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.estado"
                 name="estado"
                 type="text"
                 class="form-control"

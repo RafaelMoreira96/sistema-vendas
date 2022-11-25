@@ -8,6 +8,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sistemavenda.tcc.domain.Contato;
@@ -22,6 +24,9 @@ import com.sistemavenda.tcc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class FuncionarioService {
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
     @Autowired
     private FuncionarioRepository repository;
     @Autowired
@@ -78,7 +83,7 @@ public class FuncionarioService {
         f.setEndereco(e);
         f.setContatos(contatos);
         f.setNomeUsuario(fDTO.getNomeUsuario());
-        f.setSenha(fDTO.getSenha());
+        f.setSenha(encoder.encode(fDTO.getSenha()));
 
         return repository.save(f);
     }
@@ -128,7 +133,7 @@ public class FuncionarioService {
         f.setEndereco(e);
         f.setContatos(contatos);
         f.setNomeUsuario(fDTO.getNomeUsuario());
-        f.setSenha(fDTO.getSenha());
+        f.setSenha(encoder.encode(fDTO.getSenha()));
         f.setDataDemissao(fDTO.getDataDemissao());
 
         return repository.save(f);

@@ -21,8 +21,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String nomeUsuario) throws UsernameNotFoundException {
         Optional<Funcionario> user = repository.findByNomeUsuario(nomeUsuario);
         if (user.isPresent()) {
-            return new UserSS(user.get().getId(), user.get().getNomeUsuario(), user.get().getSenha(),
-                    user.get().getNivelAuth());
+            if(user.get().getDataDemissao() == null){
+                return new UserSS(user.get().getId(), user.get().getNomeUsuario(), user.get().getSenha(),
+                user.get().getNivelAuth());
+            }
         }
         throw new UsernameNotFoundException(nomeUsuario);
     }

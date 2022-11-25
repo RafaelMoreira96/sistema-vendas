@@ -7,13 +7,13 @@
 
 > Sistema de Vendas e Controle de Estoque, desenvolvido utilizando Spring Boot e Angular.
 
-O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas semanas, haverá algumas modificações na estrutura das pastas e o término do backend, desenvolvido em Java, usando o framework Spring Boot. 
+O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas semanas, haverá algumas modificações na estrutura das pastas e o término do backend, desenvolvido em Java, usando o framework Spring Boot.
 
 ## Do que se trata este projeto?
 
 <p> A finalidade deste projeto é a aplicação dos conhecimentos adquiridos em um curso na qual eu estou concluindo para aprimorar minhas habilidades com programação e também é a minha proposta do meu trabalho de conclusão de curso, no curso de Análise e Desenvolvimento de Sistemas, na qual estudo no Instituto Federal de Mato Grosso do Sul - Campus Três Lagoas. </p>
 
-## Funcionalidades (ou func. futuras) 
+## Funcionalidades (ou func. futuras)
 
 <p> O projeto consiste em uma API, desenvolvida em Java com Spring Boot, onde ela que fará todas as requisições no meu banco de dados e um front-end, desenvolvido em Angular, onde será o lado cliente. O projeto, até o término dele, terá as seguintes funcionalidades: </p> 
 <ul>
@@ -29,8 +29,16 @@ O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas s
   </li>
 </ul>
 
-## 🚀 Para executar o sistema
+## 🚀 Itens desenvolvidos até o momento
 
+<ul>
+  <li> Login </li>
+  <li> Integração do AdminLTE 3.0 para os layout </li>
+  <li> Imports de alguns módulos que será usado no projeto </li>
+  <li> CRUD de Cliente </li>
+  <li> CRUD de Funcionário </li>
+
+</ul>
 [...] Em andamento [...]
 
 [⬆ Voltar ao topo](#nome-do-projeto)<br>

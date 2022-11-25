@@ -21,7 +21,6 @@ export class ClienteListComponent implements OnInit {
   findAll() {
     this.service.findAll().subscribe((resp) => {
       this.ELEMENT_DATA = resp;
-      console.log(this.ELEMENT_DATA);
     });
   }
 }

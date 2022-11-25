@@ -17,6 +17,11 @@ import { ClienteCreateComponent } from './components/cliente/cliente-create/clie
 import { ClienteUpdateComponent } from './components/cliente/cliente-update/cliente-update.component';
 import { ClienteReadComponent } from './components/cliente/cliente-read/cliente-read.component';
 import { ClienteDeleteComponent } from './components/cliente/cliente-delete/cliente-delete.component';
+import { FuncionarioListComponent } from './components/funcionario/funcionario-list/funcionario-list.component';
+import { FuncionarioCreateComponent } from './components/funcionario/funcionario-create/funcionario-create.component';
+import { FuncionarioDeleteComponent } from './components/funcionario/funcionario-delete/funcionario-delete.component';
+import { FuncionarioReadComponent } from './components/funcionario/funcionario-read/funcionario-read.component';
+import { FuncionarioUpdateComponent } from './components/funcionario/funcionario-update/funcionario-update.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +35,13 @@ import { ClienteDeleteComponent } from './components/cliente/cliente-delete/clie
     ClienteCreateComponent,
     ClienteUpdateComponent,
     ClienteReadComponent,
-    ClienteDeleteComponent
+    ClienteDeleteComponent,
 
+    FuncionarioListComponent,
+    FuncionarioCreateComponent,
+    FuncionarioUpdateComponent,
+    FuncionarioReadComponent,
+    FuncionarioDeleteComponent,
   ],
   imports: [
     BrowserModule,

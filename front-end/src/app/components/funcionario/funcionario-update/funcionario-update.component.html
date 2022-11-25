@@ -1,7 +1,7 @@
 <div class="container-fluid pt-2">
-  <div class="card card-danger">
+  <div class="card card-info">
     <div class="card-header">
-      <h2 class="text-center">Clientes | Remover</h2>
+      <h2 class="text-center">Funcionarios | Atualizar</h2>
     </div>
 
     <div class="card-body">
@@ -11,10 +11,11 @@
             <div class="form-group">
               <label> Nome </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.nome"
+                [(ngModel)]="funcionario.nome"
                 name="nome"
+                [formControl]="nome"
                 required=""
+                type="email"
                 class="form-control"
               />
             </div>
@@ -23,9 +24,10 @@
             <div class="form-group">
               <label> CPF </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.cpf"
+                [(ngModel)]="funcionario.cpf"
                 name="cpf"
+                [formControl]="cpf"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -38,9 +40,10 @@
             <div class="form-group">
               <label class="form-label"> CEP </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.endereco.cep"
+                [(ngModel)]="funcionario.endereco.cep"
                 name="cep"
+                [formControl]="cep"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -50,9 +53,10 @@
             <div class="form-group">
               <label class="form-label"> Logradouro </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.endereco.logradouro"
+                [(ngModel)]="funcionario.endereco.logradouro"
                 name="logradouro"
+                [formControl]="logradouro"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -62,9 +66,10 @@
             <div class="form-group">
               <label class="form-label"> Nº </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.endereco.numero"
+                [(ngModel)]="funcionario.endereco.numero"
                 name="numero"
+                [formControl]="numero"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -77,9 +82,10 @@
             <div class="form-group">
               <label class="form-label"> Cidade </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.endereco.cidade"
+                [(ngModel)]="funcionario.endereco.cidade"
                 name="cidade"
+                [formControl]="cidade"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -89,9 +95,10 @@
             <div class="form-group">
               <label class="form-label"> Estado </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.endereco.estado"
+                [(ngModel)]="funcionario.endereco.estado"
                 name="estado"
+                [formControl]="estado"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -104,8 +111,9 @@
               <label class="form-label"> Celular </label>
               <input
                 [(ngModel)]="contato.numero"
-                [disabled]="true"
                 name="numeroTelefone"
+                [formControl]="numeroTelefone"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -114,23 +122,60 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label class="form-label"> Tipo de contato </label>
-              <input
-                [disabled]="true"
+              <select
                 [(ngModel)]="contato.tipo"
                 name="tipo"
+                [formControl]="tipo"
+                required=""
+                class="form-control"
+              >
+                <option selected></option>
+                <option value="Fixo">Fixo</option>
+                <option value="Celular">Celular</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Nome de Usuário </label>
+              <input
+                [(ngModel)]="funcionario.nomeUsuario"
+                name="nomeUsuario"
+                [formControl]="nomeUsuario"
+                required=""
                 type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Senha </label>
+              <input
+                [(ngModel)]="funcionario.senha"
+                name="senha"
+                [formControl]="senha"
+                required=""
+                type="password"
                 class="form-control"
               />
             </div>
           </div>
         </div>
 
-        <button (click)="delete()" class="btn btn-danger w-100">
-          Remover cliente
+        <button
+          (click)="update()"
+          type="submit"
+          class="btn btn-primary w-100 my-2"
+        >
+          Atualizar
         </button>
-
-        <button routerLink="../../" class="btn btn-warning w-100 my-2">
-          Retornar à listagem
+        <button routerLink="../../" class="btn btn-danger w-100">
+          Cancelar atualização
         </button>
       </form>
     </div>
