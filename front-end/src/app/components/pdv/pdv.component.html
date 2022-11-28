@@ -1,23 +1,57 @@
 <div class="row">
+  <!-- Lista de produtos -->
   <div class="col-sm-6">
     <div class="card">
       <div class="card-header text-center">Lista de produtos</div>
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
+        <label for=""> Produto </label>
+        <div class="input-group form-group">
+          <input
+            placeholder="Cod. Barras"
+            class="form-control"
+            type="text"
+            name="codBarras"
+            [formControl]="codBarras"
+            value=""
+          />
+          <span class="input-group-append">
+            <button (click)="findProduto()" type="button" class="btn btn-info">
+              Pesquisar
+            </button>
+          </span>
+        </div>
+
+        <div class="row">
+          <div class="col-2">
+            <label for=""> ID </label>
+            <input [formControl]="idProduto" type="text" class="form-control" [disabled]="true" placeholder=".col-3" />
+          </div>
+          <div class="col-6">
+            <label for=""> Descrição </label>
+            <input [formControl]="descricao" type="text" class="form-control" [disabled]="true" placeholder=".col-4" />
+          </div>
+          <div class="col-2">
+            <label for=""> Valor </label>
+            <input [formControl]="valorVendido" type="text" class="form-control" placeholder=".col-5" />
+          </div>
+          <div class="col-2">
+            <label for=""> Quant.</label>
+            <input [formControl]="quant" type="text" class="form-control" placeholder=".col-5" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Dados da venda -->
   <div class="col-sm-6">
     <div class="card">
       <div class="card-header text-center">Info. da venda</div>
       <div class="card-body">
-        <h5 class="card-title text-center">- Cliente -</h5>
-        <br />
+        <label for=""> Cliente</label>
         <div class="input-group form-group">
           <input
+            [disabled]="true"
             placeholder="CPF"
             class="form-control"
             type="text"
@@ -34,8 +68,8 @@
         <div class="row">
           <div class="mb-3 col-sm-2">
             <input
-              placeholder="ID"
               [disabled]="true"
+              placeholder="ID"
               [formControl]="idCliente"
               type="text"
               class="form-control"
@@ -54,49 +88,26 @@
           </div>
         </div>
 
-        <h5 class="card-title text-center">- Vendedor -</h5>
-        <br />
-        <div class="input-group form-group">
-          <input
-            placeholder="CPF"
-            class="form-control"
-            type="text"
-            name="cpf"
-            [formControl]="cpf"
-            value=""
-          />
-          <span class="input-group-append">
-            <button
-              (click)="findFuncionario()"
-              type="button"
-              class="btn btn-info"
-            >
-              Pesquisar
-            </button>
-          </span>
-        </div>
-        <div class="row">
-          <div class="mb-3 col-sm-2">
-            <input
-              placeholder="ID"
-              [disabled]="true"
-              [formControl]="idFuncionario"
-              type="text"
-              class="form-control"
-              name="id"
-            />
-          </div>
-          <div class="mb-3 col-sm-10">
-            <input
-              placeholder="Nome"
-              [formControl]="nomeFuncionario"
-              [disabled]="true"
-              type="text"
-              class="form-control"
-              name="nome"
-            />
-          </div>
-        </div>
+        <label for=""> Vendedores </label>
+        <select
+          class="form-select form-control"
+          aria-label="Default select example"
+        >
+          <option *ngFor="let fun of funcionarios" value="{{fun.id}}">
+            {{fun.nome}}
+          </option>
+        </select>
+
+        <label for=""> Forma de Pagamento</label>
+        <select
+          class="form-select form-control"
+          aria-label="Default select example"
+          [formControl]="formaPagto"
+        >
+          <option *ngFor="let fp of listaFormaPagto" value="{{fp.id}}">
+            {{fp.descricao}}
+          </option>
+        </select>
       </div>
     </div>
   </div>
@@ -110,4 +121,5 @@
       With supporting text below as a natural lead-in to additional content.
     </p>
   </div>
+  <button type="button" class="btn btn-success">Finalizar venda</button>
 </div>

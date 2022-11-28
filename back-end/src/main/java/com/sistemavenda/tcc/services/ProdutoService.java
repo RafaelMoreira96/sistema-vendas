@@ -27,6 +27,12 @@ public class ProdutoService {
                 () -> new ObjectNotFoundException("Objeto não encontrado. ID: " + id));
     }
 
+    // Procura por codBarras
+    public Produto findByCodBarras(String codBarras) {
+        Optional<Produto> o = repository.findByCodBarras(codBarras);
+        return o.orElseThrow(
+                () -> new ObjectNotFoundException("Objeto não encontrado. ID: " + codBarras));
+    }
     // Lista todos
     public List<Produto> findAll() {
         List<Produto> listDB = repository.findAll();

@@ -14,8 +14,8 @@ public class VendaDTO {
     private Integer id;
     private Integer numeroVenda;
 
-    private Integer cliente;
-    private Integer funcionario;
+    private Integer idCliente;
+    private Integer idFuncionario;
     private String nomeCliente;
     private String nomeFuncionario;
 
@@ -35,8 +35,8 @@ public class VendaDTO {
         this.numeroVenda = v.getNumeroVenda();
         this.dataVenda = v.getDataVenda();
         this.status = v.getStatus();
-        this.cliente = v.getCliente().getId();
-        this.funcionario = v.getFuncionario().getId();
+        this.idCliente = v.getCliente().getId();
+        this.idFuncionario = v.getFuncionario().getId();
         this.itens = v.getItens();
         this.valorVenda = v.getValorVenda();
         this.formaPagamento = v.getFormaPagamento();
@@ -93,19 +93,19 @@ public class VendaDTO {
     }
 
     public Integer getCliente() {
-        return this.cliente;
+        return this.idCliente;
     }
 
     public void setCliente(Integer cliente) {
-        this.cliente = cliente;
+        this.idCliente = cliente;
     }
 
     public Integer getFuncionario() {
-        return this.funcionario;
+        return this.idFuncionario;
     }
 
     public void setFuncionario(Integer funcionario) {
-        this.funcionario = funcionario;
+        this.idFuncionario = funcionario;
     }
 
     public List<ItemVenda> getItens() {

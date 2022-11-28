@@ -35,6 +35,12 @@ public class ClienteService {
         return o.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado! ID: " + id));
     }
 
+    // Busca por CPF
+    public Cliente findByCpf(String cpf) {
+        Optional<Cliente> o = repository.findByCpf(cpf);
+        return o.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado."));
+    }
+
     // Lista todos
     public List<Cliente> findAll() {
         List<Cliente> listDB = repository.findAll();
@@ -137,8 +143,8 @@ public class ClienteService {
      */
     public void delete(Integer id) {
         Cliente c = findById(id);
-        //c.setStatus(false);
-        //repository.save(c);
+        // c.setStatus(false);
+        // repository.save(c);
         repository.delete(c);
     }
 

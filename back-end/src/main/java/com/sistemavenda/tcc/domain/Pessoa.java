@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Pessoa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     protected Integer id;
 

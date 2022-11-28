@@ -36,6 +36,13 @@ public class ProdutoResource {
         return ResponseEntity.ok().body(new ProdutoDTO(p));
     }
 
+    // Procura por codBarras
+    @GetMapping(value = "/cod/{codBarras}")
+    public ResponseEntity<ProdutoDTO> findByCodBarras(@PathVariable String codBarras) {
+        Produto p = service.findByCodBarras(codBarras);
+        return ResponseEntity.ok().body(new ProdutoDTO(p));
+    }
+
     // Lista todos
     @GetMapping
     public ResponseEntity<List<ProdutoDTO>> findAll() {

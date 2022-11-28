@@ -14,6 +14,10 @@ export class ProdutoService {
     return this.http.get<Produto>(`${API_CONFIG.baseUrl}/produtos/${id}`);
   }
 
+  findByCodBarras(codBarras: string): Observable<Produto>{
+    return this.http.get<Produto>(`${API_CONFIG.baseUrl}/produtos/cod/${codBarras}`);
+  }
+
   findAll(): Observable<Produto[]> {
     return this.http.get<Produto[]>(`${API_CONFIG.baseUrl}/produtos`);
   }

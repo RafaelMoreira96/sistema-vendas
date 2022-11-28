@@ -22,7 +22,7 @@ import com.sistemavenda.tcc.domain.enums.StatusCompra;
 @Table(name = "compra")
 public class Compra {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer numeroCompra;
 
