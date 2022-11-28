@@ -1,0 +1,108 @@
+<div class="container-fluid pt-2">
+  <div class="card card-info">
+    <div class="card-header">
+      <h2 class="text-center">Produtos | Visualizar</h2>
+    </div>
+
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label> Cód. Barras </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="produto.codBarras"
+                name="nome"
+                required=""
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <div class="form-group">
+              <label> Descrição </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="produto.descricao"
+                name="cpf"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Preço Atacado </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="produto.precoAtacado"
+                name="cep"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Preço Varejo </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="produto.precoVarejo"
+                name="logradouro"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Quantidade em Estoque </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="produto.qteEstoque"
+                name="cidade"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Quant. Mínima </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="produto.qteMin"
+                name="estado"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Quant. Máxima </label>
+              <input
+                [(ngModel)]="produto.qteMax"
+                [disabled]="true"
+                name="numeroTelefone"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <button routerLink="../../" class="btn btn-danger w-100">
+          Retornar à listagem
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

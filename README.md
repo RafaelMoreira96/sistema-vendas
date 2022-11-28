@@ -37,8 +37,13 @@ O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas s
   <li> Imports de alguns módulos que será usado no projeto </li>
   <li> CRUD de Cliente </li>
   <li> CRUD de Funcionário </li>
+  <li> CRUD de Fornecedores </li>
+  <li> CRUD de Produtos </li>
 
 </ul>
-[...] Em andamento [...]
+
+[...] Este projeto está em andamento [...]
+
+<br>
 
 [⬆ Voltar ao topo](#nome-do-projeto)<br>

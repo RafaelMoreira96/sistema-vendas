@@ -1,34 +1,63 @@
 <div class="container-fluid pt-2">
   <div class="card card-info">
     <div class="card-header">
-      <h2 class="text-center">Clientes | Atualizar</h2>
+      <h2 class="text-center">Fornecedores | Atualizar</h2>
     </div>
 
     <div class="card-body">
       <form>
         <div class="row">
-          <div class="col-sm-9">
+          <div class="col-sm-6">
             <div class="form-group">
-              <label> Nome </label>
+              <label> Razão Social </label>
               <input
-                [(ngModel)]="cliente.nome"
+                [(ngModel)]="fornecedor.nome"
                 name="nome"
                 [formControl]="nome"
                 required=""
-                type="email"
+                type="text"
                 class="form-control"
               />
             </div>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-6">
             <div class="form-group">
-              <label> CPF </label>
+              <label> Nome Fantasia </label>
               <input
-                [(ngModel)]="cliente.cpf"
-                name="cpf"
-                [formControl]="cpf"
+                [(ngModel)]="fornecedor.nomeFantasia"
+                [formControl]="nomeFantasia"
                 required=""
                 type="text"
+                name="nomeFantasia"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label> CNPJ </label>
+              <input
+                [(ngModel)]="fornecedor.cnpj"
+                [formControl]="cnpj"
+                required=""
+                type="text"
+                name="cnpj"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label> Inscrição Estadual </label>
+              <input
+                [(ngModel)]="fornecedor.inscricaoEstadual"
+                [formControl]="inscricaoEstadual"
+                required=""
+                type="text"
+                name="inscricaoEstadual"
                 class="form-control"
               />
             </div>
@@ -40,11 +69,11 @@
             <div class="form-group">
               <label class="form-label"> CEP </label>
               <input
-                [(ngModel)]="cliente.endereco.cep"
-                name="cep"
+                [(ngModel)]="fornecedor.endereco.cep"
                 [formControl]="cep"
                 required=""
                 type="text"
+                name="cep"
                 class="form-control"
               />
             </div>
@@ -53,24 +82,24 @@
             <div class="form-group">
               <label class="form-label"> Logradouro </label>
               <input
-                [(ngModel)]="cliente.endereco.logradouro"
-                name="logradouro"
+                [(ngModel)]="fornecedor.endereco.logradouro"
                 [formControl]="logradouro"
                 required=""
                 type="text"
+                name="logradouro"
                 class="form-control"
               />
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label class="form-label"> Logradouro </label>
+              <label class="form-label"> Complemento </label>
               <input
-                [(ngModel)]="cliente.endereco.complemento"
-                name="complemento"
+                [(ngModel)]="fornecedor.endereco.complemento"
                 [formControl]="complemento"
                 required=""
                 type="text"
+                name="complemento"
                 class="form-control"
               />
             </div>
@@ -79,11 +108,53 @@
             <div class="form-group">
               <label class="form-label"> Nº </label>
               <input
-                [(ngModel)]="cliente.endereco.numero"
-                name="numero"
+                [(ngModel)]="fornecedor.endereco.numero"
                 [formControl]="numero"
                 required=""
                 type="text"
+                name="numero"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Bairro </label>-
+              <input
+                [(ngModel)]="fornecedor.endereco.bairro"
+                [formControl]="bairro"
+                required=""
+                type="text"
+                name="bairro"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Cidade </label>
+              <input
+                [(ngModel)]="fornecedor.endereco.cidade"
+                [formControl]="cidade"
+                required=""
+                type="text"
+                name="cidade"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Estado </label>
+              <input
+                [(ngModel)]="fornecedor.endereco.estado"
+                [formControl]="estado"
+                required=""
+                type="text"
+                name="estado"
                 class="form-control"
               />
             </div>
@@ -93,60 +164,24 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label class="form-label"> Cidade </label>
-              <input
-                [(ngModel)]="cliente.endereco.cidade"
-                name="cidade"
-                [formControl]="cidade"
-                required=""
-                type="text"
-                class="form-control"
-              />
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="form-label"> Estado </label>
-              <input
-                [(ngModel)]="cliente.endereco.estado"
-                name="estado"
-                [formControl]="estado"
-                required=""
-                type="text"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="form-label"> Celular </label>
+              <label class="form-label"> Número Telefônico </label>
               <input
                 [(ngModel)]="contato.numero"
+                [disabled]="true"
                 name="numeroTelefone"
-                [formControl]="numeroTelefone"
-                required=""
-                type="text"
                 class="form-control"
               />
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label class="form-label"> Tipo de contato </label>
-              <select
+              <label class="form-label"> Tipo </label>
+              <input
                 [(ngModel)]="contato.tipo"
+                [disabled]="true"
                 name="tipo"
-                [formControl]="tipo"
-                required=""
                 class="form-control"
-              >
-                <option selected></option>
-                <option value="Fixo">Fixo</option>
-                <option value="Celular">Celular</option>
-                <option value="Outros">Outros</option>
-              </select>
+              />
             </div>
           </div>
         </div>
@@ -158,7 +193,10 @@
         >
           Atualizar
         </button>
-        <button routerLink="../../" class="btn btn-danger w-100">
+        <button
+          routerLink="../../"
+          class="btn btn-danger w-100"
+        >
           Cancelar atualização
         </button>
       </form>

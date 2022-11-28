@@ -12,6 +12,8 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./cliente-delete.component.css'],
 })
 export class ClienteDeleteComponent implements OnInit {
+  idFind?: any;
+
   contato: Contato = {
     id: '',
     numero: '',
@@ -38,20 +40,6 @@ export class ClienteDeleteComponent implements OnInit {
     dataCadastro: '',
   };
 
-  nome: FormControl = new FormControl(null, Validators.minLength(3));
-  cpf: FormControl = new FormControl(null, Validators.required);
-
-  cep: FormControl = new FormControl(null, Validators.required);
-  logradouro: FormControl = new FormControl(null, Validators.required);
-  numero: FormControl = new FormControl(null, Validators.required);
-  complemento: FormControl = new FormControl(null);
-  bairro: FormControl = new FormControl(null, Validators.required);
-  cidade: FormControl = new FormControl(null, Validators.required);
-  estado: FormControl = new FormControl(null, Validators.required);
-
-  numeroTelefone: FormControl = new FormControl(null, Validators.required);
-  tipo: FormControl = new FormControl(null, Validators.required);
-
   constructor(
     private service: ClienteService,
     private toast: ToastrService,
@@ -60,13 +48,14 @@ export class ClienteDeleteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cliente.id = this.route.snapshot.paramMap.get('id');
-    this.findById();
+    this.idFind = this.route.snapshot.paramMap.get('id');
+    this.findById(this.idFind);
   }
 
-  findById(): void {
-    this.service.findById(this.cliente.id).subscribe((resposta) => {
+  findById(id: any): void {
+    this.service.findById(this.idFind).subscribe((resposta) => {
       this.cliente = resposta;
+      this.contato = resposta.contatos[0];
     });
   }
 

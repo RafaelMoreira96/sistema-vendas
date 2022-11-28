@@ -36,7 +36,7 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-2">
             <div class="form-group">
               <label class="form-label"> CEP </label>
               <input
@@ -49,13 +49,26 @@
               />
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <div class="form-group">
               <label class="form-label"> Logradouro </label>
               <input
                 [(ngModel)]="cliente.endereco.logradouro"
                 name="logradouro"
                 [formControl]="logradouro"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Logradouro </label>
+              <input
+                [(ngModel)]="cliente.endereco.complemento"
+                name="complemento"
+                [formControl]="complemento"
                 required=""
                 type="text"
                 class="form-control"

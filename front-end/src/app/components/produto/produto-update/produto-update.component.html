@@ -1,0 +1,115 @@
+<div class="container-fluid pt-2">
+  <div class="card card-info">
+    <div class="card-header">
+      <h2 class="text-center">Produtos | Atualizar</h2>
+    </div>
+
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label> Cód. Barras </label>
+              <input
+                [(ngModel)]="produto.codBarras"
+                name="codBarras"
+                [formControl]="codBarras"
+                required=""
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-10">
+            <div class="form-group">
+              <label> Descrição </label>
+              <input
+                [formControl]="descricao"
+                [(ngModel)]="produto.descricao"
+                name="descricao"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Preço Atacado </label>
+              <input
+                [formControl]="precoAtacado"
+                [(ngModel)]="produto.precoAtacado"
+                name="precoAtacado"
+                type="number"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="form-label"> Preço Varejo </label>
+              <input
+                [formControl]="precoVarejo"
+                [(ngModel)]="produto.precoVarejo"
+                name="precoVarejo"
+                type="number"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Quantidade em Estoque </label>
+              <input
+                [formControl]="qteEstoque"
+                [(ngModel)]="produto.qteEstoque"
+                name="qteEstoque"
+                type="number"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Quant. Mínima </label>
+              <input
+                [formControl]="qteMin"
+                [(ngModel)]="produto.qteMin"
+                name="qteMin"
+                type="number"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Quant. Máxima </label>
+              <input
+                [formControl]="qteMax"
+                [(ngModel)]="produto.qteMax"
+                name="qteMax"
+                type="number"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <button
+          (click)="update()"
+          type="submit"
+          class="btn btn-primary w-100 my-2"
+        >
+          Atualizar
+        </button>
+        <button routerLink="../../" class="btn btn-danger w-100">
+          Cancelar atualização
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,9 @@ public class FornecedorDTO {
 
     @NotNull(message = "O campo NOME deve ser preenchido")
     private String nome; // ou razao social
+    @NotNull(message = "O campo NOME FANTASIA deve ser preenchido")
     private String nomeFantasia;
+    @NotNull(message = "O campo INSCRICAO ESTADUAL deve ser preenchido")
     private String inscricaoEstadual;
     @NotNull(message = "O campo CNPJ deve ser preenchido")
     private String cnpj;

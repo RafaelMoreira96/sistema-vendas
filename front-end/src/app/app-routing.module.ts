@@ -18,6 +18,18 @@ import { FuncionarioDeleteComponent } from './components/funcionario/funcionario
 import { FuncionarioReadComponent } from './components/funcionario/funcionario-read/funcionario-read.component';
 import { FuncionarioUpdateComponent } from './components/funcionario/funcionario-update/funcionario-update.component';
 
+import { FornecedorCreateComponent } from './components/fornecedor/fornecedor-create/fornecedor-create.component';
+import { FornecedorDeleteComponent } from './components/fornecedor/fornecedor-delete/fornecedor-delete.component';
+import { FornecedorListComponent } from './components/fornecedor/fornecedor-list/fornecedor-list.component';
+import { FornecedorReadComponent } from './components/fornecedor/fornecedor-read/fornecedor-read.component';
+import { FornecedorUpdateComponent } from './components/fornecedor/fornecedor-update/fornecedor-update.component';
+
+import { ProdutoDeleteComponent } from './components/produto/produto-delete/produto-delete.component';
+import { ProdutoListComponent } from './components/produto/produto-list/produto-list.component';
+import { ProdutoReadComponent } from './components/produto/produto-read/produto-read.component';
+import { ProdutoUpdateComponent } from './components/produto/produto-update/produto-update.component';
+import { ProdutoCreateComponent } from './components/produto/produto-create/produto-create.component';
+
 const routes: Routes = [
   {
     path: 'login',
@@ -43,6 +55,20 @@ const routes: Routes = [
       { path: 'funcionarios/update/:id', component: FuncionarioUpdateComponent },
       { path: 'funcionarios/read/:id', component: FuncionarioReadComponent },
       { path: 'funcionarios/delete/:id', component: FuncionarioDeleteComponent },
+
+      // Components de FORNECEDOR
+      { path: 'fornecedores', component: FornecedorListComponent },
+      { path: 'fornecedores/create', component: FornecedorCreateComponent },
+      { path: 'fornecedores/update/:id', component: FornecedorUpdateComponent },
+      { path: 'fornecedores/read/:id', component: FornecedorReadComponent },
+      { path: 'fornecedores/delete/:id', component: FornecedorDeleteComponent },
+
+      // Components de PRODUTO
+      { path: 'produtos', component: ProdutoListComponent },
+      { path: 'produtos/create', component: ProdutoCreateComponent },
+      { path: 'produtos/update/:id', component: ProdutoUpdateComponent },
+      { path: 'produtos/read/:id', component: ProdutoReadComponent },
+      { path: 'produtos/delete/:id', component: ProdutoDeleteComponent },
     ],
   },
 ];

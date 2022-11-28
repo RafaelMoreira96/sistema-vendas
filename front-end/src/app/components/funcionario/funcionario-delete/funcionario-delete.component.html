@@ -34,25 +34,40 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-2">
             <div class="form-group">
               <label class="form-label"> CEP </label>
               <input
-                [disabled]="true"
                 [(ngModel)]="funcionario.endereco.cep"
                 name="cep"
+                [formControl]="cep"
+                required=""
                 type="text"
                 class="form-control"
               />
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <div class="form-group">
               <label class="form-label"> Logradouro </label>
               <input
-                [disabled]="true"
                 [(ngModel)]="funcionario.endereco.logradouro"
                 name="logradouro"
+                [formControl]="logradouro"
+                required=""
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Logradouro </label>
+              <input
+                [(ngModel)]="funcionario.endereco.complemento"
+                name="complemento"
+                [formControl]="complemento"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -62,9 +77,10 @@
             <div class="form-group">
               <label class="form-label"> Nº </label>
               <input
-                [disabled]="true"
                 [(ngModel)]="funcionario.endereco.numero"
                 name="numero"
+                [formControl]="numero"
+                required=""
                 type="text"
                 class="form-control"
               />
@@ -126,7 +142,7 @@
         </div>
 
         <button (click)="delete()" class="btn btn-danger w-100">
-          Remover cliente
+          Remover funcionário
         </button>
 
         <button routerLink="../../" class="btn btn-warning w-100 my-2">

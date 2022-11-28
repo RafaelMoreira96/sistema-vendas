@@ -1,32 +1,55 @@
 <div class="container-fluid pt-2">
   <div class="card card-info">
     <div class="card-header">
-      <h2 class="text-center">Clientes | Visualizar</h2>
+      <h2 class="text-center">Fornecedores | Visualizar</h2>
     </div>
 
     <div class="card-body">
       <form>
         <div class="row">
-          <div class="col-sm-9">
+          <div class="col-sm-6">
             <div class="form-group">
-              <label> Nome </label>
+              <label> Razão Social </label>
               <input
+                [(ngModel)]="fornecedor.nome"
                 [disabled]="true"
-                [(ngModel)]="cliente.nome"
                 name="nome"
-                required=""
                 class="form-control"
               />
             </div>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-6">
             <div class="form-group">
-              <label> CPF </label>
+              <label> Nome Fantasia </label>
               <input
+                [(ngModel)]="fornecedor.nomeFantasia"
                 [disabled]="true"
-                [(ngModel)]="cliente.cpf"
-                name="cpf"
-                type="text"
+                name="nomeFantasia"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label> CNPJ </label>
+              <input
+                [(ngModel)]="fornecedor.cnpj"
+                [disabled]="true"
+                name="cnpj"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label> Inscrição Estadual </label>
+              <input
+                [(ngModel)]="fornecedor.inscricaoEstadual"
+                [disabled]="true"
+                name="inscricaoEstadual"
                 class="form-control"
               />
             </div>
@@ -38,11 +61,9 @@
             <div class="form-group">
               <label class="form-label"> CEP </label>
               <input
+                [(ngModel)]="fornecedor.endereco.cep"
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.cep"
                 name="cep"
-                required=""
-                type="text"
                 class="form-control"
               />
             </div>
@@ -51,24 +72,20 @@
             <div class="form-group">
               <label class="form-label"> Logradouro </label>
               <input
+                [(ngModel)]="fornecedor.endereco.logradouro"
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.logradouro"
                 name="logradouro"
-                required=""
-                type="text"
                 class="form-control"
               />
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label class="form-label"> Logradouro </label>
+              <label class="form-label"> Complemento </label>
               <input
+                [(ngModel)]="fornecedor.endereco.complemento"
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.complemento"
                 name="complemento"
-                required=""
-                type="text"
                 class="form-control"
               />
             </div>
@@ -77,11 +94,45 @@
             <div class="form-group">
               <label class="form-label"> Nº </label>
               <input
+                [(ngModel)]="fornecedor.endereco.numero"
                 [disabled]="true"
-                [(ngModel)]="cliente.endereco.numero"
                 name="numero"
-                required=""
-                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Bairro </label>-
+              <input
+                [(ngModel)]="fornecedor.endereco.bairro"
+                [disabled]="true"
+                name="bairro"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Cidade </label>
+              <input
+                [(ngModel)]="fornecedor.endereco.cidade"
+                [disabled]="true"
+                name="cidade"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Estado </label>
+              <input
+                [(ngModel)]="fornecedor.endereco.estado"
+                [disabled]="true"
+                name="estado"
                 class="form-control"
               />
             </div>
@@ -91,50 +142,22 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label class="form-label"> Cidade </label>
+              <label class="form-label"> Número Telefônico </label>
               <input
-                [disabled]="true"
-                [(ngModel)]="cliente.endereco.cidade"
-                name="cidade"
-                type="text"
-                class="form-control"
-              />
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="form-label"> Estado </label>
-              <input
-                [disabled]="true"
-                [(ngModel)]="cliente.endereco.estado"
-                name="estado"
-                type="text"
-                class="form-control"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="form-label"> Celular </label>
-              <input
-                [disabled]="true"
                 [(ngModel)]="contato.numero"
+                [disabled]="true"
                 name="numeroTelefone"
-                type="text"
                 class="form-control"
               />
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label class="form-label"> Celular </label>
+              <label class="form-label"> Tipo </label>
               <input
-                [disabled]="true"
                 [(ngModel)]="contato.tipo"
+                [disabled]="true"
                 name="tipo"
-                type="text"
                 class="form-control"
               />
             </div>

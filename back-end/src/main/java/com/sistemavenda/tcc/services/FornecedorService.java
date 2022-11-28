@@ -72,8 +72,11 @@ public class FornecedorService {
 
         // Persistencia do Objeto Funcionario
         Fornecedor f = new Fornecedor();
-        f.setNome(fDTO.getNome());
+        f.setNome(fDTO.getNome()); // aqui é razao social
+        f.setNomeFantasia(fDTO.getNomeFantasia());
+        f.setInscricaoEstadual(fDTO.getInscricaoEstadual());
         f.setCnpj(fDTO.getCnpj());
+        
         f.setEndereco(e);
         f.setContatos(contatos);
 
