@@ -36,6 +36,7 @@ import { ProdutoListComponent } from './components/produto/produto-list/produto-
 import { ProdutoReadComponent } from './components/produto/produto-read/produto-read.component';
 import { ProdutoUpdateComponent } from './components/produto/produto-update/produto-update.component';
 import { ProdutoCreateComponent } from './components/produto/produto-create/produto-create.component';
+import { PdvComponent } from './components/pdv/pdv.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,8 @@ import { ProdutoCreateComponent } from './components/produto/produto-create/prod
     ProdutoUpdateComponent,
     ProdutoReadComponent,
     ProdutoDeleteComponent,
+
+    PdvComponent,
   ],
   imports: [
     BrowserModule,
