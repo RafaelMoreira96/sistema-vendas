@@ -65,7 +65,7 @@ public class Venda {
         this.id = vDTO.getId();
         this.numeroVenda = vDTO.getNumeroVenda();
         this.itens = vDTO.getItens();
-        this.formaPagamento = vDTO.getFormaPagamento();
+        this.formaPagamento.setId(vDTO.getFormaPagamento());
     }
 
     public List<ItemVenda> getItens() {

@@ -3,15 +3,14 @@ import { ItemVenda } from './itemvenda';
 
 export interface Venda {
   id:                             any;
-  numeroVenda:                 number;
-  idCliente:                   number;
+  cliente:                     number;
   nomeCliente:                 string;
-  idFuncionario:               number;
+  funcionario:                 number;
   nomeFuncionario:             string;
 
   itens:                  ItemVenda[];
 
-  formaPagamento:      FormaPagamento;
+  formaPagamento:              number;
   status:                         any;
   dataVenda:                   string;
 }

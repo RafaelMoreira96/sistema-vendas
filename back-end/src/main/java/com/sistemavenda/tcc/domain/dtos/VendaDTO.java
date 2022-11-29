@@ -25,7 +25,7 @@ public class VendaDTO {
 
     private List<ItemVenda> itens = new ArrayList<>();
     private double valorVenda;
-    private FormaPagamento formaPagamento;
+    private Integer formaPagamento;
 
     public VendaDTO() {
     }
@@ -39,7 +39,7 @@ public class VendaDTO {
         this.idFuncionario = v.getFuncionario().getId();
         this.itens = v.getItens();
         this.valorVenda = v.getValorVenda();
-        this.formaPagamento = v.getFormaPagamento();
+        this.formaPagamento = v.getFormaPagamento().getId();
         this.nomeCliente = v.getCliente().getNome();
         this.nomeFuncionario = v.getFuncionario().getNome();
     }
@@ -124,11 +124,27 @@ public class VendaDTO {
         this.valorVenda = valorVenda;
     }
 
-    public FormaPagamento getFormaPagamento() {
+    public Integer getIdCliente() {
+        return this.idCliente;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Integer getIdFuncionario() {
+        return this.idFuncionario;
+    }
+
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+
+    public Integer getFormaPagamento() {
         return this.formaPagamento;
     }
 
-    public void setFormaPagamento(FormaPagamento formaPagamento) {
+    public void setFormaPagamento(Integer formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 
