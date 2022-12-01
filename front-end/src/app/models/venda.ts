@@ -10,7 +10,7 @@ export interface Venda {
 
   itens:                  ItemVenda[];
 
-  formaPagamento:              number;
+  formaPagamento:      FormaPagamento;
   status:                         any;
   dataVenda:                   string;
 }

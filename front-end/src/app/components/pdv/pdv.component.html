@@ -27,7 +27,7 @@
         <div class="input-group mb-3">
           <input
             type="text"
-            [disabled]="true"
+            readonly
             [formControl]="idProduto"
             name="idProduto"
             class="form-control col-2"
@@ -36,7 +36,7 @@
           />
           <input
             type="text"
-            [disabled]="true"
+            readonly
             [formControl]="descricao"
             class="form-control col-6"
             placeholder="Descrição"
@@ -44,7 +44,6 @@
           />
           <input
             type="text"
-            [disabled]="true"
             [formControl]="quant"
             class="form-control col-2"
             placeholder="Quant."
@@ -52,20 +51,23 @@
           />
           <input
             type="text"
-            [disabled]="true"
             [formControl]="valorVendido"
             class="form-control col-2"
             placeholder="Valor"
             aria-label="Server"
           />
-          <button (click)="addProduto()" type="button" class="btn btn-info">
+          <button
+            (click)="addProduto()"
+            type="button"
+            class="input-group-append btn btn-info"
+          >
             +
           </button>
         </div>
       </div>
 
       <div class="container">
-        <table class="table table-sm table-hoverable">
+        <table class="table table-sm table-hover">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -74,7 +76,7 @@
               <th scope="col">Valor</th>
             </tr>
           </thead>
-          <tbody *ngFor="let itemVenda of listItemVenda">
+          <tbody *ngFor="let itemVenda of venda.itens">
             <tr>
               <th scope="row">{{ itemVenda.idProduto }}</th>
               <td>{{ itemVenda.descricao }}</td>
@@ -112,7 +114,7 @@
         <div class="row">
           <div class="mb-3 col-sm-2">
             <input
-              [disabled]="true"
+              readonly
               placeholder="ID"
               [formControl]="cliente"
               type="text"
@@ -122,9 +124,9 @@
           </div>
           <div class="mb-3 col-sm-10">
             <input
+              readonly
               placeholder="Nome"
               [formControl]="nomeCliente"
-              [disabled]="true"
               type="text"
               class="form-control"
               name="nome"
@@ -139,7 +141,11 @@
           [formControl]="funcionario"
           name="funcionario"
         >
-          <option *ngFor="let fun of funcionarios" value="{{ fun.id }}">
+          <option
+            [formControl]="nomeFuncionario"
+            *ngFor="let fun of funcionarios"
+            value="{{ fun.id }}"
+          >
             {{ fun.nome }}
           </option>
         </select>
@@ -156,15 +162,18 @@
         </select>
       </div>
     </div>
-    <div class="card">
+    <div class="card text-center">
       <div class="card-header text-center">Total</div>
       <div class="card-body">
-        <h5 class="card-title">Valor total: {{totalGeral}}</h5>
-        <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
+        <h1 class="">Valor total: {{totalGeral}}</h1>
+        <button
+          type="button"
+          (click)="finalizarVenda()"
+          class="btn btn-success"
+        >
+          Finalizar venda
+        </button>
       </div>
-      <button type="button" (click)="finalizarVenda()" class="btn btn-success">Finalizar venda</button>
     </div>
   </div>
 </div>

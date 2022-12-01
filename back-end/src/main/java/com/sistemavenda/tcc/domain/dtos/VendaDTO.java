@@ -25,23 +25,23 @@ public class VendaDTO {
 
     private List<ItemVenda> itens = new ArrayList<>();
     private double valorVenda;
-    private Integer formaPagamento;
+    private FormaPagamento formaPagamento;
 
     public VendaDTO() {
     }
 
     public VendaDTO(Venda v) {
         this.id = v.getId();
-        this.numeroVenda = v.getNumeroVenda();
-        this.dataVenda = v.getDataVenda();
-        this.status = v.getStatus();
         this.idCliente = v.getCliente().getId();
         this.idFuncionario = v.getFuncionario().getId();
-        this.itens = v.getItens();
-        this.valorVenda = v.getValorVenda();
-        this.formaPagamento = v.getFormaPagamento().getId();
         this.nomeCliente = v.getCliente().getNome();
         this.nomeFuncionario = v.getFuncionario().getNome();
+        this.itens = v.getItens();
+        
+        this.dataVenda = v.getDataVenda();
+        this.formaPagamento = v.getFormaPagamento();
+        this.valorVenda = v.getValorVenda();
+        this.status = v.getStatus();
     }
 
     public String getNomeCliente() {
@@ -124,27 +124,11 @@ public class VendaDTO {
         this.valorVenda = valorVenda;
     }
 
-    public Integer getIdCliente() {
-        return this.idCliente;
-    }
-
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Integer getIdFuncionario() {
-        return this.idFuncionario;
-    }
-
-    public void setIdFuncionario(Integer idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
-
-    public Integer getFormaPagamento() {
+    public FormaPagamento getFormaPagamento() {
         return this.formaPagamento;
     }
 
-    public void setFormaPagamento(Integer formaPagamento) {
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 

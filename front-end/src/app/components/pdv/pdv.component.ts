@@ -18,21 +18,17 @@ import { VendaService } from 'src/app/services/venda.service';
   styleUrls: ['./pdv.component.css'],
 })
 export class PdvComponent implements OnInit {
+  listItem: ItemVenda[] = [];
+
   // Variáveis da sessão Lista de Produtos
   itemVenda: ItemVenda = {
-    idProduto: 0,
+    idProduto: undefined,
     descricao: '',
     codBarras: '',
     precoVendido: 0,
     quant: 0,
   };
 
-  listItemVenda: ItemVenda[] = [];
-
-  formaPagamento: FormaPagamento = {
-    id: 0,
-    descricao: '',
-  };
   venda: Venda = {
     id: '',
     cliente: 0,
@@ -40,8 +36,11 @@ export class PdvComponent implements OnInit {
     funcionario: 0,
     nomeFuncionario: '',
     itens: [],
-    formaPagamento: this.formaPagamento.id,
-    status: undefined,
+    formaPagamento: {
+      id: '',
+      descricao: '',
+    },
+    status: '',
     dataVenda: '',
   };
 
@@ -115,7 +114,6 @@ export class PdvComponent implements OnInit {
       },
       (ex) => {
         this.toast.error('Produto não encontrado.');
-        this.router.navigate(['venda']);
       }
     );
     this.codBarras.setValue('');
@@ -123,16 +121,26 @@ export class PdvComponent implements OnInit {
 
   finalizarVenda(): void {
     this.venda.cliente = this.cliente.value;
-    this.venda.funcionario = parseInt(this.funcionario.value);
     this.venda.nomeCliente = this.nomeCliente.value;
-    this.venda.nomeFuncionario = this.nomeFuncionario.value;
-    this.venda.itens = this.listItemVenda;
-    this.venda.formaPagamento = this.formaPagto.value;
+    this.funcionarioService
+      .findById(this.funcionario.value)
+      .subscribe((resposta) => {
+        this.venda.funcionario = resposta.id;
+        this.venda.nomeFuncionario = resposta.nome;
+      });
+
+    //    this.venda.itens = this.listItemVenda;
+    this.formaPagamentoService
+      .findById(this.formaPagto.value)
+      .subscribe((resposta) => {
+        this.venda.formaPagamento = resposta;
+      });
+    this.venda.status = 1;
 
     this.vendaService.create(this.venda).subscribe(
       (resposta) => {
         this.toast.info('Venda realizada com sucesso!');
-        this.router.navigate(['vendas']);
+        this.limpaCampos();
       },
       (ex) => {
         this.toast.error(ex);
@@ -142,7 +150,7 @@ export class PdvComponent implements OnInit {
   }
 
   addProduto(): void {
-    if (this.idProduto.value == 0 || this.descricao.value == null) {
+    if (this.idProduto.value == 0) {
       this.toast.error('Pesquise um produto antes');
     } else {
       this.itemVenda.idProduto = this.idProduto.value;
@@ -151,18 +159,17 @@ export class PdvComponent implements OnInit {
       this.itemVenda.quant = this.quant.value;
       this.itemVenda.codBarras = this.codigoBarrasItem;
 
-      this.listItemVenda.push(this.itemVenda);
-      this.listItemVenda.values;
+      this.venda.itens.push({ ...this.itemVenda });
+
       this.totalGeral =
         this.totalGeral + this.itemVenda.precoVendido * this.itemVenda.quant;
-
-      this.idProduto.setValue('');
-      this.descricao.setValue('');
-      this.valorVendido.setValue('');
-      this.quant.setValue('');
-      console.log(this.listItemVenda);
-      console.log(this.totalGeral);
     }
+
+    this.idProduto.setValue('');
+    this.descricao.setValue('');
+    this.valorVendido.setValue('');
+    this.quant.setValue('');
+    this.codigoBarrasItem = '';
   }
 
   // Funções que inicia automaticamente
@@ -176,5 +183,40 @@ export class PdvComponent implements OnInit {
     this.funcionarioService.findAll().subscribe((resposta) => {
       this.funcionarios = resposta;
     });
+  }
+
+  limpaCampos(): void {
+    // Informações da Venda
+    this.cpf.setValue('');
+    this.cliente.setValue('');
+    this.nomeCliente.setValue('');
+    this.funcionario.setValue('');
+    this.nomeFuncionario.setValue('');
+    this.formaPagto.setValue('');
+
+    // Item da Venda
+    this.idProduto.setValue('');
+    this.descricao.setValue('');
+    this.valorVendido.setValue('');
+    this.quant.setValue('');
+
+    // Lista de produtos
+    this.codBarras.setValue('');
+
+    // Valores
+    this.totalGeral = 0.0;
+
+    // Limpando o objeto Venda
+    this.venda.cliente = 0;
+    this.venda.nomeCliente = '';
+    this.venda.funcionario = 0;
+    this.venda.nomeFuncionario = '';
+    for (let index = 0; index < this.venda.itens.length + 1; index++) {
+      this.venda.itens.shift();
+    }
+    this.venda.formaPagamento.id = 0;
+    this.venda.formaPagamento.descricao = '';
+    this.venda.status = 0;
+    this.venda.dataVenda = '';
   }
 }
