@@ -11,6 +11,7 @@ export interface Venda {
   itens:                  ItemVenda[];
 
   formaPagamento:      FormaPagamento;
+  valorVenda:                  number;
   status:                         any;
   dataVenda:                   string;
 }

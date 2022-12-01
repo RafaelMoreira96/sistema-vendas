@@ -81,6 +81,7 @@ public class ClienteService {
 
         // Preparando objeto Cliente para persistencia
         Cliente c = new Cliente();
+        c.setId(null);
         c.setCpf(cDTO.getCpf());
         c.setEndereco(e);
         c.setContatos(contatos);

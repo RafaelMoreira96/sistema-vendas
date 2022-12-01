@@ -43,7 +43,6 @@ export class FuncionarioReadComponent implements OnInit {
 
   constructor(
     private service: FuncionarioService,
-    toastService: ToastrService,
     private route: ActivatedRoute
   ) {}
 

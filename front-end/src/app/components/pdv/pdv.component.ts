@@ -42,6 +42,7 @@ export class PdvComponent implements OnInit {
     },
     status: '',
     dataVenda: '',
+    valorVenda: 0.0
   };
 
   // Selects da sessão Info. da Venda
@@ -75,7 +76,6 @@ export class PdvComponent implements OnInit {
     private formaPagamentoService: FormaPagamentoService,
     private produtoService: ProdutoService,
     private vendaService: VendaService,
-    private router: Router,
     private toast: ToastrService
   ) {}
 

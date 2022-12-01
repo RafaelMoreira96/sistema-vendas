@@ -39,7 +39,17 @@ O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas s
   <li> CRUD de Funcionário </li>
   <li> CRUD de Fornecedores </li>
   <li> CRUD de Produtos </li>
+  <li> PDV </li>
+  <li> Movimentação de Estoque </li>
+  
 
+</ul>
+
+## 🚀 Bugs para corrigir e funcionalidades para desenvolver posteriormente
+
+<ul>
+  <li> Limpeza da lista de produtos (bug) </li>
+  <li> Botão de remoção do item da lista (func.) </li>
 </ul>
 
 [...] Este projeto está em andamento [...]

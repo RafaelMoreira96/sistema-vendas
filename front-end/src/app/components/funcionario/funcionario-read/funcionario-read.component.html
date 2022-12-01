@@ -40,7 +40,7 @@
               <input
                 [(ngModel)]="funcionario.endereco.cep"
                 name="cep"
-                required=""
+                readonly
                 type="text"
                 class="form-control"
               />
@@ -52,7 +52,7 @@
               <input
                 [(ngModel)]="funcionario.endereco.logradouro"
                 name="logradouro"
-                required=""
+                readonly
                 type="text"
                 class="form-control"
               />
@@ -64,7 +64,7 @@
               <input
                 [(ngModel)]="funcionario.endereco.complemento"
                 name="complemento"
-                required=""
+                readonly
                 type="text"
                 class="form-control"
               />
@@ -76,7 +76,7 @@
               <input
                 [(ngModel)]="funcionario.endereco.numero"
                 name="numero"
-                required=""
+                readonly
                 type="text"
                 class="form-control"
               />
@@ -85,7 +85,19 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="form-label"> Bairro </label>
+              <input
+                [disabled]="true"
+                [(ngModel)]="funcionario.endereco.bairro"
+                name="bairro"
+                type="text"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4">
             <div class="form-group">
               <label class="form-label"> Cidade </label>
               <input
@@ -97,7 +109,7 @@
               />
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <div class="form-group">
               <label class="form-label"> Estado </label>
               <input
@@ -144,7 +156,7 @@
               <input
                 [(ngModel)]="funcionario.nomeUsuario"
                 name="nomeUsuario"
-                required=""
+                readonly
                 type="text"
                 class="form-control"
               />
@@ -156,7 +168,7 @@
               <input
                 [(ngModel)]="funcionario.senha"
                 name="senha"
-                required=""
+                readonly
                 type="password"
                 class="form-control"
               />

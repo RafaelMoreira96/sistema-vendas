@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
-  NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,7 +35,10 @@ import { ProdutoListComponent } from './components/produto/produto-list/produto-
 import { ProdutoReadComponent } from './components/produto/produto-read/produto-read.component';
 import { ProdutoUpdateComponent } from './components/produto/produto-update/produto-update.component';
 import { ProdutoCreateComponent } from './components/produto/produto-create/produto-create.component';
+
 import { PdvComponent } from './components/pdv/pdv.component';
+import { CompraComponent } from './components/compra/compra.component';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { PdvComponent } from './components/pdv/pdv.component';
     ProdutoDeleteComponent,
 
     PdvComponent,
+    CompraComponent
   ],
   imports: [
     BrowserModule,
