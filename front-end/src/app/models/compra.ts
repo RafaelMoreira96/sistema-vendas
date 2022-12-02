@@ -10,5 +10,6 @@ export interface Compra {
   itens:                 ItemCompra[];
 
   status:                         any;
+  valorVenda:                  number;
   dataVenda:                   string;
 }

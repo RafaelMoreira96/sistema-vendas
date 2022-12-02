@@ -35,6 +35,7 @@ export class CompraComponent implements OnInit {
     nomeFuncionario: '',
     itens: [],
     status: '',
+    valorVenda: 0,
     dataVenda: '',
   };
 

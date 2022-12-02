@@ -7,29 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.sistemavenda.tcc.domain.Cliente;
-import com.sistemavenda.tcc.domain.Compra;
 import com.sistemavenda.tcc.domain.Contato;
 import com.sistemavenda.tcc.domain.Endereco;
-import com.sistemavenda.tcc.domain.FormaPagamento;
-import com.sistemavenda.tcc.domain.Fornecedor;
 import com.sistemavenda.tcc.domain.Funcionario;
-import com.sistemavenda.tcc.domain.ItemCompra;
-import com.sistemavenda.tcc.domain.ItemVenda;
-import com.sistemavenda.tcc.domain.Produto;
-import com.sistemavenda.tcc.domain.Venda;
 import com.sistemavenda.tcc.domain.enums.NivelAuth;
-import com.sistemavenda.tcc.repositories.ClienteRepository;
-import com.sistemavenda.tcc.repositories.CompraRepository;
 import com.sistemavenda.tcc.repositories.ContatoRepository;
 import com.sistemavenda.tcc.repositories.EnderecoRepository;
-import com.sistemavenda.tcc.repositories.FormaPagamentoRepository;
-import com.sistemavenda.tcc.repositories.FornecedorRepository;
 import com.sistemavenda.tcc.repositories.FuncionarioRepository;
-import com.sistemavenda.tcc.repositories.ItemCompraRepository;
-import com.sistemavenda.tcc.repositories.ItemVendaRepository;
-import com.sistemavenda.tcc.repositories.ProdutoRepository;
-import com.sistemavenda.tcc.repositories.VendaRepository;
 
 @Service
 public class DBService {

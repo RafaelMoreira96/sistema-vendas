@@ -41,6 +41,7 @@ O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas s
   <li> CRUD de Produtos </li>
   <li> PDV </li>
   <li> Movimentação de Estoque </li>
+  <li> Relatório Financeiro (Simples) </li>
   
 
 </ul>
@@ -50,6 +51,8 @@ O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas s
 <ul>
   <li> Limpeza da lista de produtos (bug) </li>
   <li> Botão de remoção do item da lista (func.) </li>
+  <li> Listagem de vendas que não lista (bug) </li>
+  <li> Lista venda e lista compra às vezes sobra um ou mais itens pra ser limpado após finalizar venda (bug) </li>
 </ul>
 
 [...] Este projeto está em andamento [...]

@@ -32,6 +32,7 @@ import { ProdutoCreateComponent } from './components/produto/produto-create/prod
 
 import { PdvComponent } from './components/pdv/pdv.component';
 import { CompraComponent } from './components/compra/compra.component';
+import { FinanceiroComponent } from './components/relatorio/financeiro/financeiro.component';
 
 
 const routes: Routes = [
@@ -76,7 +77,8 @@ const routes: Routes = [
 
       // Components de PDV e Compra
       { path: 'vendas', component: PdvComponent },
-      { path: 'compras', component: CompraComponent }
+      { path: 'compras', component: CompraComponent },
+      { path: 'financeiro', component: FinanceiroComponent}
     ],
   },
 ];

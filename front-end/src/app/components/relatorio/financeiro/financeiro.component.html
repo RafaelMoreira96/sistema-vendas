@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <div class="row w-100">
+    <!-- Vendas realizadas -->
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>VENDAS</h1>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Data da Venda</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Valor da venda</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let element of venda">
+              <tr>
+                <th scope="row">{{ element.id }}</th>
+                <td>{{ element.dataVenda }}</td>
+                <td>{{ element.nomeCliente }}</td>
+                <td>{{ element.valorVenda }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movimentação de estoque realizadas -->
+    <div class="col-6 g-4" data-bs-spy="scroll">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>COMPRAS</h1>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Data da Venda</th>
+                <th scope="col">Fornecedor</th>
+                <th scope="col">Valor da compra</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let element of compra">
+              <tr>
+                <th scope="row">{{ element.id }}</th>
+                <td>{{ element.dataVenda }}</td>
+                <td>{{ element.nomeFornecedor }}</td>
+                <td>{{ element.valorVenda }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body text-center">
+        <h1>SALDO</h1>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h2>Total de vendas</h2>
+                <h1 class="card-text">R$ {{totalVenda}}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h2>Total de compras</h2>
+                <h1 class="card-text">R$ {{totalCompra}}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card ">
+              <div class="card-body">
+                <h2>Saldo</h2>
+                <h1 class="card-text">R$ {{totalVenda-totalCompra}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

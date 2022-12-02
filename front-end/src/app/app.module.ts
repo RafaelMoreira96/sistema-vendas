@@ -1,9 +1,10 @@
 import { ToastrModule } from 'ngx-toastr';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   BrowserAnimationsModule,
 } from '@angular/platform-browser/animations';
+import localePt from '@angular/common/locales/pt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +39,7 @@ import { ProdutoCreateComponent } from './components/produto/produto-create/prod
 
 import { PdvComponent } from './components/pdv/pdv.component';
 import { CompraComponent } from './components/compra/compra.component';
-
+import { FinanceiroComponent } from './components/relatorio/financeiro/financeiro.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CompraComponent } from './components/compra/compra.component';
     ProdutoDeleteComponent,
 
     PdvComponent,
-    CompraComponent
+    CompraComponent,
+    FinanceiroComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,10 @@ import { CompraComponent } from './components/compra/compra.component';
       progressBar: true,
     }),
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [AuthInterceptorProvider,{
+    provide: LOCALE_ID,
+    useValue: 'pt-BR'
+   }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
