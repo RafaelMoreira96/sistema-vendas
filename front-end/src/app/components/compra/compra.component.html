@@ -81,7 +81,7 @@
               <th scope="row">{{ itemCompra.idProduto }}</th>
               <td>{{ itemCompra.descricao }}</td>
               <td>{{ itemCompra.quant }}</td>
-              <td>{{ itemCompra.precoCompra}}</td>
+              <td>R$ {{ itemCompra.precoCompra}}</td>
             </tr>
           </tbody>
         </table>
@@ -155,7 +155,7 @@
     <div class="card text-center">
       <div class="card-header text-center">Total</div>
       <div class="card-body">
-        <h1 class="">Valor total: {{totalGeral}}</h1>
+        <h1 class="">Valor total: R$ {{totalGeral}}</h1>
         <button
           type="button"
           (click)="finalizarCompra()"

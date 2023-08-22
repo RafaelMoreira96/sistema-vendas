@@ -7,13 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.sistemavenda.tcc.domain.Cliente;
 import com.sistemavenda.tcc.domain.Contato;
 import com.sistemavenda.tcc.domain.Endereco;
+import com.sistemavenda.tcc.domain.FormaPagamento;
 import com.sistemavenda.tcc.domain.Funcionario;
+import com.sistemavenda.tcc.domain.Produto;
 import com.sistemavenda.tcc.domain.enums.NivelAuth;
+import com.sistemavenda.tcc.repositories.ClienteRepository;
 import com.sistemavenda.tcc.repositories.ContatoRepository;
 import com.sistemavenda.tcc.repositories.EnderecoRepository;
+import com.sistemavenda.tcc.repositories.FormaPagamentoRepository;
 import com.sistemavenda.tcc.repositories.FuncionarioRepository;
+import com.sistemavenda.tcc.repositories.ProdutoRepository;
 
 @Service
 public class DBService {
@@ -26,21 +32,35 @@ public class DBService {
         private ContatoRepository contatoRepository;
         @Autowired
         private FuncionarioRepository funcionarioRepository;
-
+        @Autowired
+        private FormaPagamentoRepository formaPagamentoRepository;
+        @Autowired
+        private ClienteRepository clienteRepository;
+        @Autowired
+        private ProdutoRepository produtoRepository;
 
         public void instanciaDB() {
-
                 // Funcionario
-                Endereco e = new Endereco(null, "00000-000", "Admin", "0000", "Admin", "Admin", "Admin", "Admin");
-                Contato c = new Contato(null, "67900000000", "Celular");
-                List<Contato> contato = new ArrayList<Contato>();
-                contato.add(c);
-                Funcionario f = new Funcionario(null, null, "778.008.780-82", "ADMIN", e, contato, "admin",
-                                encoder.encode("1234"));
-                f.setAuth(NivelAuth.ADMIN);
-                enderecoRepository.save(e);
-                contatoRepository.saveAll(contato);
-                funcionarioRepository.save(f);
-                contato.removeAll(contato);
+                Funcionario funcionario = new Funcionario();
+                funcionario.setNome("administrator");
+                funcionario.setNomeUsuario("administrator");
+                funcionario.setSenha(encoder.encode("1234"));
+                funcionarioRepository.save(funcionario);
+
+                FormaPagamento formaPagamento = new FormaPagamento();
+                formaPagamento.setDescricao("Cartão de Débito");
+                formaPagamentoRepository.save(formaPagamento);
+
+                Cliente cliente = new Cliente();
+                cliente.setNome("Marcos");
+                cliente.setCpf("225.475.190-54");
+                clienteRepository.save(cliente);
+
+                Produto produto = new Produto();
+                produto.setCodBarras("123");
+                produto.setDescricao("8bitdo");
+                produto.setPrecoAtacado(125.5);
+                produto.setPrecoVarejo(250);
+                produtoRepository.save(produto);
         }
 }

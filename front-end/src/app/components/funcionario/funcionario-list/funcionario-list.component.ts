@@ -20,7 +20,11 @@ export class FuncionarioListComponent implements OnInit {
 
   findAll() {
     this.service.findAll().subscribe((resp) => {
-      this.ELEMENT_DATA = resp;
+      resp.forEach(element => {
+        if (element.cpf != null) {
+          this.ELEMENT_DATA.push(element)
+        }
+      });
     });
   }
 }

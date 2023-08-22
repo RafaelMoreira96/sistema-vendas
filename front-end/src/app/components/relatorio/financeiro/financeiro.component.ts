@@ -12,8 +12,8 @@ import { VendaService } from 'src/app/services/venda.service';
 export class FinanceiroComponent implements OnInit {
   venda: Venda[] = [];
   compra: Compra[] = [];
-  public totalVenda: number = 0;
-  public totalCompra: number = 0;
+  public totalVenda: number = 0.0;
+  public totalCompra: number = 0.0;
 
   constructor(
     private vendaService: VendaService,
@@ -37,10 +37,8 @@ export class FinanceiroComponent implements OnInit {
   findAllCompras(): void {
     this.compraService.findAll().subscribe((resposta) => {
       this.compra = resposta;
-      resposta.forEach(element => {
+      resposta.forEach((element) => {
         this.totalCompra += element.valorVenda;
-        console.log(resposta);
-        console.log(this.totalCompra);
       });
     });
   }
