@@ -19,6 +19,7 @@ import { VendaService } from 'src/app/services/venda.service';
 })
 export class PdvComponent implements OnInit {
   listItem: ItemVenda[] = [];
+  indice = 0
 
   // Variáveis da sessão Lista de Produtos
   itemVenda: ItemVenda = {
@@ -27,6 +28,7 @@ export class PdvComponent implements OnInit {
     codBarras: '',
     precoVendido: 0,
     quant: 0,
+    desconto: 0
   };
 
   venda: Venda = {
@@ -56,6 +58,7 @@ export class PdvComponent implements OnInit {
   funcionario: FormControl = new FormControl();
   nomeFuncionario: FormControl = new FormControl();
   formaPagto: FormControl = new FormControl();
+  desconto: FormControl = new FormControl();
 
   // Item da Venda
   idProduto: FormControl = new FormControl();
@@ -211,9 +214,7 @@ export class PdvComponent implements OnInit {
     this.venda.nomeCliente = '';
     this.venda.funcionario = 0;
     this.venda.nomeFuncionario = '';
-    for (let index = 0; index < this.venda.itens.length + 1; index++) {
-      this.venda.itens.shift();
-    }
+    this.venda.itens = [];
     this.venda.formaPagamento.id = 0;
     this.venda.formaPagamento.descricao = '';
     this.venda.status = 0;

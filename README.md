@@ -1,4 +1,4 @@
-# R&A Selling Manager - Trabalho de Conclusão de Curso
+# Xcelsior - Gerenciamento de Vendas - Trabalho de Conclusão de Curso
 
 ![Github status project](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 ![GitHub repo size](https://img.shields.io/github/repo-size/RafaelMoreira96/sistema-vendas?style=for-the-badge)
@@ -7,7 +7,7 @@
 
 > Sistema de Vendas e Controle de Estoque, desenvolvido utilizando Spring Boot e Angular.
 
-O sistema R&A Selling Manager está com seu projeto em andaento. Nas próximas semanas, haverá algumas modificações na estrutura das pastas e o término do backend, desenvolvido em Java, usando o framework Spring Boot.
+O sistema Xcelsior - Gerenciamento de Vendas está com seu projeto em andamento. Nas próximas semanas, haverá algumas modificações na estrutura das pastas e o término do backend, desenvolvido em Java, usando o framework Spring Boot.
 
 ## Do que se trata este projeto?
 

@@ -74,14 +74,16 @@
               <th scope="col">Descricao</th>
               <th scope="col">Quant.</th>
               <th scope="col">Valor</th>
+              <th scope="col">Desconto</th>
             </tr>
           </thead>
           <tbody *ngFor="let itemVenda of venda.itens">
             <tr>
-              <th scope="row">{{ itemVenda.idProduto }}</th>
+              <th scope="row">{{ (indice+1) }}</th>
               <td>{{ itemVenda.descricao }}</td>
               <td>{{ itemVenda.quant }}</td>
               <td> {{ itemVenda.precoVendido }} </td>
+              <td> {{ itemVenda.desconto }} </td>
             </tr>
           </tbody>
         </table>

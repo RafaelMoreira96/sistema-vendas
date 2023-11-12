@@ -1,22 +1,14 @@
 package com.sistemavenda.tcc.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sistemavenda.tcc.domain.Cliente;
-import com.sistemavenda.tcc.domain.Contato;
-import com.sistemavenda.tcc.domain.Endereco;
 import com.sistemavenda.tcc.domain.FormaPagamento;
 import com.sistemavenda.tcc.domain.Funcionario;
 import com.sistemavenda.tcc.domain.Produto;
-import com.sistemavenda.tcc.domain.enums.NivelAuth;
 import com.sistemavenda.tcc.repositories.ClienteRepository;
-import com.sistemavenda.tcc.repositories.ContatoRepository;
-import com.sistemavenda.tcc.repositories.EnderecoRepository;
 import com.sistemavenda.tcc.repositories.FormaPagamentoRepository;
 import com.sistemavenda.tcc.repositories.FuncionarioRepository;
 import com.sistemavenda.tcc.repositories.ProdutoRepository;
@@ -26,10 +18,6 @@ public class DBService {
 
         @Autowired
         private BCryptPasswordEncoder encoder;
-        @Autowired
-        private EnderecoRepository enderecoRepository;
-        @Autowired
-        private ContatoRepository contatoRepository;
         @Autowired
         private FuncionarioRepository funcionarioRepository;
         @Autowired

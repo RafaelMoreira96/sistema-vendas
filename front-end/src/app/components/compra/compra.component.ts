@@ -189,9 +189,7 @@ export class CompraComponent implements OnInit {
     this.compra.nomeFornecedor = '';
     this.compra.funcionario = 0;
     this.compra.nomeFuncionario = '';
-    for (let index = 0; index < this.compra.itens.length + 1; index++) {
-      this.compra.itens.shift();
-    }
+    this.compra.itens = [];
     this.compra.status = 0;
     this.compra.dataVenda = '';
   }
