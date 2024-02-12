@@ -26,8 +26,8 @@
         <tr *ngFor="let element of ELEMENT_DATA">
           <td>{{ element.id }}</td>
           <td>{{ element.descricao }}</td>
-          <td>{{ element.precoVarejo }}</td>
-          <td>{{ element.qteEstoque }}</td>
+          <td>R$ {{ element.precoVarejo.toFixed(2) }}</td>
+          <td>{{ element.qteEstoque.toFixed(2) }}</td>
           <td>
             <button
               class="btn btn-sm btn-info"

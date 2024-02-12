@@ -107,6 +107,11 @@ export class PdvComponent implements OnInit {
   }
 
   findProduto(): void {
+    if(this.codBarras.value == ''){
+      this.toast.error('Informe o código de barras do produto');
+      return;
+    }
+
     this.produtoService.findByCodBarras(this.codBarras.value).subscribe(
       (resposta) => {
         this.idProduto.setValue(resposta.id);
@@ -153,6 +158,10 @@ export class PdvComponent implements OnInit {
   }
 
   addProduto(): void {
+    if (this.idProduto.value == undefined) {
+      this.toast.error('Pesquise um produto antes');
+      return;
+    }
     if (this.idProduto.value == 0) {
       this.toast.error('Pesquise um produto antes');
     } else {
@@ -172,6 +181,7 @@ export class PdvComponent implements OnInit {
     this.descricao.setValue('');
     this.valorVendido.setValue('');
     this.quant.setValue('');
+    this.desconto.setValue('');
     this.codigoBarrasItem = '';
   }
 

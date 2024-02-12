@@ -38,7 +38,7 @@
             type="text"
             readonly
             [formControl]="descricao"
-            class="form-control col-6"
+            class="form-control col-4"
             placeholder="Descrição"
             aria-label="Descricao"
           />
@@ -47,14 +47,18 @@
             [formControl]="quant"
             class="form-control col-2"
             placeholder="Quant."
-            aria-label="Server"
           />
           <input
             type="text"
             [formControl]="valorVendido"
             class="form-control col-2"
             placeholder="Valor"
-            aria-label="Server"
+          />
+          <input
+            type="text"
+            [formControl]="desconto"
+            class="form-control col-2"
+            placeholder="Desc. (por Prod.)"
           />
           <button
             (click)="addProduto()"
