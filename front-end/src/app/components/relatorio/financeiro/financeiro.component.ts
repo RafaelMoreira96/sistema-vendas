@@ -14,6 +14,8 @@ export class FinanceiroComponent implements OnInit {
   compra: Compra[] = [];
   public totalVenda: number = 0.0;
   public totalCompra: number = 0.0;
+  public dataInicial: string = '';
+  public dataFinal: string = '';
 
   constructor(
     private vendaService: VendaService,
@@ -28,18 +30,45 @@ export class FinanceiroComponent implements OnInit {
   findAllVendas(): void {
     this.vendaService.findAll().subscribe((resposta) => {
       this.venda = resposta;
-      resposta.forEach((element) => {
-        this.totalVenda += element.valorVenda;
-      });
+      this.totalVenda = this.calcularTotal(this.venda);
     });
   }
 
   findAllCompras(): void {
     this.compraService.findAll().subscribe((resposta) => {
       this.compra = resposta;
-      resposta.forEach((element) => {
-        this.totalCompra += element.valorVenda;
+      this.totalCompra = this.calcularTotal(this.compra);
+    });
+  }
+
+  calcularTotal(transacoes: any[]): number {
+    return transacoes.reduce((total, transacao) => total + transacao.valorVenda, 0);
+  }
+
+  filtrarPorData(): void {
+    if (!this.dataInicial || !this.dataFinal) {
+      return; // Verificar se as datas foram fornecidas
+    }
+
+    const dataInicialTimestamp = new Date(this.dataInicial).toISOString().split('T')[0];
+    const dataFinalTimestamp = new Date(this.dataFinal).toISOString().split('T')[0];
+
+    // Filtrar vendas por data
+    this.vendaService.findAll().subscribe((resposta) => {
+      this.venda = resposta.filter((venda) => {
+        const dataVendaTimestamp = new Date(venda.dataVenda).toISOString().split('T')[0];
+        return dataVendaTimestamp >= dataInicialTimestamp && dataVendaTimestamp <= dataFinalTimestamp;
       });
+      this.totalVenda = this.calcularTotal(this.venda);
+    });
+
+    // Filtrar compras por data
+    this.compraService.findAll().subscribe((resposta) => {
+      this.compra = resposta.filter((compra) => {
+        const dataVendaTimestamp = new Date(compra.dataVenda).toISOString().split('T')[0];
+        return dataVendaTimestamp >= dataInicialTimestamp && dataVendaTimestamp <= dataFinalTimestamp;
+      });
+      this.totalCompra = this.calcularTotal(this.compra);
     });
   }
 }

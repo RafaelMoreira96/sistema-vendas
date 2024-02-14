@@ -1,4 +1,21 @@
 <div class="container-fluid">
+  <!-- Botão de filtro por data -->
+  <div class="row align-items custom-div">
+    <div class="col-md-4">
+      <label for="dataInicial">Data Inicial:</label>
+      <!-- Use type="date" para os inputs de data -->
+      <input type="date" class="form-control" id="dataInicial" [(ngModel)]="dataInicial">
+    </div>
+    <div class="col-md-4">
+      <label for="dataFinal">Data Final:</label>
+      <!-- Use type="date" para os inputs de data -->
+      <input type="date" class="form-control" id="dataFinal" [(ngModel)]="dataFinal">
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+      <button class="btn btn-primary" (click)="filtrarPorData()">Filtrar</button>
+    </div>
+  </div>
+
   <div class="row w-100">
     <!-- Vendas realizadas -->
     <div class="col-6">
@@ -18,7 +35,8 @@
             <tbody *ngFor="let element of venda">
               <tr>
                 <th scope="row">{{ element.id }}</th>
-                <td>{{ element.dataVenda }}</td>
+                <!-- Ajuste o formato de data conforme necessário -->
+                <td>{{ element.dataVenda | date: 'dd/MM/yyyy' }}</td>
                 <td>{{ element.nomeCliente }}</td>
                 <td>R$ {{ element.valorVenda }}</td>
               </tr>
@@ -46,7 +64,8 @@
             <tbody *ngFor="let element of compra">
               <tr>
                 <th scope="row">{{ element.id }}</th>
-                <td>{{ element.dataVenda }}</td>
+                <!-- Ajuste o formato de data conforme necessário -->
+                <td>{{ element.dataVenda | date: 'dd/MM/yyyy' }}</td>
                 <td>{{ element.nomeFornecedor }}</td>
                 <td>R$ {{ element.valorVenda }}</td>
               </tr>

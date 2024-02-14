@@ -1,6 +1,6 @@
 <div class="row">
   <!-- Lista de produtos -->
-  <div class="col-sm-6">
+  <div class="col-sm-8">
     <div class="card">
       <div class="card-header text-center">Lista de produtos</div>
       <div class="card-body">
@@ -8,14 +8,8 @@
 
         <!-- Botão pesquisar -->
         <div class="input-group form-group">
-          <input
-            placeholder="Cod. Barras"
-            class="form-control"
-            type="text"
-            name="codBarras"
-            [formControl]="codBarras"
-            value=""
-          />
+          <input placeholder="Cod. Barras" class="form-control" type="text" name="codBarras" [formControl]="codBarras"
+            value="" />
           <span class="input-group-append">
             <button (click)="findProduto()" type="button" class="btn btn-info">
               Pesquisar
@@ -25,46 +19,14 @@
 
         <!-- Formulário item Venda -->
         <div class="input-group mb-3">
-          <input
-            type="text"
-            readonly
-            [formControl]="idProduto"
-            name="idProduto"
-            class="form-control col-2"
-            placeholder="ID"
-            aria-label="ID"
-          />
-          <input
-            type="text"
-            readonly
-            [formControl]="descricao"
-            class="form-control col-4"
-            placeholder="Descrição"
-            aria-label="Descricao"
-          />
-          <input
-            type="text"
-            [formControl]="quant"
-            class="form-control col-2"
-            placeholder="Quant."
-          />
-          <input
-            type="text"
-            [formControl]="valorVendido"
-            class="form-control col-2"
-            placeholder="Valor"
-          />
-          <input
-            type="text"
-            [formControl]="desconto"
-            class="form-control col-2"
-            placeholder="Desc. (por Prod.)"
-          />
-          <button
-            (click)="addProduto()"
-            type="button"
-            class="input-group-append btn btn-info"
-          >
+          <input type="text" readonly [formControl]="idProduto" name="idProduto" class="form-control col-1"
+            placeholder="ID" aria-label="ID" />
+          <input type="text" readonly [formControl]="descricao" class="form-control col-5" placeholder="Descrição"
+            aria-label="Descricao" />
+          <input type="text" [formControl]="quant" class="form-control col-2" placeholder="Quant." />
+          <input type="text" [formControl]="valorVendido" class="form-control col-2" placeholder="Valor" />
+          <input type="text" [formControl]="desconto" class="form-control col-2" placeholder="Desc. (por Prod.)" />
+          <button (click)="addProduto()" type="button" class="input-group-append btn btn-info">
             +
           </button>
         </div>
@@ -77,17 +39,32 @@
               <th scope="col">ID</th>
               <th scope="col">Descricao</th>
               <th scope="col">Quant.</th>
-              <th scope="col">Valor</th>
-              <th scope="col">Desconto</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Desc.</th>
+              <th scope="col">Total</th>
+              <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody *ngFor="let itemVenda of venda.itens">
             <tr>
-              <th scope="row">{{ (indice+1) }}</th>
+              <th scope="row">{{ itemVenda.idItemVenda }}</th>
               <td>{{ itemVenda.descricao }}</td>
               <td>{{ itemVenda.quant }}</td>
-              <td> {{ itemVenda.precoVendido }} </td>
-              <td> {{ itemVenda.desconto }} </td>
+              <td>R$ {{ itemVenda.precoVendido }} </td>
+              <td>R$ {{ itemVenda.desconto }}</td>
+              <td>R$ {{ checkQuantity(itemVenda.precoVendido, itemVenda.quant, itemVenda.desconto) }}</td>
+              <td>
+                <button (click)="removerItemVenda(itemVenda)" type="button" class="btn btn-danger btn-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-trash"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd"
+                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                  </svg>
+                </button>
+              </td>
+              <td> </td>
             </tr>
           </tbody>
         </table>
@@ -96,21 +73,14 @@
   </div>
 
   <!-- Dados da venda -->
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div class="card">
       <div class="card-header text-center">Info. da venda</div>
       <div class="card-body">
         <label for=""> Cliente</label>
         <div class="input-group form-group">
-          <input
-            [disabled]="true"
-            placeholder="CPF"
-            class="form-control"
-            type="text"
-            name="cpf"
-            [formControl]="cpf"
-            value=""
-          />
+          <input [disabled]="true" placeholder="CPF" class="form-control" type="text" name="cpf" [formControl]="cpf"
+            value="" />
           <span class="input-group-append">
             <button (click)="findCliente()" type="button" class="btn btn-info">
               Pesquisar
@@ -119,49 +89,24 @@
         </div>
         <div class="row">
           <div class="mb-3 col-sm-2">
-            <input
-              readonly
-              placeholder="ID"
-              [formControl]="cliente"
-              type="text"
-              class="form-control"
-              name="id"
-            />
+            <input readonly placeholder="ID" [formControl]="cliente" type="text" class="form-control" name="id" />
           </div>
           <div class="mb-3 col-sm-10">
-            <input
-              readonly
-              placeholder="Nome"
-              [formControl]="nomeCliente"
-              type="text"
-              class="form-control"
-              name="nome"
-            />
+            <input readonly placeholder="Nome" [formControl]="nomeCliente" type="text" class="form-control"
+              name="nome" />
           </div>
         </div>
 
         <label for=""> Vendedores </label>
-        <select
-          class="form-select form-control"
-          aria-label="Default select example"
-          [formControl]="funcionario"
-          name="funcionario"
-        >
-          <option
-            [formControl]="nomeFuncionario"
-            *ngFor="let fun of funcionarios"
-            value="{{ fun.id }}"
-          >
+        <select class="form-select form-control" aria-label="Default select example" [formControl]="funcionario"
+          name="funcionario">
+          <option [formControl]="nomeFuncionario" *ngFor="let fun of funcionarios" value="{{ fun.id }}">
             {{ fun.nome }}
           </option>
         </select>
 
         <label for=""> Forma de Pagamento</label>
-        <select
-          class="form-select form-control"
-          aria-label="Default select example"
-          [formControl]="formaPagto"
-        >
+        <select class="form-select form-control" aria-label="Default select example" [formControl]="formaPagto">
           <option *ngFor="let fp of listaFormaPagto" value="{{ fp.id }}">
             {{ fp.descricao }}
           </option>
@@ -172,11 +117,8 @@
       <div class="card-header text-center">Total</div>
       <div class="card-body">
         <h1 class="">Valor total: R$ {{totalGeral }}</h1>
-        <button
-          type="button"
-          (click)="finalizarVenda()"
-          class="btn btn-success"
-        >
+        <h3 class="">Descontos: R$ {{totalDescontos }}</h3>
+        <button type="button" (click)="finalizarVenda()" class="btn btn-success">
           Finalizar venda
         </button>
       </div>

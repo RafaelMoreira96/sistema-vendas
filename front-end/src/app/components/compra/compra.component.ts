@@ -20,6 +20,7 @@ export class CompraComponent implements OnInit {
 
   // Variáveis da sessão Lista de Produtos
   itemCompra: ItemCompra = {
+    idItemCompra: 0,
     idProduto: undefined,
     descricao: '',
     codBarras: '',
@@ -135,9 +136,15 @@ export class CompraComponent implements OnInit {
   }
 
   addProduto(): void {
-    if (this.idProduto.value == 0) {
+    if (
+      this.idProduto.value == undefined ||
+      this.idProduto.value == null ||
+      this.idProduto.value == 0
+    ) {
       this.toast.error('Pesquise um produto antes');
+      return;
     } else {
+      this.itemCompra.idItemCompra = this.itemCompra.idItemCompra + 1;
       this.itemCompra.idProduto = this.idProduto.value;
       this.itemCompra.descricao = this.descricao.value;
       this.itemCompra.precoCompra = this.valorCompra.value;
@@ -192,5 +199,19 @@ export class CompraComponent implements OnInit {
     this.compra.itens = [];
     this.compra.status = 0;
     this.compra.dataVenda = '';
+  }
+
+  checkQuantity(preco: number, quantidade: number): number {
+    return parseFloat((preco * quantidade).toFixed(2));
+  }
+
+  removerItemCompra(item: ItemCompra): void {
+    const index = this.compra.itens.findIndex(
+      (i) => i.idItemCompra === item.idItemCompra
+    );
+    if (index !== -1) {
+      this.totalGeral -= this.checkQuantity(item.precoCompra, item.quant);
+      this.compra.itens.splice(index, 1);
+    }
   }
 }

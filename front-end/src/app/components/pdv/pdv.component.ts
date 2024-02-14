@@ -19,16 +19,17 @@ import { VendaService } from 'src/app/services/venda.service';
 })
 export class PdvComponent implements OnInit {
   listItem: ItemVenda[] = [];
-  indice = 0
-
+  indice = 0;
+  
   // Variáveis da sessão Lista de Produtos
   itemVenda: ItemVenda = {
+    idItemVenda: 0,
     idProduto: undefined,
     descricao: '',
     codBarras: '',
     precoVendido: 0,
     quant: 0,
-    desconto: 0
+    desconto: 0,
   };
 
   venda: Venda = {
@@ -44,7 +45,7 @@ export class PdvComponent implements OnInit {
     },
     status: '',
     dataVenda: '',
-    valorVenda: 0.0
+    valorVenda: 0.0,
   };
 
   // Selects da sessão Info. da Venda
@@ -72,6 +73,7 @@ export class PdvComponent implements OnInit {
 
   // Valores
   totalGeral = 0.0;
+  totalDescontos = 0.0;
 
   constructor(
     private clienteService: ClienteService,
@@ -107,7 +109,7 @@ export class PdvComponent implements OnInit {
   }
 
   findProduto(): void {
-    if(this.codBarras.value == ''){
+    if (this.codBarras.value == '') {
       this.toast.error('Informe o código de barras do produto');
       return;
     }
@@ -158,25 +160,34 @@ export class PdvComponent implements OnInit {
   }
 
   addProduto(): void {
-    if (this.idProduto.value == undefined) {
+    if (
+      this.idProduto.value == undefined ||
+      this.idProduto.value == null ||
+      this.idProduto.value == 0
+    ) {
       this.toast.error('Pesquise um produto antes');
       return;
-    }
-    if (this.idProduto.value == 0) {
-      this.toast.error('Pesquise um produto antes');
     } else {
+      this.itemVenda.idItemVenda = this.itemVenda.idItemVenda + 1;
       this.itemVenda.idProduto = this.idProduto.value;
       this.itemVenda.descricao = this.descricao.value;
       this.itemVenda.precoVendido = this.valorVendido.value;
       this.itemVenda.quant = this.quant.value;
       this.itemVenda.codBarras = this.codigoBarrasItem;
-
-      this.venda.itens.push({ ...this.itemVenda });
-
+      if (this.desconto.value == '' || this.desconto.value == null) {
+        this.itemVenda.desconto = 0;
+      } else {
+        this.itemVenda.desconto = this.desconto.value;
+      }
       this.totalGeral =
-        this.totalGeral + this.itemVenda.precoVendido * this.itemVenda.quant;
+        this.totalGeral +
+        this.itemVenda.precoVendido * this.itemVenda.quant -
+        this.itemVenda.desconto * this.itemVenda.quant;
+      this.totalDescontos =
+        this.totalDescontos + this.itemVenda.desconto * this.itemVenda.quant;
+      this.venda.itens.push({ ...this.itemVenda });
     }
-
+    this.indice = this.indice + 1;
     this.idProduto.setValue('');
     this.descricao.setValue('');
     this.valorVendido.setValue('');
@@ -230,4 +241,18 @@ export class PdvComponent implements OnInit {
     this.venda.status = 0;
     this.venda.dataVenda = '';
   }
+
+  checkQuantity(preco: number, quantidade: number, desconto: number): number {
+    return parseFloat((preco * quantidade - desconto * quantidade).toFixed(2));
+  }
+
+  removerItemVenda(item: ItemVenda): void {
+    const index = this.venda.itens.findIndex(i => i.idItemVenda === item.idItemVenda);
+    if (index !== -1) {
+      this.totalGeral -= this.checkQuantity(item.precoVendido, item.quant, item.desconto);
+      this.totalDescontos -= item.desconto * item.quant;
+      this.venda.itens.splice(index, 1);
+    }
+  }
+  
 }

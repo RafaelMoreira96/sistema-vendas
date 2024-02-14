@@ -40,6 +40,7 @@ import { ProdutoCreateComponent } from './components/produto/produto-create/prod
 import { PdvComponent } from './components/pdv/pdv.component';
 import { CompraComponent } from './components/compra/compra.component';
 import { FinanceiroComponent } from './components/relatorio/financeiro/financeiro.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,7 @@ import { FinanceiroComponent } from './components/relatorio/financeiro/financeir
     ReactiveFormsModule,
 
     HttpClientModule,
-
+    NgxMaskModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 4000,
       closeButton: true,

@@ -1,4 +1,5 @@
 export interface ItemVenda {
+  idItemVenda: number;
   idProduto: any;
   descricao: string;
   codBarras: string;
