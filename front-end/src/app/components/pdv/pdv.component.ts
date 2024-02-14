@@ -20,7 +20,7 @@ import { VendaService } from 'src/app/services/venda.service';
 export class PdvComponent implements OnInit {
   listItem: ItemVenda[] = [];
   indice = 0;
-  
+
   // Variáveis da sessão Lista de Produtos
   itemVenda: ItemVenda = {
     idItemVenda: 0,
@@ -174,11 +174,30 @@ export class PdvComponent implements OnInit {
       this.itemVenda.precoVendido = this.valorVendido.value;
       this.itemVenda.quant = this.quant.value;
       this.itemVenda.codBarras = this.codigoBarrasItem;
+
+      // Verifica se o desconto por produto é maior do que o valor do produto
+      if (this.desconto.value < 0) {
+        this.toast.error('Desconto não pode ser menor que 0');
+        return;
+      }
+
+      const totalDescontoItemProduto = this.desconto.value * this.quant.value;
+      const totalGeralItemProduto =
+        this.itemVenda.precoVendido * this.quant.value;
+
+      if (totalDescontoItemProduto > totalGeralItemProduto) {
+        this.toast.error(
+          'Desconto por produto não pode ser maior que o valor do produto'
+        );
+        return;
+      }
+     
       if (this.desconto.value == '' || this.desconto.value == null) {
         this.itemVenda.desconto = 0;
       } else {
         this.itemVenda.desconto = this.desconto.value;
       }
+
       this.totalGeral =
         this.totalGeral +
         this.itemVenda.precoVendido * this.itemVenda.quant -
@@ -247,12 +266,17 @@ export class PdvComponent implements OnInit {
   }
 
   removerItemVenda(item: ItemVenda): void {
-    const index = this.venda.itens.findIndex(i => i.idItemVenda === item.idItemVenda);
+    const index = this.venda.itens.findIndex(
+      (i) => i.idItemVenda === item.idItemVenda
+    );
     if (index !== -1) {
-      this.totalGeral -= this.checkQuantity(item.precoVendido, item.quant, item.desconto);
+      this.totalGeral -= this.checkQuantity(
+        item.precoVendido,
+        item.quant,
+        item.desconto
+      );
       this.totalDescontos -= item.desconto * item.quant;
       this.venda.itens.splice(index, 1);
     }
   }
-  
 }

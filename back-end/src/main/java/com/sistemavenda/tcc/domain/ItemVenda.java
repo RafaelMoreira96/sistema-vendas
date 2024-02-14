@@ -23,19 +23,30 @@ public class ItemVenda {
     @NotNull
     private double precoVendido;
     @NotNull
+    private double desconto;
+    @NotNull
     private double quant;
 
     public ItemVenda() {
     }
 
     public ItemVenda(Integer id, Integer idProduto, String descricao, String codBarras, double precoVendido,
-            double quant) {
+            double quant, double desconto) {
         this.id = id;
         this.idProduto = idProduto;
         this.descricao = descricao;
         this.codBarras = codBarras;
         this.precoVendido = precoVendido;
         this.quant = quant;
+        this.desconto = desconto;
+    }
+
+    public double getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(double desconto) {
+        this.desconto = desconto;
     }
 
     public Integer getId() {

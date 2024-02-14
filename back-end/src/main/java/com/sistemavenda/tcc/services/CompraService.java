@@ -1,5 +1,6 @@
 package com.sistemavenda.tcc.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +43,16 @@ public class CompraService {
         return o.orElseThrow(() -> new ObjectNotFoundException("Compra não encontrada! ID: " + id));
     }
 
-    // Lista todos
+    // Listar por período específico
+    public List<Compra> findByDate(LocalDate firstDate, LocalDate secondDate) {
+        List<Compra> compras = repository.findByDataVendaBetween(firstDate, secondDate);
+        if (compras.isEmpty()) {
+            throw new ObjectNotFoundException("Nenhuma compra encontrada entre " + firstDate + " e " + secondDate);
+        }
+        return compras;
+    }
+
+    //Lista todos
     public List<Compra> findAll() {
         List<Compra> listDB = repository.findAll();
         List<Compra> list = new ArrayList<>();

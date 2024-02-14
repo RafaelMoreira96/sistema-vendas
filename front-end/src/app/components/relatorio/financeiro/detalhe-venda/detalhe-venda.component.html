@@ -1,0 +1,69 @@
+<div class="container-fluid pt-2">
+    <div class="card card-info">
+        <div class="card-header">
+            <h2 class="text-center"> Venda nº {{ venda.id }}</h2>
+        </div>
+
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Cliente </label>
+                            <input [disabled]="true" [(ngModel)]="venda.nomeCliente" name="nomeCliente" required=""
+                                class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Vendedor </label>
+                            <input [disabled]="true" [(ngModel)]="venda.nomeFuncionario" name="nomeFuncionario"
+                                type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Data Venda </label>
+                            <input [disabled]="true" [(ngModel)]="venda.dataVenda" name="dataVenda" type="text"
+                                class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de itens da venda -->
+                <div style="height: 200px; overflow-y: auto;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Descricao</th>
+                                <th>Valor Produto</th>
+                                <th>Quantidade</th>
+                                <th>Desconto</th>
+                                <th>Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of venda.itens; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.descricao }}</td>
+                                <td>R$ {{ item.precoVendido.toFixed(2) }}</td>
+                                <td>{{ item.quant }}</td>
+                                <td>R$ {{ item.desconto.toFixed(2) }}</td>
+                                <td>R$ {{ (item.precoVendido * item.quant - item.desconto).toFixed(2) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="btn btn-danger w-100" (click)="cancelSale()">
+                    Cancelar venda
+                </button>
+
+                <button routerLink="../../" class="btn btn-warning w-100 my-2">
+                    Retornar à listagem
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

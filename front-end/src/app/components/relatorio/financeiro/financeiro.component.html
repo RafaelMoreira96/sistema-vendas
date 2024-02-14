@@ -1,78 +1,15 @@
 <div class="container-fluid">
-  <!-- Botão de filtro por data -->
   <div class="row align-items custom-div">
     <div class="col-md-4">
       <label for="dataInicial">Data Inicial:</label>
-      <!-- Use type="date" para os inputs de data -->
       <input type="date" class="form-control" id="dataInicial" [(ngModel)]="dataInicial">
     </div>
     <div class="col-md-4">
       <label for="dataFinal">Data Final:</label>
-      <!-- Use type="date" para os inputs de data -->
       <input type="date" class="form-control" id="dataFinal" [(ngModel)]="dataFinal">
     </div>
     <div class="col-md-4 d-flex align-items-end">
       <button class="btn btn-primary" (click)="filtrarPorData()">Filtrar</button>
-    </div>
-  </div>
-
-  <div class="row w-100">
-    <!-- Vendas realizadas -->
-    <div class="col-6">
-      <div class="card">
-        <div class="card-body text-center">
-          <h1>VENDAS</h1>
-
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Data da Venda</th>
-                <th scope="col">Cliente</th>
-                <th scope="col">Valor da venda</th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let element of venda">
-              <tr>
-                <th scope="row">{{ element.id }}</th>
-                <!-- Ajuste o formato de data conforme necessário -->
-                <td>{{ element.dataVenda | date: 'dd/MM/yyyy' }}</td>
-                <td>{{ element.nomeCliente }}</td>
-                <td>R$ {{ element.valorVenda }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Movimentação de estoque realizadas -->
-    <div class="col-6 g-4" data-bs-spy="scroll">
-      <div class="card">
-        <div class="card-body text-center">
-          <h1>COMPRAS</h1>
-
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Data da Venda</th>
-                <th scope="col">Fornecedor</th>
-                <th scope="col">Valor da compra</th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let element of compra">
-              <tr>
-                <th scope="row">{{ element.id }}</th>
-                <!-- Ajuste o formato de data conforme necessário -->
-                <td>{{ element.dataVenda | date: 'dd/MM/yyyy' }}</td>
-                <td>{{ element.nomeFornecedor }}</td>
-                <td>R$ {{ element.valorVenda }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -85,24 +22,24 @@
           <div class="col-sm-4">
             <div class="card">
               <div class="card-body">
-                <h2>Total de vendas</h2>
-                <h1 class="card-text">R$ {{totalVenda}}</h1>
+                <h3>Total de vendas</h3>
+                <h1 class="card-text">R$ {{totalVenda.toFixed(2)}}</h1>
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="card">
               <div class="card-body">
-                <h2>Total de compras</h2>
-                <h1 class="card-text">R$ {{totalCompra}}</h1>
+                <h3>Total de compras</h3>
+                <h1 class="card-text">R$ {{totalCompra.toFixed(2)}}</h1>
               </div>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="card ">
               <div class="card-body">
-                <h2>Saldo</h2>
-                <h1 class="card-text">R$ {{totalVenda-totalCompra}}</h1>
+                <h3>Saldo</h3>
+                <h1 class="card-text">R$ {{(totalVenda-totalCompra).toFixed(2)}}</h1>
               </div>
             </div>
           </div>
@@ -110,4 +47,61 @@
       </div>
     </div>
   </div>
+
+  <div class="row w-100">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1> VENDAS </h1>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Data da Venda</th>
+                <th scope="col">Valor da venda</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let element of venda">
+              <tr>
+                <th scope="row">{{ element.id }}</th>
+                <td>{{ element.dataVenda }}</td>
+                <td>R$ {{ element.valorVenda.toFixed(2) }}</td>
+                <td> <a routerLink="readVenda/{{ element.id }}"> Visualizar </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 g-4" data-bs-spy="scroll">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>COMPRAS</h1>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Data da Venda</th>
+                <th scope="col">Valor da compra</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let element of compra">
+              <tr>
+                <th scope="row">{{ element.id }}</th>
+                <td>{{ element.dataVenda }}</td>
+                <td>R$ {{ element.valorVenda.toFixed(2) }}</td>
+                <td> <a routerLink="readVenda/{{ element.id }}"> Visualizar </a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

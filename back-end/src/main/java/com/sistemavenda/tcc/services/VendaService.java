@@ -1,6 +1,8 @@
 package com.sistemavenda.tcc.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +44,15 @@ public class VendaService {
         return o.orElseThrow(() -> new ObjectNotFoundException("Venda não encontrada! ID: " + id));
     }
 
+    // Listar por período específico
+    public List<Venda> findByDate(LocalDate firstDate, LocalDate secondDate) {
+        List<Venda> vendas = repository.findByDataVendaBetween(firstDate, secondDate);
+        if (vendas.isEmpty()) {
+            throw new ObjectNotFoundException("Nenhuma venda encontrada entre " + firstDate + " e " + secondDate);
+        }
+        return vendas;
+    }
+
     // Lista todos
     public List<Venda> findAll() {
         List<Venda> listDB = repository.findAll();
@@ -67,28 +78,28 @@ public class VendaService {
         // Tratando lista de produtos
         List<ItemVenda> listTemp = vDTO.getItens();
         List<ItemVenda> list = new ArrayList<>();
-        Produto p = new Produto();
+        Produto produto = new Produto();
         for (ItemVenda itemVenda : listTemp) {
-            Optional<Produto> objTemp = produtoRepository.findById(itemVenda.getIdProduto());
-            double est = objTemp.get().getQteEstoque() - itemVenda.getQuant();
-            objTemp.get().setQteEstoque(est);
-            if (itemVenda.getCodBarras().equals(objTemp.get().getCodBarras())) {
+            Optional<Produto> produtoTemporario = produtoRepository.findById(itemVenda.getIdProduto());
+            double quantidadeEstoque = produtoTemporario.get().getQteEstoque() - itemVenda.getQuant();
+            produtoTemporario.get().setQteEstoque(quantidadeEstoque);
+            if (itemVenda.getCodBarras().equals(produtoTemporario.get().getCodBarras())) {
                 list.add(itemVenda);
             } else {
-                itemVenda.setCodBarras(objTemp.get().getCodBarras());
+                itemVenda.setCodBarras(produtoTemporario.get().getCodBarras());
                 list.add(itemVenda);
             }
 
-            p.setId(objTemp.get().getId());
-            p.setCodBarras(objTemp.get().getCodBarras());
-            p.setDescricao(objTemp.get().getDescricao());
-            p.setPrecoAtacado(objTemp.get().getPrecoAtacado());
-            p.setPrecoVarejo(objTemp.get().getPrecoVarejo());
-            p.setQteEstoque(est);
-            p.setQteMax(objTemp.get().getQteMax());
-            p.setQteMin(objTemp.get().getQteMin());
+            produto.setId(produtoTemporario.get().getId());
+            produto.setCodBarras(produtoTemporario.get().getCodBarras());
+            produto.setDescricao(produtoTemporario.get().getDescricao());
+            produto.setPrecoAtacado(produtoTemporario.get().getPrecoAtacado());
+            produto.setPrecoVarejo(produtoTemporario.get().getPrecoVarejo());
+            produto.setQteEstoque(quantidadeEstoque);
+            produto.setQteMax(produtoTemporario.get().getQteMax());
+            produto.setQteMin(produtoTemporario.get().getQteMin());
 
-            produtoRepository.save(p);
+            produtoRepository.save(produto);
         }
 
         itemVendaRepository.saveAll(list);

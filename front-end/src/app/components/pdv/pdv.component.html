@@ -116,8 +116,8 @@
     <div class="card text-center">
       <div class="card-header text-center">Total</div>
       <div class="card-body">
-        <h1 class="">Valor total: R$ {{totalGeral }}</h1>
-        <h3 class="">Descontos: R$ {{totalDescontos }}</h3>
+        <h1 class="">Valor total: R$ {{totalGeral.toFixed(2) }}</h1>
+        <h3 class="">Descontos: R$ {{totalDescontos.toFixed(2) }}</h3>
         <button type="button" (click)="finalizarVenda()" class="btn btn-success">
           Finalizar venda
         </button>

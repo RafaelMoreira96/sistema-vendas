@@ -14,6 +14,11 @@ export class CompraService {
     return this.http.get<Compra>(`${API_CONFIG.baseUrl}/compras/${id}`);
   }
 
+  getComprasEntreDatas(dataInicial: string, dataFinal: string) {
+    const params = { dataInicial, dataFinal };
+    return this.http.get<any[]>(`${API_CONFIG.baseUrl}/compras/searchBetweenDates`, { params });
+  }
+  
   findAll(): Observable<Compra[]> {
     return this.http.get<Compra[]>(`${API_CONFIG.baseUrl}/compras`);
   }

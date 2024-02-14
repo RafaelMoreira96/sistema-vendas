@@ -82,7 +82,8 @@ public class Venda {
 
     public void setValorVenda(List<ItemVenda> itens) {
         for (ItemVenda itemVenda : itens) {
-            this.valorVenda += (itemVenda.getPrecoVendido() * itemVenda.getQuant());
+            this.valorVenda += (itemVenda.getPrecoVendido() * itemVenda.getQuant()
+                    - itemVenda.getDesconto() * itemVenda.getQuant());
         }
     }
 

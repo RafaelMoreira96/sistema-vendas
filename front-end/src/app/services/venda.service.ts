@@ -18,6 +18,11 @@ export class VendaService {
     return this.http.get<Venda[]>(`${API_CONFIG.baseUrl}/vendas`);
   }
 
+  getVendasEntreDatas(dataInicial: string, dataFinal: string) {
+    const params = { dataInicial, dataFinal };
+    return this.http.get<any[]>(`${API_CONFIG.baseUrl}/vendas/searchBetweenDates`, { params });
+  }
+
   create(venda: Venda): Observable<Venda> {
     return this.http.post<Venda>(`${API_CONFIG.baseUrl}/vendas`, venda);
   }

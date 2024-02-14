@@ -33,7 +33,7 @@ import { ProdutoCreateComponent } from './components/produto/produto-create/prod
 import { PdvComponent } from './components/pdv/pdv.component';
 import { CompraComponent } from './components/compra/compra.component';
 import { FinanceiroComponent } from './components/relatorio/financeiro/financeiro.component';
-
+import { DetalheVendaComponent } from './components/relatorio/financeiro/detalhe-venda/detalhe-venda.component';
 
 const routes: Routes = [
   {
@@ -57,9 +57,15 @@ const routes: Routes = [
       // Components de FUNCIONARIO
       { path: 'funcionarios', component: FuncionarioListComponent },
       { path: 'funcionarios/create', component: FuncionarioCreateComponent },
-      { path: 'funcionarios/update/:id', component: FuncionarioUpdateComponent },
+      {
+        path: 'funcionarios/update/:id',
+        component: FuncionarioUpdateComponent,
+      },
       { path: 'funcionarios/read/:id', component: FuncionarioReadComponent },
-      { path: 'funcionarios/delete/:id', component: FuncionarioDeleteComponent },
+      {
+        path: 'funcionarios/delete/:id',
+        component: FuncionarioDeleteComponent,
+      },
 
       // Components de FORNECEDOR
       { path: 'fornecedores', component: FornecedorListComponent },
@@ -78,7 +84,10 @@ const routes: Routes = [
       // Components de PDV e Compra
       { path: 'vendas', component: PdvComponent },
       { path: 'compras', component: CompraComponent },
-      { path: 'financeiro', component: FinanceiroComponent}
+
+      // Financeiro
+      { path: 'financeiro', component: FinanceiroComponent },
+      { path: 'financeiro/readVenda/:id', component: DetalheVendaComponent },
     ],
   },
 ];

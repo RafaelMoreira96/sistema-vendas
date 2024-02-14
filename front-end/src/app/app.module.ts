@@ -40,6 +40,8 @@ import { ProdutoCreateComponent } from './components/produto/produto-create/prod
 import { PdvComponent } from './components/pdv/pdv.component';
 import { CompraComponent } from './components/compra/compra.component';
 import { FinanceiroComponent } from './components/relatorio/financeiro/financeiro.component';
+import { DetalheVendaComponent } from './components/relatorio/financeiro/detalhe-venda/detalhe-venda.component';
+
 import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
@@ -76,7 +78,8 @@ import { NgxMaskModule } from 'ngx-mask';
 
     PdvComponent,
     CompraComponent,
-    FinanceiroComponent
+    FinanceiroComponent,
+    DetalheVendaComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,7 @@ import { NgxMaskModule } from 'ngx-mask';
   ],
   providers: [AuthInterceptorProvider,{
     provide: LOCALE_ID,
-    useValue: 'pt-BR'
+    useValue: 'PT-BR'
    }],
   bootstrap: [AppComponent],
 })

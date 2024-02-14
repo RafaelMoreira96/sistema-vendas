@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 tcc.code-workspace
+/jsons
 
 ### STS ###
 .apt_generated
