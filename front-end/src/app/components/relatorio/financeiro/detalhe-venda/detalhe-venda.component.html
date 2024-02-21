@@ -31,9 +31,9 @@
                 </div>
 
                 <!-- Tabela de itens da venda -->
-                <div style="height: 200px; overflow-y: auto;">
-                    <table class="table table-hover">
-                        <thead>
+                <div style="height: 250px; overflow-y: auto;">
+                    <table class="container-fluid table table-hover">
+                        <thead style="position: sticky; top: 0; background-color: white; z-index: 1;">
                             <tr>
                                 <th>#</th>
                                 <th>Descricao</th>
@@ -54,6 +54,30 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <div class="row" style="padding-top: 15px;">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Quantidade de itens </label>
+                            <input [disabled]="true" class="form-control" value="{{venda.itens.length}}" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Forma de Pagamento </label>
+                            <input [disabled]="true" value="{{ venda.formaPagamento.descricao }}" type="text"
+                                class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Valor da venda </label>
+                            <input [disabled]="true" type="text" class="form-control"
+                                value="R$ {{ venda.valorVenda.toFixed(2) }}" />
+                        </div>
+                    </div>
+
                 </div>
 
                 <button class="btn btn-danger w-100" (click)="cancelSale()">

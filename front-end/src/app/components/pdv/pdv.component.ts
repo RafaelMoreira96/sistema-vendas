@@ -248,6 +248,7 @@ export class PdvComponent implements OnInit {
 
     // Valores
     this.totalGeral = 0.0;
+    this.totalDescontos = 0.0;
 
     // Limpando o objeto Venda
     this.venda.cliente = 0;

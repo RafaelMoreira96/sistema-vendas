@@ -125,7 +125,7 @@ export class CompraComponent implements OnInit {
 
     this.compraService.create(this.compra).subscribe(
       (resposta) => {
-        this.toast.info('Venda realizada com sucesso!');
+        this.toast.info('Entrada no estoque realizada com sucesso!');
         this.limpaCampos();
       },
       (ex) => {

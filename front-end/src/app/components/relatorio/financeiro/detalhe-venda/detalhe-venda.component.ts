@@ -10,8 +10,6 @@ import { VendaService } from 'src/app/services/venda.service';
   styleUrls: ['./detalhe-venda.component.css'],
 })
 export class DetalheVendaComponent implements OnInit {
-  showModal: boolean = false;
-
   idFind?: any;
   venda: Venda = {
     id: null,
@@ -53,15 +51,8 @@ export class DetalheVendaComponent implements OnInit {
       }
     );
   }
-  openConfirmationModal(): void {
-    this.showModal = true;
-  }
 
-  closeConfirmationModal(): void {
-    this.showModal = false;
-  }
-
-  cancelSale(): void{
+  cancelSale(): void {
     this.service.delete(this.idFind).subscribe(
       (resposta) => {
         this.toast.success('Venda cancelada com sucesso', 'Sucesso');
@@ -73,5 +64,4 @@ export class DetalheVendaComponent implements OnInit {
       }
     );
   }
-
 }
