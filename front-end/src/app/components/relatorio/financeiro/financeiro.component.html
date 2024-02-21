@@ -1,17 +1,25 @@
 <div class="container-fluid">
-  <div class="row align-items custom-div">
-    <div class="col-md-4">
+
+  <!-- Filtros -->
+  <div class="row mb-3">
+    <div class="col-md-3">
       <label for="dataInicial">Data Inicial:</label>
       <input type="date" class="form-control" id="dataInicial" [(ngModel)]="dataInicial">
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <label for="dataFinal">Data Final:</label>
       <input type="date" class="form-control" id="dataFinal" [(ngModel)]="dataFinal">
     </div>
-    <div class="col-md-4 d-flex align-items-end">
-      <button class="btn btn-primary" (click)="filtrarPorData()">Filtrar</button>
+    <div class="col-md-3">
+      <label></label>
+      <button class="btn btn-primary btn-block" (click)="filtrarPorData()">Filtrar</button>
+    </div>
+    <div class="col-md-3">
+      <label></label>
+      <button class="btn btn-primary btn-block" (click)="filtrarComDataAtual()">Vendas do Dia</button>
     </div>
   </div>
+
 
   <div class="col-12">
     <div class="card">
@@ -53,55 +61,56 @@
       <div class="card">
         <div class="card-body text-center">
           <h1> VENDAS </h1>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Data da Venda</th>
-                <th scope="col">Valor da venda</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let element of venda">
-              <tr>
-                <th scope="row">{{ element.id }}</th>
-                <td>{{ element.dataVenda }}</td>
-                <td>R$ {{ element.valorVenda.toFixed(2) }}</td>
-                <td> <a routerLink="readVenda/{{ element.id }}"> Visualizar </a></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="overflow-auto" style="max-height: 200px;">
+            <table class="table table-hover table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Data da Venda</th>
+                  <th scope="col">Valor da venda</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let element of venda">
+                <tr>
+                  <th scope="row">{{ element.id }}</th>
+                  <td>{{ element.dataVenda }}</td>
+                  <td>R$ {{ element.valorVenda.toFixed(2) }}</td>
+                  <td> <a routerLink="readVenda/{{ element.id }}"> Visualizar </a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-6 g-4" data-bs-spy="scroll">
+    <div class="col-6">
       <div class="card">
         <div class="card-body text-center">
           <h1>COMPRAS</h1>
-
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Data da Venda</th>
-                <th scope="col">Valor da compra</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let element of compra">
-              <tr>
-                <th scope="row">{{ element.id }}</th>
-                <td>{{ element.dataVenda }}</td>
-                <td>R$ {{ element.valorVenda.toFixed(2) }}</td>
-                <td> <a routerLink="readVenda/{{ element.id }}"> Visualizar </a></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="overflow-auto" style="max-height: 300px;">
+            <table class="table table-hover table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Data da Venda</th>
+                  <th scope="col">Valor da compra</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let element of compra">
+                <tr>
+                  <th scope="row">{{ element.id }}</th>
+                  <td>{{ element.dataVenda }}</td>
+                  <td>R$ {{ element.valorVenda.toFixed(2) }}</td>
+                  <td> <a routerLink="readCompra/{{ element.id }}"> Visualizar </a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-
 </div>

@@ -33,17 +33,7 @@ export class FinanceiroComponent implements OnInit {
     );
   }
 
-  buscarVendasEntreDatas(dataInicial: string, dataFinal: string) {
-    this.vendaService
-      .getVendasEntreDatas(dataInicial, dataFinal)
-      .subscribe((data) => {
-        this.venda = data;
-        this.totalVenda = this.calcularTotal(this.venda);
-      });
-  }
-
   filtrarPorData(): void {
-    this.venda = [];
     if (!this.dataInicial || !this.dataFinal) {
       return; // Verificar se as datas foram fornecidas
     }
@@ -90,5 +80,37 @@ export class FinanceiroComponent implements OnInit {
           );
         }
       );
+  }
+
+  filtrarComDataAtual(): void {
+    const dataAtual = new Date();
+    const dataFormatada = this.formatarData(dataAtual);
+
+    this.vendaService
+      .getVendasEntreDatas(dataFormatada, dataFormatada)
+      .subscribe((resposta) => {
+        this.venda = resposta;
+        this.totalVenda = this.calcularTotal(this.venda);
+        this.toast.success('Vendas do dia encontradas com sucesso.');
+      });
+
+    this.compraService
+      .getComprasEntreDatas(dataFormatada, dataFormatada)
+      .subscribe((resposta) => {
+        this.compra = resposta;
+        this.totalCompra = this.calcularTotal(this.compra);
+        this.toast.success('Compras do dia encontradas com sucesso.');
+      });
+  }
+
+  formatarData(data: Date): string {
+    const year = data.getFullYear();
+    const month = this.padLeft(data.getMonth() + 1, 2, '0');
+    const day = this.padLeft(data.getDate(), 2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  padLeft(value: number, width: number, padChar: string): string {
+    return String(value).padStart(width, padChar);
   }
 }

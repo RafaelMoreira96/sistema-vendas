@@ -12,6 +12,7 @@ import { VendaService } from 'src/app/services/venda.service';
 export class DetalheVendaComponent implements OnInit {
   showModal: boolean = false;
   idFind?: any;
+  
   venda: Venda = {
     id: null,
     cliente: 0,
@@ -44,11 +45,10 @@ export class DetalheVendaComponent implements OnInit {
     this.service.findById(this.idFind).subscribe(
       (resposta) => {
         this.venda = resposta;
-        console.log(this.venda);
       },
       (err) => {
         this.toast.error('Venda não encontrada', 'Erro');
-        this.router.navigate(['vendas']);
+        this.router.navigate(['financeiro']);
       }
     );
   }

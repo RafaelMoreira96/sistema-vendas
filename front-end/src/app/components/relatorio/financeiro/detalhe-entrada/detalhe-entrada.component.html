@@ -1,1 +1,112 @@
-<p>detalhe-entrada works!</p>
+<div class="container-fluid pt-2">
+    <div class="card card-info">
+        <div class="card-header">
+            <h2 class="text-center"> Compra nº {{ compra.id }}</h2>
+        </div>
+
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Fornecedor </label>
+                            <input [disabled]="true" [(ngModel)]="compra.nomeFornecedor" name="nomeFornecedor" required=""
+                                class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Vendedor </label>
+                            <input [disabled]="true" [(ngModel)]="compra.nomeFuncionario" name="nomeFuncionario"
+                                type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Data Compra </label>
+                            <input [disabled]="true" [(ngModel)]="compra.dataVenda" name="dataVenda" type="text"
+                                class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de itens da compra -->
+                <div style="height: 250px; overflow-y: auto;">
+                    <table class="container-fluid table table-hover">
+                        <thead style="position: sticky; top: 0; background-color: white; z-index: 1;">
+                            <tr>
+                                <th>#</th>
+                                <th>Descricao</th>
+                                <th>Valor Produto</th>
+                                <th>Quantidade</th>
+                                <th>Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of compra.itens; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.descricao }}</td>
+                                <td>R$ {{ item.precoCompra.toFixed(2) }}</td>
+                                <td>{{ item.quant }}</td>
+                                <td>R$ {{ (item.precoCompra * item.quant) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row" style="padding-top: 15px;">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Quantidade de itens </label>
+                            <input [disabled]="true" class="form-control" value="{{compra.itens.length}}" type="text" />
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Valor da compra </label>
+                            <input [disabled]="true" type="text" class="form-control"
+                                value="R$ {{ compra.valorVenda.toFixed(2) }}" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-danger w-100" (click)="openModal()">
+                    Cancelar compra
+                </button>
+
+                <!-- Modal -->
+                <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" (click)="closeModal()">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirmar cancelamento de compra</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    (click)="closeModal()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Tem certeza de que deseja cancelar esta compra?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                    (click)="closeModal()">Cancelar</button>
+                                <button type="button" class="btn btn-danger"
+                                    (click)="confirmCancelEntrada()">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fundo esbranquiçado -->
+                <div class="modal-backdrop" [ngClass]="{'show': showModal}" (click)="closeModal()"></div>
+
+                <button routerLink="../../" class="btn btn-warning w-100 my-2">
+                    Retornar à listagem
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
