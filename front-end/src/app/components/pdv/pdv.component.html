@@ -24,7 +24,7 @@
           <input type="text" readonly [formControl]="descricao" class="form-control col-5" placeholder="Descrição"
             aria-label="Descricao" />
           <input type="text" [formControl]="quant" class="form-control col-2" placeholder="Quant." />
-          <input type="text" [formControl]="valorVendido" class="form-control col-2" placeholder="Valor" />
+          <input type="text" readonly [formControl]="valorVendido" class="form-control col-2" placeholder="Valor" />
           <input type="text" [formControl]="desconto" class="form-control col-2" placeholder="Desc. (por Prod.)" />
           <button (click)="addProduto()" type="button" class="input-group-append btn btn-info">
             +
@@ -118,10 +118,34 @@
       <div class="card-body">
         <h1 class="">Valor total: R$ {{totalGeral.toFixed(2) }}</h1>
         <h3 class="">Descontos: R$ {{totalDescontos.toFixed(2) }}</h3>
-        <button type="button" (click)="finalizarVenda()" class="btn btn-success">
+        <button type="button" (click)="abrirTelaConfirmacao()" class="btn btn-success">
           Finalizar venda
         </button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" (click)="fecharTelaConfirmacao()">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Confirmar cancelamento de venda</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                  (click)="fecharTelaConfirmacao()">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Tem certeza de que deseja confirmar esta venda?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                  (click)="fecharTelaConfirmacao()">Cancelar</button>
+              <button type="button" class="btn btn-danger"
+                  (click)="finalizarVenda()">Confirmar</button>
+          </div>
+      </div>
   </div>
 </div>

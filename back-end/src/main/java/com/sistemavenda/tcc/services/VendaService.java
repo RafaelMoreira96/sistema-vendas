@@ -57,26 +57,26 @@ public class VendaService {
     public List<Venda> findAll() {
         List<Venda> listDB = repository.findAll();
         List<Venda> list = new ArrayList<>();
-        for (Venda v : listDB) {
-            if (v.getStatus().equals(StatusVenda.FINALIZADO) || v.getStatus().equals(StatusVenda.ANDAMENTO)) {
-                list.add(v);
+        for (Venda venda : listDB) {
+            if (venda.getStatus().equals(StatusVenda.FINALIZADO) || venda.getStatus().equals(StatusVenda.ANDAMENTO)) {
+                list.add(venda);
             }
         }
         return list;
     }
 
     // Cadastrar venda
-    public Venda create(@Valid VendaDTO vDTO) {
+    public Venda create(@Valid VendaDTO vendaDTO) {
         // Tratando Cliente
-        Optional<Cliente> cli = clienteRepository.findById(vDTO.getCliente());
-        Cliente c = new Cliente(cli.get().getId(), cli.get().getNome());
+        Optional<Cliente> clienteOptional = clienteRepository.findById(vendaDTO.getCliente());
+        Cliente c = clienteOptional.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado!"));
 
         // Tratando Funcionario
-        Optional<Funcionario> fun = funcionarioRepository.findById(vDTO.getFuncionario());
-        Funcionario f = new Funcionario(fun.get().getId(), fun.get().getNome());
+        Optional<Funcionario> funcionario = funcionarioRepository.findById(vendaDTO.getFuncionario());
+        Funcionario f = new Funcionario(funcionario.get().getId(), funcionario.get().getNome());
 
         // Tratando lista de produtos
-        List<ItemVenda> listTemp = vDTO.getItens();
+        List<ItemVenda> listTemp = vendaDTO.getItens();
         List<ItemVenda> list = new ArrayList<>();
         Produto produto = new Produto();
         for (ItemVenda itemVenda : listTemp) {
@@ -105,12 +105,12 @@ public class VendaService {
         itemVendaRepository.saveAll(list);
 
         // Finalizando venda
-        Venda v = new Venda(vDTO);
+        Venda v = new Venda(vendaDTO);
         v.setCliente(c);
         v.setFuncionario(f);
         v.setListaProdutos(list);
         v.setValorVenda(list);
-        v.setNumeroVenda(vDTO.getNumeroVenda());
+        v.setNumeroVenda(vendaDTO.getNumeroVenda());
         v.setStatus(StatusVenda.FINALIZADO);
         return repository.save(v);
     }
@@ -139,4 +139,3 @@ public class VendaService {
     }
 
 }
-

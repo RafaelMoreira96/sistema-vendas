@@ -16,6 +16,7 @@ import { FornecedorService } from 'src/app/services/fornecedor.service';
   styleUrls: ['./compra.component.css'],
 })
 export class CompraComponent implements OnInit {
+  showModal: boolean = false;
   listItem: ItemCompra[] = [];
 
   // Variáveis da sessão Lista de Produtos
@@ -213,5 +214,30 @@ export class CompraComponent implements OnInit {
       this.totalGeral -= this.checkQuantity(item.precoCompra, item.quant);
       this.compra.itens.splice(index, 1);
     }
+  }
+
+  abrirTelaConfirmacao() {
+    if (this.compra.itens.length == 0) {
+      this.toast.error('Adicione um produto antes de finalizar a compra!');
+      return;
+    }
+    if (this.fornecedor.value == null){
+      this.toast.error('Selecione um fornecedor!');
+      return;
+    }
+    if (this.funcionario.value == null){
+      this.toast.error('Selecione um funcionário!');
+      return;
+    }
+
+    this.showModal = true;
+  }
+
+  fecharTelaConfirmacao() {
+    this.showModal = false;
+  }
+
+  reloadPDV() {
+    location.reload();
   }
 }

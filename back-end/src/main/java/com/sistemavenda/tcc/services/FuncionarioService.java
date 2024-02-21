@@ -54,6 +54,7 @@ public class FuncionarioService {
     // Cadastrar funcionario
     public Funcionario create(@Valid FuncionarioDTO fDTO) {
         validaCpf(fDTO);
+        validaUsername(fDTO);
 
         // Persistencia do objeto Endereco
         Endereco e = new Endereco();
@@ -95,6 +96,7 @@ public class FuncionarioService {
             fDTO.getEndereco().setId(funDatabase.getEndereco().getId());
         } else {
             validaCpf(fDTO);
+            validaUsername(fDTO);
             fDTO.getEndereco().setId(funDatabase.getEndereco().getId());
         }
 
@@ -149,6 +151,13 @@ public class FuncionarioService {
         Optional<Funcionario> obj = repository.findByCpf(f.getCpf());
         if (obj.isPresent() && obj.get().getCpf() != f.getCpf()) {
             throw new DataIntegrityViolationException("CPF já cadastrado");
+        }
+    }
+
+    public void validaUsername(FuncionarioDTO f){
+        Optional<Funcionario> obj = repository.findByNomeUsuario(f.getNomeUsuario());
+        if (obj.isPresent() && obj.get().getNomeUsuario() != f.getNomeUsuario()) {
+            throw new DataIntegrityViolationException("Nome de usuário já cadastrado");
         }
     }
 }

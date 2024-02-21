@@ -18,6 +18,8 @@ import { VendaService } from 'src/app/services/venda.service';
   styleUrls: ['./pdv.component.css'],
 })
 export class PdvComponent implements OnInit {
+  showModal: boolean = false;
+
   listItem: ItemVenda[] = [];
   indice = 0;
 
@@ -153,10 +155,17 @@ export class PdvComponent implements OnInit {
         this.limpaCampos();
       },
       (ex) => {
-        this.toast.error(ex);
+        let errorMessage = 'Ocorreu um erro ao processar a solicitação.';
+
+        if (ex && ex.message) {
+          errorMessage = ex.message;
+        }
+
+        this.toast.error(
+          'Erro de transação. Por favor, verifique sua conexão e tente novamente.'
+        );
       }
     );
-    console.log(this.venda);
   }
 
   addProduto(): void {
@@ -191,7 +200,7 @@ export class PdvComponent implements OnInit {
         );
         return;
       }
-     
+
       if (this.desconto.value == '' || this.desconto.value == null) {
         this.itemVenda.desconto = 0;
       } else {
@@ -279,5 +288,34 @@ export class PdvComponent implements OnInit {
       this.totalDescontos -= item.desconto * item.quant;
       this.venda.itens.splice(index, 1);
     }
+  }
+
+  abrirTelaConfirmacao() {
+    if (this.venda.itens.length == 0) {
+      this.toast.error('Adicione itens à venda');
+      return;
+    }
+    if (this.cliente.value == 0) {
+      this.toast.error('Informe o CPF do cliente');
+      return;
+    }
+    if (this.funcionario.value == 0) {
+      this.toast.error('Informe o funcionário');
+      return;
+    }
+    if (this.formaPagto.value == 0) {
+      this.toast.error('Informe a forma de pagamento');
+      return;
+    }
+
+    this.showModal = true;
+  }
+
+  fecharTelaConfirmacao() {
+    this.showModal = false;
+  }
+
+  reloadPDV() {
+    location.reload();
   }
 }

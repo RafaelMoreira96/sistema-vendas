@@ -80,9 +80,36 @@
 
                 </div>
 
-                <button class="btn btn-danger w-100" (click)="cancelSale()">
+                <button class="btn btn-danger w-100" (click)="openModal()">
                     Cancelar venda
                 </button>
+
+                <!-- Modal -->
+                <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" (click)="closeModal()">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirmar cancelamento de venda</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    (click)="closeModal()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Tem certeza de que deseja cancelar esta venda?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                    (click)="closeModal()">Cancelar</button>
+                                <button type="button" class="btn btn-danger"
+                                    (click)="confirmCancelSale()">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fundo esbranquiçado -->
+                <div class="modal-backdrop" [ngClass]="{'show': showModal}" (click)="closeModal()"></div>
 
                 <button routerLink="../../" class="btn btn-warning w-100 my-2">
                     Retornar à listagem

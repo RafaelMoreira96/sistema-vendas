@@ -8,14 +8,8 @@
 
         <!-- Botão pesquisar -->
         <div class="input-group form-group">
-          <input
-            placeholder="Cod. Barras"
-            class="form-control"
-            type="text"
-            name="codBarras"
-            [formControl]="codBarras"
-            value=""
-          />
+          <input placeholder="Cod. Barras" class="form-control" type="text" name="codBarras" [formControl]="codBarras"
+            value="" />
           <span class="input-group-append">
             <button (click)="findProduto()" type="button" class="btn btn-info">
               Pesquisar
@@ -25,42 +19,15 @@
 
         <!-- Formulário item Venda -->
         <div class="input-group mb-3">
-          <input
-            type="text"
-            readonly
-            [formControl]="idProduto"
-            name="idProduto"
-            class="form-control col-2"
-            placeholder="ID"
-            aria-label="ID"
-          />
-          <input
-            type="text"
-            readonly
-            [formControl]="descricao"
-            class="form-control col-6"
-            placeholder="Descrição"
-            aria-label="Descricao"
-          />
-          <input
-            type="text"
-            [formControl]="quant"
-            class="form-control col-2"
-            placeholder="Quant."
-            aria-label="Server"
-          />
-          <input
-            type="text"
-            [formControl]="valorCompra"
-            class="form-control col-2"
-            placeholder="Valor"
-            aria-label="Server"
-          />
-          <button
-            (click)="addProduto()"
-            type="button"
-            class="input-group-append btn btn-info"
-          >
+          <input type="text" readonly [formControl]="idProduto" name="idProduto" class="form-control col-2"
+            placeholder="ID" aria-label="ID" />
+          <input type="text" readonly [formControl]="descricao" class="form-control col-6" placeholder="Descrição"
+            aria-label="Descricao" />
+          <input type="text" [formControl]="quant" class="form-control col-2" placeholder="Quant."
+            aria-label="Server" />
+          <input type="text" [formControl]="valorCompra" class="form-control col-2" placeholder="Valor"
+            aria-label="Server" />
+          <button (click)="addProduto()" type="button" class="input-group-append btn btn-info">
             +
           </button>
         </div>
@@ -110,15 +77,8 @@
       <div class="card-body">
         <label for=""> Fornecedor </label>
         <div class="input-group form-group">
-          <input
-            [disabled]="true"
-            placeholder="CNPJ"
-            class="form-control"
-            type="text"
-            name="cnpj"
-            [formControl]="cnpj"
-            value=""
-          />
+          <input [disabled]="true" placeholder="CNPJ" class="form-control" type="text" name="cnpj" [formControl]="cnpj"
+            value="" />
           <span class="input-group-append">
             <button (click)="findFornecedor()" type="button" class="btn btn-info">
               Pesquisar
@@ -127,39 +87,18 @@
         </div>
         <div class="row">
           <div class="mb-3 col-sm-2">
-            <input
-              readonly
-              placeholder="ID"
-              [formControl]="fornecedor"
-              type="text"
-              class="form-control"
-              name="id"
-            />
+            <input readonly placeholder="ID" [formControl]="fornecedor" type="text" class="form-control" name="id" />
           </div>
           <div class="mb-3 col-sm-10">
-            <input
-              readonly
-              placeholder="Nome"
-              [formControl]="nomeFornecedor"
-              type="text"
-              class="form-control"
-              name="nome"
-            />
+            <input readonly placeholder="Nome" [formControl]="nomeFornecedor" type="text" class="form-control"
+              name="nome" />
           </div>
         </div>
 
         <label for=""> Vendedores </label>
-        <select
-          class="form-select form-control"
-          aria-label="Default select example"
-          [formControl]="funcionario"
-          name="funcionario"
-        >
-          <option
-            [formControl]="nomeFuncionario"
-            *ngFor="let fun of funcionarios"
-            value="{{ fun.id }}"
-          >
+        <select class="form-select form-control" aria-label="Default select example" [formControl]="funcionario"
+          name="funcionario">
+          <option [formControl]="nomeFuncionario" *ngFor="let fun of funcionarios" value="{{ fun.id }}">
             {{ fun.nome }}
           </option>
         </select>
@@ -170,13 +109,31 @@
       <div class="card-header text-center">Total</div>
       <div class="card-body">
         <h1 class="">Valor total: R$ {{totalGeral}}</h1>
-        <button
-          type="button"
-          (click)="finalizarCompra()"
-          class="btn btn-success"
-        >
+        <button type="button" (click)="abrirTelaConfirmacao()" class="btn btn-success">
           Finalizar compra
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" (click)="fecharTelaConfirmacao()">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar cancelamento de venda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="fecharTelaConfirmacao()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Tem certeza de que deseja confirmar esta venda?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+          (click)="fecharTelaConfirmacao()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="finalizarCompra()">Confirmar</button>
       </div>
     </div>
   </div>

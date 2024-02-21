@@ -43,6 +43,7 @@ import { FinanceiroComponent } from './components/relatorio/financeiro/financeir
 import { DetalheVendaComponent } from './components/relatorio/financeiro/detalhe-venda/detalhe-venda.component';
 
 import { NgxMaskModule } from 'ngx-mask';
+import { DetalheEntradaComponent } from './components/relatorio/financeiro/detalhe-entrada/detalhe-entrada.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { NgxMaskModule } from 'ngx-mask';
     CompraComponent,
     FinanceiroComponent,
     DetalheVendaComponent,
+    DetalheEntradaComponent,
   ],
   imports: [
     BrowserModule,
